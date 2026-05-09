@@ -6,33 +6,87 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { useRef } from "react";
 
-// Aurora / Northern Lights Background
-function AuroraBackground() {
+// Floating Stars Background
+function StarfieldBackground() {
+  // Generate deterministic star positions
+  const stars = Array.from({ length: 60 }, (_, i) => ({
+    id: i,
+    x: ((i * 17) % 100),
+    y: ((i * 23) % 100),
+    size: 1 + (i % 3) * 0.5,
+    opacity: 0.2 + (i % 5) * 0.1,
+    duration: 15 + (i % 10) * 3,
+    delay: (i % 8) * 0.5,
+  }));
+
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none">
-      {/* Aurora wave 1 */}
-      <motion.div
-        className="absolute inset-0"
-        style={{
-          background: "linear-gradient(180deg, transparent 0%, rgba(39, 170, 225, 0.03) 30%, rgba(43, 57, 144, 0.08) 50%, rgba(38, 36, 102, 0.05) 70%, transparent 100%)",
-        }}
-        animate={{
-          backgroundPosition: ["0% 0%", "100% 100%", "0% 0%"],
-        }}
-        transition={{
-          duration: 20,
-          repeat: Infinity,
-          ease: "linear",
-        }}
-      />
-      
-
-
-      {/* Gradient overlay for depth */}
+      {/* Subtle gradient wash */}
       <div 
         className="absolute inset-0"
         style={{
-          background: "radial-gradient(ellipse at 50% 0%, transparent 0%, #0a0a12 70%)",
+          background: "radial-gradient(ellipse at 70% 30%, rgba(39, 170, 225, 0.04) 0%, transparent 50%), radial-gradient(ellipse at 30% 70%, rgba(43, 57, 144, 0.05) 0%, transparent 50%)",
+        }}
+      />
+
+      {/* Floating stars */}
+      {stars.map((star) => (
+        <motion.div
+          key={star.id}
+          className="absolute rounded-full bg-white"
+          style={{
+            left: `${star.x}%`,
+            top: `${star.y}%`,
+            width: star.size,
+            height: star.size,
+          }}
+          animate={{
+            y: [0, -20, 0],
+            x: [0, star.id % 2 === 0 ? 10 : -10, 0],
+            opacity: [star.opacity * 0.5, star.opacity, star.opacity * 0.5],
+            scale: [1, 1.2, 1],
+          }}
+          transition={{
+            duration: star.duration,
+            delay: star.delay,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        />
+      ))}
+
+      {/* Larger accent particles - cyan tinted */}
+      {[...Array(8)].map((_, i) => (
+        <motion.div
+          key={`accent-${i}`}
+          className="absolute rounded-full"
+          style={{
+            left: `${15 + i * 12}%`,
+            top: `${20 + (i % 3) * 25}%`,
+            width: 2 + (i % 2),
+            height: 2 + (i % 2),
+            background: "rgba(39, 170, 225, 0.4)",
+            boxShadow: "0 0 6px rgba(39, 170, 225, 0.3)",
+          }}
+          animate={{
+            y: [0, -30, 0],
+            x: [0, i % 2 === 0 ? 15 : -15, 0],
+            opacity: [0.2, 0.5, 0.2],
+          }}
+          transition={{
+            duration: 20 + i * 2,
+            delay: i * 0.8,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        />
+      ))}
+
+      {/* Depth gradient overlay */}
+      <div 
+        className="absolute inset-0"
+        style={{
+          background: "radial-gradient(ellipse at 50% 0%, transparent 0%, #0a0a12 80%)",
         }}
       />
     </div>
@@ -171,8 +225,8 @@ export function Hero() {
 
   return (
     <section ref={ref} className="relative min-h-screen flex items-center pt-24 overflow-hidden bg-[#0a0a12]">
-      {/* Aurora Background */}
-      <AuroraBackground />
+      {/* Starfield Background */}
+      <StarfieldBackground />
 
 
 
