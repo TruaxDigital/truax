@@ -13,6 +13,55 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { useState } from "react";
+
+interface TechItem {
+  name: string;
+  logo: string;
+  color: string;
+}
+
+function TechLogo({ tech, index }: { tech: TechItem; index: number }) {
+  const [isHovered, setIsHovered] = useState(false);
+  
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 10 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ delay: index * 0.02 }}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      className="flex flex-col items-center gap-3 p-5 rounded-xl bg-[#0f0f1a] border transition-all duration-300 cursor-default"
+      style={{ 
+        borderColor: isHovered ? `${tech.color}50` : "#262466",
+        boxShadow: isHovered ? `0 0 30px ${tech.color}20` : "none",
+      }}
+    >
+      <div className="w-10 h-10 flex items-center justify-center">
+        <img 
+          src={tech.logo} 
+          alt={tech.name}
+          className="w-8 h-8 transition-all duration-300"
+          style={{ 
+            filter: isHovered 
+              ? "brightness(0) invert(1)" 
+              : "brightness(0) invert(0.4)",
+            opacity: isHovered ? 1 : 0.6,
+          }}
+        />
+      </div>
+      <span 
+        className="text-sm text-center transition-colors duration-300"
+        style={{
+          color: isHovered ? tech.color : "#9ca3af",
+        }}
+      >
+        {tech.name}
+      </span>
+    </motion.div>
+  );
+}
 
 const services = [
   {
@@ -63,42 +112,102 @@ const techStack = [
   { 
     name: "WordPress", 
     logo: "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@v9/icons/wordpress.svg",
+    color: "#21759B",
   },
   { 
     name: "Webflow", 
     logo: "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@v9/icons/webflow.svg",
+    color: "#4353FF",
   },
   { 
     name: "HubSpot", 
     logo: "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@v9/icons/hubspot.svg",
+    color: "#FF7A59",
   },
   { 
     name: "Salesforce", 
     logo: "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@v9/icons/salesforce.svg",
+    color: "#00A1E0",
   },
   { 
     name: "Google Ads", 
     logo: "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@v9/icons/googleads.svg",
+    color: "#4285F4",
   },
   { 
     name: "Meta", 
     logo: "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@v9/icons/meta.svg",
+    color: "#0081FB",
   },
   { 
     name: "Mailchimp", 
     logo: "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@v9/icons/mailchimp.svg",
+    color: "#FFE01B",
   },
   { 
     name: "Klaviyo", 
     logo: "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@v9/icons/klaviyo.svg",
+    color: "#12B980",
   },
   { 
     name: "Shopify", 
     logo: "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@v9/icons/shopify.svg",
+    color: "#96BF48",
   },
   { 
     name: "Google Analytics", 
     logo: "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@v9/icons/googleanalytics.svg",
+    color: "#E37400",
+  },
+  { 
+    name: "Semrush", 
+    logo: "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@v9/icons/semrush.svg",
+    color: "#FF642D",
+  },
+  { 
+    name: "Ahrefs", 
+    logo: "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@v9/icons/ahrefs.svg",
+    color: "#FF6B00",
+  },
+  { 
+    name: "Zapier", 
+    logo: "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@v9/icons/zapier.svg",
+    color: "#FF4A00",
+  },
+  { 
+    name: "Slack", 
+    logo: "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@v9/icons/slack.svg",
+    color: "#4A154B",
+  },
+  { 
+    name: "Notion", 
+    logo: "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@v9/icons/notion.svg",
+    color: "#FFFFFF",
+  },
+  { 
+    name: "Stripe", 
+    logo: "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@v9/icons/stripe.svg",
+    color: "#635BFF",
+  },
+  { 
+    name: "LinkedIn", 
+    logo: "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@v9/icons/linkedin.svg",
+    color: "#0A66C2",
+  },
+  { 
+    name: "Canva", 
+    logo: "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@v9/icons/canva.svg",
+    color: "#00C4CC",
+  },
+  { 
+    name: "Figma", 
+    logo: "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@v9/icons/figma.svg",
+    color: "#F24E1E",
+  },
+  { 
+    name: "Vercel", 
+    logo: "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@v9/icons/vercel.svg",
+    color: "#FFFFFF",
   },
 ];
 
@@ -220,29 +329,10 @@ export function ServicesPageContent() {
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-6"
+            className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-5 gap-4"
           >
             {techStack.map((tech, index) => (
-              <motion.div
-                key={tech.name}
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.05 }}
-                className="group flex flex-col items-center gap-3 p-6 rounded-xl bg-[#0f0f1a] border border-[#262466] hover:border-[#27AAE1]/30 transition-all"
-              >
-                <div className="w-10 h-10 flex items-center justify-center">
-                  <img 
-                    src={tech.logo} 
-                    alt={tech.name}
-                    className="w-8 h-8 opacity-60 group-hover:opacity-100 transition-opacity"
-                    style={{ filter: "brightness(0) invert(1)" }}
-                  />
-                </div>
-                <span className="text-sm text-gray-400 group-hover:text-white transition-colors text-center">
-                  {tech.name}
-                </span>
-              </motion.div>
+              <TechLogo key={tech.name} tech={tech} index={index} />
             ))}
           </motion.div>
         </div>
