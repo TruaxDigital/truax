@@ -124,8 +124,8 @@ export function Footer() {
                     >
                       <span className="relative">
                         {link.label}
-                        <span className="absolute -bottom-0.5 left-0 w-0 h-0.5 bg-gradient-to-r from-[#27AAE1] to-[#2B3990] group-hover:w-full transition-all duration-300 ease-out" />
-                        <span className="absolute -bottom-0.5 left-0 w-0 h-0.5 bg-[#27AAE1] blur-sm group-hover:w-full transition-all duration-300 ease-out opacity-50" />
+                        <span className="absolute -bottom-0.5 left-0 right-0 h-0.5 bg-gradient-to-r from-[#27AAE1] to-[#2B3990] origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out" />
+                        <span className="absolute -bottom-0.5 left-0 right-0 h-0.5 bg-[#27AAE1] blur-sm origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out opacity-50" />
                       </span>
                     </Link>
                   </li>
@@ -147,8 +147,8 @@ export function Footer() {
                     >
                       <span className="relative">
                         {link.label}
-                        <span className="absolute -bottom-0.5 left-0 w-0 h-0.5 bg-gradient-to-r from-[#27AAE1] to-[#2B3990] group-hover:w-full transition-all duration-300 ease-out" />
-                        <span className="absolute -bottom-0.5 left-0 w-0 h-0.5 bg-[#27AAE1] blur-sm group-hover:w-full transition-all duration-300 ease-out opacity-50" />
+                        <span className="absolute -bottom-0.5 left-0 right-0 h-0.5 bg-gradient-to-r from-[#27AAE1] to-[#2B3990] origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out" />
+                        <span className="absolute -bottom-0.5 left-0 right-0 h-0.5 bg-[#27AAE1] blur-sm origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out opacity-50" />
                       </span>
                     </Link>
                   </li>
@@ -168,8 +168,8 @@ export function Footer() {
                 >
                   <span className="relative">
                     hello@truaxmarketing.com
-                    <span className="absolute -bottom-0.5 left-0 w-0 h-0.5 bg-gradient-to-r from-[#27AAE1] to-[#2B3990] group-hover:w-full transition-all duration-300 ease-out" />
-                    <span className="absolute -bottom-0.5 left-0 w-0 h-0.5 bg-[#27AAE1] blur-sm group-hover:w-full transition-all duration-300 ease-out opacity-50" />
+                    <span className="absolute -bottom-0.5 left-0 right-0 h-0.5 bg-gradient-to-r from-[#27AAE1] to-[#2B3990] origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out" />
+                    <span className="absolute -bottom-0.5 left-0 right-0 h-0.5 bg-[#27AAE1] blur-sm origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out opacity-50" />
                   </span>
                 </a>
                 <p className="text-gray-500">

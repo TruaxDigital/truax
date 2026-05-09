@@ -30,18 +30,18 @@ const navLinks = [
 // Animated underline component for nav links
 function NavLink({ href, children, delay = 0 }: { href: string; children: React.ReactNode; delay?: number }) {
   return (
-    <Link href={href}>
+    <Link href={href} className="group">
       <motion.span
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay, duration: 0.3 }}
-        className="relative text-gray-300 hover:text-white transition-colors cursor-pointer inline-block group"
+        className="relative text-gray-300 group-hover:text-white transition-colors cursor-pointer inline-block"
       >
         {children}
-        {/* Animated underline */}
-        <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-[#27AAE1] to-[#2B3990] group-hover:w-full transition-all duration-300 ease-out" />
+        {/* Animated underline - using scale transform for smooth animation */}
+        <span className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-[#27AAE1] to-[#2B3990] origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out" />
         {/* Subtle glow on hover */}
-        <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#27AAE1] blur-sm group-hover:w-full transition-all duration-300 ease-out opacity-50" />
+        <span className="absolute -bottom-1 left-0 right-0 h-0.5 bg-[#27AAE1] blur-sm origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out opacity-50" />
       </motion.span>
     </Link>
   );
@@ -64,16 +64,18 @@ function DropdownButton({
       whileHover={{ y: -1 }}
       transition={{ duration: 0.2 }}
     >
-      {label}
+      <span className="relative">
+        {label}
+        {/* Animated underline - using scale transform */}
+        <span className={`absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-[#27AAE1] to-[#2B3990] origin-left transition-transform duration-300 ease-out ${isOpen ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'}`} />
+        <span className={`absolute -bottom-1 left-0 right-0 h-0.5 bg-[#27AAE1] blur-sm origin-left transition-transform duration-300 ease-out opacity-50 ${isOpen ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'}`} />
+      </span>
       <motion.span
         animate={{ rotate: isOpen ? 180 : 0 }}
         transition={{ duration: 0.2 }}
       >
         <ChevronDown className="w-4 h-4" />
       </motion.span>
-      {/* Animated underline */}
-      <span className={`absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-[#27AAE1] to-[#2B3990] transition-all duration-300 ease-out ${isOpen ? 'w-full' : 'w-0 group-hover:w-full'}`} />
-      <span className={`absolute -bottom-1 left-0 h-0.5 bg-[#27AAE1] blur-sm transition-all duration-300 ease-out opacity-50 ${isOpen ? 'w-full' : 'w-0 group-hover:w-full'}`} />
     </motion.button>
   );
 }
@@ -193,8 +195,8 @@ export function Navbar() {
                           >
                             <span className="relative inline-block">
                               {service.label}
-                              <span className="absolute -bottom-0.5 left-0 w-0 h-0.5 bg-gradient-to-r from-[#27AAE1] to-[#2B3990] group-hover:w-full transition-all duration-300 ease-out" />
-                              <span className="absolute -bottom-0.5 left-0 w-0 h-0.5 bg-[#27AAE1] blur-sm group-hover:w-full transition-all duration-300 ease-out opacity-50" />
+                              <span className="absolute -bottom-0.5 left-0 right-0 h-0.5 bg-gradient-to-r from-[#27AAE1] to-[#2B3990] origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out" />
+                              <span className="absolute -bottom-0.5 left-0 right-0 h-0.5 bg-[#27AAE1] blur-sm origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out opacity-50" />
                             </span>
                           </Link>
                         ))}
@@ -242,8 +244,8 @@ export function Navbar() {
                           >
                             <span className="relative inline-block">
                               {link.label}
-                              <span className="absolute -bottom-0.5 left-0 w-0 h-0.5 bg-gradient-to-r from-[#27AAE1] to-[#2B3990] group-hover:w-full transition-all duration-300 ease-out" />
-                              <span className="absolute -bottom-0.5 left-0 w-0 h-0.5 bg-[#27AAE1] blur-sm group-hover:w-full transition-all duration-300 ease-out opacity-50" />
+                              <span className="absolute -bottom-0.5 left-0 right-0 h-0.5 bg-gradient-to-r from-[#27AAE1] to-[#2B3990] origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out" />
+                              <span className="absolute -bottom-0.5 left-0 right-0 h-0.5 bg-[#27AAE1] blur-sm origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out opacity-50" />
                             </span>
                           </Link>
                         ))}
