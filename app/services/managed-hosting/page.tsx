@@ -953,7 +953,7 @@ export default function ManagedHostingPage() {
                 transition={{ delay: index * 0.1 }}
                 className="group"
               >
-                <Link href={`/blog/${post.slug}`} className="block">
+                <Link href={`/insights/${post.slug}`} className="block">
                   <div className="aspect-[16/10] rounded-xl overflow-hidden mb-4 bg-gradient-to-br from-[#2B3990]/40 to-[#27AAE1]/20 border border-[#262466] group-hover:border-[#27AAE1]/50 transition-colors">
                     {(() => {
                       const imageUrl = getBlogImageUrl(post.slug, post.featuredImage);
@@ -992,7 +992,7 @@ export default function ManagedHostingPage() {
             viewport={{ once: true }}
             className="text-center mt-10"
           >
-            <Link href="/blog" className="inline-flex items-center gap-2 text-[#27AAE1] hover:text-white transition-colors text-sm font-medium">
+            <Link href="/insights" className="inline-flex items-center gap-2 text-[#27AAE1] hover:text-white transition-colors text-sm font-medium">
               View all articles
               <ArrowRight className="h-4 w-4" />
             </Link>

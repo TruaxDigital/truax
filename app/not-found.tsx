@@ -58,8 +58,8 @@ export default function NotFound() {
               <Link href="/ai-enablement" className="text-[#27AAE1] hover:underline">
                 AI Enablement
               </Link>
-              <Link href="/blog" className="text-[#27AAE1] hover:underline">
-                Blog
+              <Link href="/insights" className="text-[#27AAE1] hover:underline">
+                Insights
               </Link>
               <Link href="/about" className="text-[#27AAE1] hover:underline">
                 About

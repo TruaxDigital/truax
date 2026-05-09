@@ -76,6 +76,6 @@ Truax Marketing Solutions is a results-focused marketing agency founded by Aaron
 - 100% senior talent (no junior account managers)
 - Average client tenure of 3+ years
 
-## Blog Topics
+## Insights
 
-Our blog covers SEO, digital strategy, content marketing, paid advertising, leadership, and web development. Visit /blog for articles on marketing best practices.
+Our insights section covers SEO, digital strategy, content marketing, paid advertising, leadership, and web development. Visit /insights for articles on marketing best practices.

@@ -35,7 +35,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       type: "article",
       publishedTime: post.publishedAt,
       authors: [post.author],
-      url: `https://truaxmarketing.com/blog/${post.slug}`,
+      url: `https://truaxmarketing.com/insights/${post.slug}`,
       section: post.category,
     },
     twitter: {
@@ -44,7 +44,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description: post.excerpt,
     },
     alternates: {
-      canonical: `https://truaxmarketing.com/blog/${post.slug}`,
+      canonical: `https://truaxmarketing.com/insights/${post.slug}`,
     },
   };
 }

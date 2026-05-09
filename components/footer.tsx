@@ -52,7 +52,7 @@ const footerLinks = {
   ],
   company: [
     { label: "About Us", href: "/about" },
-    { label: "Blog", href: "/blog" },
+    { label: "Insights", href: "/insights" },
     { label: "Contact", href: "/contact" },
     { label: "Book a Call", href: "/meet" },
   ],

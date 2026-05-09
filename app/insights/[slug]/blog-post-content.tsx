@@ -84,8 +84,8 @@ export default function BlogPostContent({ post }: Props) {
 
   const breadcrumbSchema = createBreadcrumbSchema([
     { name: "Home", url: "/" },
-    { name: "Blog", url: "/blog" },
-    { name: post.title, url: `/blog/${post.slug}` },
+    { name: "Insights", url: "/insights" },
+    { name: post.title, url: `/insights/${post.slug}` },
   ]);
 
   // Convert markdown-style content to properly formatted HTML
@@ -212,7 +212,7 @@ export default function BlogPostContent({ post }: Props) {
         </div>
 
         <div className="relative z-10 max-w-3xl mx-auto">
-          <Link href="/blog" className="inline-flex items-center gap-2 text-gray-400 hover:text-[#27AAE1] transition-colors mb-8">
+          <Link href="/insights" className="inline-flex items-center gap-2 text-gray-400 hover:text-[#27AAE1] transition-colors mb-8">
             <ArrowLeft className="h-4 w-4" />
             Back to Blog
           </Link>
@@ -317,7 +317,7 @@ export default function BlogPostContent({ post }: Props) {
         <div className="max-w-3xl mx-auto">
           <div className="grid md:grid-cols-2 gap-6">
             {prevPost && (
-              <Link href={`/blog/${prevPost.slug}`} className="group">
+              <Link href={`/insights/${prevPost.slug}`} className="group">
                 <div className="p-6 rounded-xl bg-[#0f0f1a] border border-[#262466] hover:border-[#27AAE1]/50 transition-all">
                   <span className="text-sm text-gray-500 flex items-center gap-1 mb-2">
                     <ArrowLeft className="h-3 w-3" />
@@ -330,7 +330,7 @@ export default function BlogPostContent({ post }: Props) {
               </Link>
             )}
             {nextPost && (
-              <Link href={`/blog/${nextPost.slug}`} className="group md:ml-auto">
+              <Link href={`/insights/${nextPost.slug}`} className="group md:ml-auto">
                 <div className="p-6 rounded-xl bg-[#0f0f1a] border border-[#262466] hover:border-[#27AAE1]/50 transition-all text-right">
                   <span className="text-sm text-gray-500 flex items-center justify-end gap-1 mb-2">
                     Next

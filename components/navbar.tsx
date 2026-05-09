@@ -23,7 +23,7 @@ const aiEnablementLinks = [
 
 const navLinks = [
   { href: "/about", label: "About" },
-  { href: "/blog", label: "Blog" },
+  { href: "/insights", label: "Insights" },
   { href: "/contact", label: "Contact" },
 ];
 

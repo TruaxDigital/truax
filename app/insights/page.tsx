@@ -71,7 +71,7 @@ export default function BlogPage() {
             transition={{ duration: 0.5 }}
             className="text-[#27AAE1] font-medium mb-4 tracking-wide"
           >
-            Blog
+            Insights
           </motion.p>
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
@@ -183,7 +183,7 @@ export default function BlogPage() {
                 className="group rounded-2xl bg-[#0f0f1a] border border-[#262466] overflow-hidden hover:border-[#27AAE1]/50 transition-all"
               >
                 {/* Featured Image */}
-                <Link href={`/blog/${post.slug}`}>
+                <Link href={`/insights/${post.slug}`}>
                   <div className="aspect-video bg-gradient-to-br from-[#2B3990]/40 to-[#27AAE1]/20 relative overflow-hidden">
                     {(() => {
                       const imageUrl = getBlogImageUrl(post.slug, post.featuredImage);
@@ -214,13 +214,13 @@ export default function BlogPage() {
                       {post.publishedAt}
                     </span>
                   </div>
-                  <Link href={`/blog/${post.slug}`}>
+                  <Link href={`/insights/${post.slug}`}>
                     <h2 className="text-lg font-semibold mb-3 group-hover:text-[#27AAE1] transition-colors line-clamp-2">
                       {post.title}
                     </h2>
                   </Link>
                   <p className="text-gray-400 text-sm mb-4 line-clamp-3 leading-relaxed">{post.excerpt}</p>
-                  <Link href={`/blog/${post.slug}`}>
+                  <Link href={`/insights/${post.slug}`}>
                     <span className="inline-flex items-center text-sm text-[#27AAE1] font-medium group-hover:gap-2 transition-all">
                       Read More
                       <ArrowRight className="h-4 w-4 ml-1 group-hover:translate-x-1 transition-transform" />
