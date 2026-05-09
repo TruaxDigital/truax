@@ -1371,6 +1371,52 @@ Track beyond clicks:
     featuredImage: "https://images.unsplash.com/photo-1611944212129-29977ae1398c?w=800&auto=format&fit=crop"
   },
   {
+    id: "49",
+    slug: "benchmarking-your-linkedin-ads",
+    title: "Benchmarking Your LinkedIn Ads",
+    excerpt: "How well are your LinkedIn Ads performing? LinkedIn offers many different types of ads, each with their own benchmarks for success.",
+    content: `LinkedIn Ad Performance Benchmarks
+
+How well are your LinkedIn Ads performing? LinkedIn offers many different types of ads, each with their own benchmarks for success.
+
+Ad content on LinkedIn can be divided into three categories: Sponsored Content, Text and Dynamic Ads, and Sponsored Messaging. While each format possesses its own advantages, figuring out which one works best for your business requires taking a closer look at key metrics such as click-through rate, cost-per-click, and conversion rate.
+
+**Sponsored Content**
+
+LinkedIn offers a number of different ad types that can be displayed in users news feeds, including Sponsored Content.
+
+Sponsored Content has an average click-through rate (CTR) of 0.44%, so your ads performance is determined by how much higher your CTR is than that benchmark.
+
+Costs-per-click (CPC) for Sponsored Content usually falls between $8 and $11, but it can increase if you are targeting a small audience or one that is in high demand. In those cases, CPCs could be as high as $15-$20.
+
+For most audiences you should aim for a CPC of $8-$11 to be cost efficient. If you are generating clicks for less than that, you are in good shape.
+
+The conversion rates of your Sponsored Content Ads will depend on how difficult it is for customers to take advantage of the offer. If the offer is low-friction, such as simply downloading a piece of content or watching a video in exchange for contact information, you can expect a conversion rate of 10% to 15%. However, if the offer is high-friction, like requiring a demo or free trial, the conversion rate will usually be only 1.5% to 4%.
+
+**Text and Dynamic Ads**
+
+LinkedIn offers two different types of right-rail ads: Text Ads and Dynamic Ads. Text Ads are the cheaper option, with manual bidding options as low as $2 per click or per thousand impressions. Most advertisers see a CPC of $3 to $6 with Text Ads.
+
+Dynamic Ads take up more space in the right rail and typically have a higher CTR, around 0.08%. Because they do not typically drive as much traffic as other ad types, bidding much more than this range likely will not be very cost effective.
+
+LinkedIn's Text Ads are a small banner ad that only appears on desktop devices. With an average CTR of only 0.025%, these ads can easily be missed by users. However, because they take up less space than other types of ads, they can be a more cost-effective option for advertisers.
+
+**Sponsored Messaging**
+
+LinkedIn's Sponsored Messages are a great way to get your message in front of users. With an average open rate of 55%, you are sure to reach your target audience. Plus, with a click-through rate (CTR) of 3.2%, you can be confident that your message is being seen and interacted with.
+
+Sponsored Messaging is the most expensive ad format on LinkedIn, with CPCs (cost per click) typically ranging from $25 to $60.
+
+Most people find message ads to be quite invasive. After all, you are interrupting someone's private communication in order to deliver your commercial message. So, if you want people to actually pay attention to your ad, it is important to make it feel like a personal invitation rather than a generic sales pitch.
+
+Exclusive events and limited time deals generate a lot of interest. In fact, they can result in open rates of 70% and CTRs of 7%. This kind of engagement can help lower your costs into a range closer to that of Sponsored Content.`,
+    publishedAt: "Aug 1, 2022",
+    author: "Aaron Truax",
+    category: "Paid Advertising",
+    tags: ["LinkedIn Ads", "Advertising", "Analytics"],
+    featuredImage: "https://images.unsplash.com/photo-1611944212129-29977ae1398c?w=800&auto=format&fit=crop"
+  },
+  {
     id: "31",
     slug: "the-magic-of-video-marketing",
     title: "The Magic of Video Marketing",
