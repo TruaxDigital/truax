@@ -116,7 +116,7 @@ const pricingTiers = [
   {
     name: "Strategy Sprint",
     bestFor: "New CMOs, pre-funding diligence, 90-day reset",
-    price: "$12,000 one-time",
+    price: "$9,500 one-time",
     timeline: "4 weeks",
     features: [
       "Full diagnostic across team, MarTech, CRM",
@@ -129,7 +129,7 @@ const pricingTiers = [
   {
     name: "Strategy + Implementation",
     bestFor: "Mid-market teams ready to rebuild MarTech and CRM",
-    price: "$36,000 one-time",
+    price: "$29,000 one-time",
     timeline: "12 weeks",
     features: [
       "Everything in Strategy Sprint",
@@ -144,7 +144,7 @@ const pricingTiers = [
   {
     name: "Operating Partnership",
     bestFor: "Ongoing strategic partner, monthly executive cadence",
-    price: "$6,000 to $18,000/month",
+    price: "$4,800 to $14,400/month",
     timeline: "Ongoing",
     features: [
       "Monthly strategic reviews",
@@ -403,7 +403,7 @@ export default function DigitalStrategyPage() {
               What is B2B digital strategy?
             </p>
             <p className="text-lg md:text-xl text-gray-300 leading-relaxed">
-              B2B digital strategy is the architecture that turns marketing investment into revenue. It connects positioning, demand programs, MarTech, CRM, content, AI workflows, and reporting into one system. Truax Marketing builds these for mid-market companies in 6 to 12 weeks. Engagements start at $12,000 one-time or $6,000 per month.
+              B2B digital strategy is the architecture that turns marketing investment into revenue. It connects positioning, demand programs, MarTech, CRM, content, AI workflows, and reporting into one system. Truax Marketing builds these for mid-market companies in 6 to 12 weeks. Engagements start at $9,500 one-time or $4,800 per month.
             </p>
           </motion.div>
         </div>

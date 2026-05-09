@@ -109,7 +109,7 @@ const pricingTiers = [
   {
     name: "Foundation",
     bestFor: "Single-product B2B, $10M to $50M revenue",
-    price: "$3,600/month",
+    price: "$2,900/month",
     features: [
       "Technical SEO",
       "4 SME content pieces/mo",
@@ -122,7 +122,7 @@ const pricingTiers = [
   {
     name: "Growth",
     bestFor: "Multi-product or multi-location, $50M to $200M",
-    price: "$7,200/month",
+    price: "$5,800/month",
     features: [
       "Everything in Foundation",
       "8 content pieces/mo",
@@ -135,7 +135,7 @@ const pricingTiers = [
   {
     name: "Enterprise",
     bestFor: "$200M+, multi-brand, complex stacks",
-    price: "$12,000/month+",
+    price: "$9,600/month+",
     features: [
       "Everything in Growth",
       "12+ content pieces/mo",
@@ -394,7 +394,7 @@ export default function SEOPage() {
               What is B2B SEO?
             </p>
             <p className="text-lg md:text-xl text-gray-300 leading-relaxed">
-              B2B SEO is the practice of earning qualified traffic from search engines and AI answer engines, then converting that traffic into pipeline. Truax Marketing delivers technical SEO, content strategy, AI search optimization (GEO), and CRM-tied reporting for mid-market B2B companies. Retainers start at $3,600 per month with month-to-month terms.
+              B2B SEO is the practice of earning qualified traffic from search engines and AI answer engines, then converting that traffic into pipeline. Truax Marketing delivers technical SEO, content strategy, AI search optimization (GEO), and CRM-tied reporting for mid-market B2B companies. Retainers start at $2,900 per month with month-to-month terms.
             </p>
           </motion.div>
         </div>

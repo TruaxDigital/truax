@@ -117,7 +117,7 @@ const pricingTiers = [
   {
     name: "Marketing Site",
     bestFor: "Single-product B2B, $10M to $50M revenue, 10 to 25 pages",
-    price: "Starting at $30,000",
+    price: "Starting at $24,000",
     timeline: "8-10 weeks",
     features: [
       "Strategy, design, development",
@@ -131,7 +131,7 @@ const pricingTiers = [
   {
     name: "Multi-Product Build",
     bestFor: "$50M to $200M revenue, 2+ products or service lines, 25 to 60 pages",
-    price: "Starting at $48,000",
+    price: "Starting at $38,000",
     timeline: "10-14 weeks",
     features: [
       "Everything in Marketing Site",
@@ -144,7 +144,7 @@ const pricingTiers = [
   {
     name: "Headless or Custom",
     bestFor: "Custom Next.js, app integrations, complex CRM logic, 50+ pages",
-    price: "Starting at $72,000",
+    price: "Starting at $58,000",
     timeline: "12-20 weeks",
     features: [
       "Everything in Multi-Product",
@@ -700,7 +700,7 @@ export default function WebDesignPage() {
             viewport={{ once: true }}
             className="text-center text-gray-500 text-sm mt-8"
           >
-            No hourly billing. No surprise change orders. Fixed scope, fixed timeline, fixed fee. Ongoing retainers from $3,500 per month for content, optimization, and managed hosting.
+            No hourly billing. No surprise change orders. Fixed scope, fixed timeline, fixed fee. Ongoing retainers from $2,800 per month for content, optimization, and managed hosting.
           </motion.p>
         </div>
       </section>

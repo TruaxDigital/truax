@@ -88,7 +88,7 @@ const processSteps = [
 const pricingTiers = [
   {
     name: "Operating Partner",
-    price: "$9,600",
+    price: "$7,500",
     period: "/month",
     bestFor: "$10M to $30M revenue, small marketing team",
     time: "10-12 hours/week",
@@ -96,7 +96,7 @@ const pricingTiers = [
   },
   {
     name: "Embedded CMO",
-    price: "$16,000",
+    price: "$12,800",
     period: "/month",
     bestFor: "$30M to $150M revenue, multi-channel",
     time: "18-22 hours/week",
@@ -104,7 +104,7 @@ const pricingTiers = [
   },
   {
     name: "Executive in Residence",
-    price: "$24,000",
+    price: "$19,200",
     period: "/month",
     bestFor: "$150M+ revenue, transformation moments",
     time: "25-30 hours/week",
@@ -268,7 +268,7 @@ export default function FractionalCMOPage() {
               who operates inside your business part-time, typically 10 to 25 hours per week, leading 
               strategy, hiring, vendor management, board reporting, and execution. Truax Marketing 
               fractional CMOs are operators with CRM, demand gen, and AI background. 
-              Engagements start at <strong className="text-[#27AAE1]">$9,600 per month</strong>.
+              Engagements start at <strong className="text-[#27AAE1]">$7,500 per month</strong>.
             </p>
           </motion.div>
         </div>

@@ -117,7 +117,7 @@ const pricingTiers = [
   {
     name: "Pipeline Starter",
     bestFor: "$10M to $30M revenue, single product",
-    price: "$6,000/month",
+    price: "$4,800/month",
     features: [
       "2 paid channels",
       "Content production",
@@ -129,7 +129,7 @@ const pricingTiers = [
   {
     name: "Pipeline Engine",
     bestFor: "$30M to $150M revenue, multi-product",
-    price: "$12,000/month",
+    price: "$9,600/month",
     features: [
       "3-4 paid channels",
       "ABM motion",
@@ -142,7 +142,7 @@ const pricingTiers = [
   {
     name: "Pipeline at Scale",
     bestFor: "$150M+ revenue, complex motion",
-    price: "$24,000-$30,000/month",
+    price: "$19,200-$24,000/month",
     features: [
       "Full omnichannel",
       "ABM motion",
@@ -399,7 +399,7 @@ export default function DemandGenerationPage() {
               What is B2B demand generation?
             </p>
             <p className="text-lg md:text-xl text-gray-300 leading-relaxed">
-              B2B demand generation is the integrated practice of creating, capturing, and converting qualified demand into pipeline and revenue. Truax Marketing runs paid media, ABM, content, lifecycle email, AI ad surfaces, and CRO as a single program, attributed to deals through HubSpot or Salesforce. Programs start at $6,000 per month.
+              B2B demand generation is the integrated practice of creating, capturing, and converting qualified demand into pipeline and revenue. Truax Marketing runs paid media, ABM, content, lifecycle email, AI ad surfaces, and CRO as a single program, attributed to deals through HubSpot or Salesforce. Programs start at $4,800 per month.
             </p>
           </motion.div>
         </div>

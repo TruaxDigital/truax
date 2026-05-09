@@ -144,7 +144,7 @@ const pricingTiers = [
   {
     name: "Standard",
     bestFor: "Single-site B2B, 10 to 25 pages",
-    price: "$240/month",
+    price: "$195/month",
     visits: "Up to 20,000",
     features: [
       "Cloud hosting on WP Engine",
@@ -160,7 +160,7 @@ const pricingTiers = [
   {
     name: "Growth",
     bestFor: "Multi-page B2B, 25 to 60 pages, more traffic",
-    price: "$720/month",
+    price: "$575/month",
     visits: "Up to 100,000",
     features: [
       "Everything in Standard",
@@ -174,7 +174,7 @@ const pricingTiers = [
   {
     name: "Scale",
     bestFor: "Mission-critical, multi-site, or high-traffic",
-    price: "$2,400/month",
+    price: "$1,900/month",
     visits: "Up to 500,000",
     features: [
       "Everything in Growth",
@@ -453,7 +453,7 @@ export default function ManagedHostingPage() {
               What is managed WordPress hosting?
             </p>
             <p className="text-lg md:text-xl text-gray-300 leading-relaxed">
-              Managed WordPress hosting is a fully handled hosting and maintenance service that includes security monitoring, automated backups, performance optimization, plugin updates, and 24/7 uptime monitoring. Truax Marketing delivers managed hosting on WP Engine infrastructure with SEO and AI search visibility monitoring layered in. Plans start at $240 per month.
+              Managed WordPress hosting is a fully handled hosting and maintenance service that includes security monitoring, automated backups, performance optimization, plugin updates, and 24/7 uptime monitoring. Truax Marketing delivers managed hosting on WP Engine infrastructure with SEO and AI search visibility monitoring layered in. Plans start at $195 per month.
             </p>
           </motion.div>
         </div>
