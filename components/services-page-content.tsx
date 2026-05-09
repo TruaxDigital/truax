@@ -146,7 +146,7 @@ const techStack = [
   },
   { 
     name: "Klaviyo", 
-    logo: "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@v9/icons/klaviyo.svg",
+    logo: "https://cdn.simpleicons.org/klaviyo/000000",
     color: "#12B980",
   },
   { 
@@ -166,7 +166,7 @@ const techStack = [
   },
   { 
     name: "Ahrefs", 
-    logo: "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@v9/icons/ahrefs.svg",
+    logo: "https://cdn.simpleicons.org/ahrefs/000000",
     color: "#FF6B00",
   },
   { 
