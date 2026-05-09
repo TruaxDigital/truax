@@ -10,6 +10,9 @@ import Link from "next/link";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import { useState } from "react";
+import { getPostsByKeywords } from "@/lib/blog-data";
+import { getBlogImageUrl } from "@/lib/blog-image-urls";
+import { Calendar, Clock, Compass as CompassIcon } from "lucide-react";
 
 const responsibilities = [
   {
@@ -737,6 +740,75 @@ export default function FractionalCMOPage() {
               </motion.div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Related Blog Posts */}
+      <section className="py-20 px-6 border-t border-[#262466]/50">
+        <div className="max-w-6xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-12"
+          >
+            <p className="text-[#27AAE1] text-sm font-medium uppercase tracking-widest mb-3">From the Blog</p>
+            <h2 className="text-3xl md:text-4xl font-semibold tracking-tight">Latest on Marketing Leadership</h2>
+          </motion.div>
+          <div className="grid md:grid-cols-3 gap-8">
+            {getPostsByKeywords(["cmo", "marketing leader", "fractional", "executive", "marketing strategy", "leadership"], 3).map((post, index) => (
+              <motion.article
+                key={post.slug}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                className="group"
+              >
+                <Link href={`/blog/${post.slug}`} className="block">
+                  <div className="aspect-[16/10] rounded-xl overflow-hidden mb-4 bg-gradient-to-br from-[#2B3990]/40 to-[#27AAE1]/20 border border-[#262466] group-hover:border-[#27AAE1]/50 transition-colors">
+                    {(() => {
+                      const imageUrl = getBlogImageUrl(post.slug, post.featuredImage);
+                      return imageUrl ? (
+                        <img 
+                          src={imageUrl} 
+                          alt={post.title}
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        />
+                      ) : (
+                        <div className="w-full h-full flex items-center justify-center">
+                          <CompassIcon className="h-10 w-10 text-[#27AAE1]/40" />
+                        </div>
+                      );
+                    })()}
+                  </div>
+                  <div className="flex items-center gap-3 text-xs text-gray-500 mb-2">
+                    <span className="flex items-center gap-1">
+                      <Calendar className="h-3 w-3" />
+                      {new Date(post.publishedAt).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}
+                    </span>
+                    <span className="flex items-center gap-1">
+                      <Clock className="h-3 w-3" />
+                      {Math.ceil(post.content.split(" ").length / 200)} min read
+                    </span>
+                  </div>
+                  <h3 className="font-semibold text-lg mb-2 group-hover:text-[#27AAE1] transition-colors line-clamp-2">{post.title}</h3>
+                  <p className="text-gray-400 text-sm line-clamp-2">{post.excerpt.replace(/\*+/g, "")}</p>
+                </Link>
+              </motion.article>
+            ))}
+          </div>
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            className="text-center mt-10"
+          >
+            <Link href="/blog" className="inline-flex items-center gap-2 text-[#27AAE1] hover:text-white transition-colors text-sm font-medium">
+              View all articles
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+          </motion.div>
         </div>
       </section>
 
