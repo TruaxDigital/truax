@@ -203,9 +203,9 @@ function Scene() {
 
 export function HeroHeart3D() {
   return (
-    <div className="absolute right-0 top-0 w-full lg:w-[55%] h-full pointer-events-none">
+    <div className="absolute right-0 -top-20 w-full lg:w-[55%] h-[120%] pointer-events-none">
       <Canvas
-        camera={{ position: [0, 0, 5], fov: 45 }}
+        camera={{ position: [0, 0.8, 5], fov: 45 }}
         dpr={[1, 2]}
         gl={{ 
           antialias: true,
