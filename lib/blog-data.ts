@@ -6346,6 +6346,9 @@ export function getPostBySlug(slug: string): BlogPost | undefined {
   return blogPosts.find(post => post.slug === slug);
 }
 
+// Alias for backwards compatibility
+export const getBlogPostBySlug = getPostBySlug;
+
 export function getPostsByCategory(category: string): BlogPost[] {
   return blogPosts.filter(post => post.category === category);
 }
