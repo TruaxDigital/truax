@@ -188,11 +188,14 @@ export function Navbar() {
                           <Link
                             key={service.href}
                             href={service.href}
-                            className="group flex items-center px-4 py-2.5 text-sm text-gray-400 hover:text-white hover:bg-[#262466]/30 rounded-xl transition-all duration-200"
+                            className="group block px-4 py-2.5 text-sm text-gray-400 hover:text-white hover:bg-[#262466]/30 rounded-xl transition-all duration-200"
                             onClick={() => setIsServicesOpen(false)}
                           >
-                            <span className="w-1.5 h-1.5 rounded-full bg-[#27AAE1]/50 mr-3 group-hover:bg-[#27AAE1] group-hover:shadow-sm group-hover:shadow-[#27AAE1]/50 transition-all" />
-                            <span className="group-hover:translate-x-0.5 transition-transform">{service.label}</span>
+                            <span className="relative inline-block">
+                              {service.label}
+                              <span className="absolute -bottom-0.5 left-0 w-0 h-0.5 bg-gradient-to-r from-[#27AAE1] to-[#2B3990] group-hover:w-full transition-all duration-300 ease-out" />
+                              <span className="absolute -bottom-0.5 left-0 w-0 h-0.5 bg-[#27AAE1] blur-sm group-hover:w-full transition-all duration-300 ease-out opacity-50" />
+                            </span>
                           </Link>
                         ))}
                       </div>
@@ -234,11 +237,14 @@ export function Navbar() {
                           <Link
                             key={link.href}
                             href={link.href}
-                            className="group flex items-center px-4 py-2.5 text-sm text-gray-400 hover:text-white hover:bg-[#262466]/30 rounded-xl transition-all duration-200"
+                            className="group block px-4 py-2.5 text-sm text-gray-400 hover:text-white hover:bg-[#262466]/30 rounded-xl transition-all duration-200"
                             onClick={() => setIsAiEnablementOpen(false)}
                           >
-                            <span className="w-1.5 h-1.5 rounded-full bg-[#27AAE1]/50 mr-3 group-hover:bg-[#27AAE1] group-hover:shadow-sm group-hover:shadow-[#27AAE1]/50 transition-all" />
-                            <span className="group-hover:translate-x-0.5 transition-transform">{link.label}</span>
+                            <span className="relative inline-block">
+                              {link.label}
+                              <span className="absolute -bottom-0.5 left-0 w-0 h-0.5 bg-gradient-to-r from-[#27AAE1] to-[#2B3990] group-hover:w-full transition-all duration-300 ease-out" />
+                              <span className="absolute -bottom-0.5 left-0 w-0 h-0.5 bg-[#27AAE1] blur-sm group-hover:w-full transition-all duration-300 ease-out opacity-50" />
+                            </span>
                           </Link>
                         ))}
                       </div>
