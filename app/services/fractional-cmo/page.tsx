@@ -237,13 +237,13 @@ export default function FractionalCMOPage() {
             className="flex flex-wrap justify-center gap-4"
           >
             <Link href="/meet">
-              <Button size="lg" className="bg-[#27AAE1] hover:bg-[#27AAE1]/90 text-black font-medium px-8">
+              <Button size="lg" className="bg-[#27AAE1] hover:bg-[#27AAE1]/90 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-[#27AAE1]/25 active:translate-y-0 text-black font-medium px-8 transition-all duration-300">
                 Book an executive intro call
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
             </Link>
             <Link href="/contact">
-              <Button size="lg" variant="outline" className="border-[#262466] hover:bg-[#262466]/50">
+              <Button size="lg" variant="outline" className="border-[#262466] hover:bg-[#262466]/50 hover:-translate-y-0.5 hover:shadow-md active:translate-y-0 transition-all duration-300">
                 Get a free 30-day plan preview
               </Button>
             </Link>
@@ -758,13 +758,13 @@ export default function FractionalCMOPage() {
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <Link href="/meet">
-                <Button size="lg" className="bg-[#27AAE1] hover:bg-[#27AAE1]/90 text-black font-medium px-8">
+                <Button size="lg" className="bg-[#27AAE1] hover:bg-[#27AAE1]/90 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-[#27AAE1]/25 active:translate-y-0 text-black font-medium px-8 transition-all duration-300">
                   Book an executive intro call
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
               </Link>
               <Link href="/contact">
-                <Button size="lg" variant="outline" className="border-[#262466] hover:bg-[#262466]/50">
+                <Button size="lg" variant="outline" className="border-[#262466] hover:bg-[#262466]/50 hover:-translate-y-0.5 hover:shadow-md active:translate-y-0 transition-all duration-300">
                   Get a free 30-day plan preview
                 </Button>
               </Link>

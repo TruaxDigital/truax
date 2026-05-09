@@ -327,7 +327,7 @@ export default function SEOPage() {
                 <Link href="/meet">
                   <Button
                     size="lg"
-                    className="bg-[#27AAE1] hover:bg-[#27AAE1]/90 text-black font-medium px-8"
+                    className="bg-[#27AAE1] hover:bg-[#27AAE1]/90 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-[#27AAE1]/25 active:translate-y-0 text-black font-medium px-8 transition-all duration-300"
                   >
                     Book a 30-minute strategy call
                     <ArrowRight className="ml-2 h-5 w-5" />
@@ -337,7 +337,7 @@ export default function SEOPage() {
                   <Button
                     size="lg"
                     variant="outline"
-                    className="border-[#27AAE1] text-[#27AAE1] hover:bg-[#27AAE1]/10 px-8"
+                    className="border-[#27AAE1] text-[#27AAE1] hover:bg-[#27AAE1]/10 hover:-translate-y-0.5 hover:shadow-md active:translate-y-0 px-8 transition-all duration-300"
                   >
                     Get a free SEO + AI visibility audit
                   </Button>
@@ -843,7 +843,7 @@ export default function SEOPage() {
               <Link href="/meet">
                 <Button
                   size="lg"
-                  className="bg-[#27AAE1] hover:bg-[#27AAE1]/90 text-black font-medium px-8"
+                  className="bg-[#27AAE1] hover:bg-[#27AAE1]/90 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-[#27AAE1]/25 active:translate-y-0 text-black font-medium px-8 transition-all duration-300"
                 >
                   Book a 30-minute strategy call
                   <ArrowRight className="ml-2 h-5 w-5" />
@@ -853,7 +853,7 @@ export default function SEOPage() {
                 <Button
                   size="lg"
                   variant="outline"
-                  className="border-[#27AAE1] text-[#27AAE1] hover:bg-[#27AAE1]/10 px-8"
+                  className="border-[#27AAE1] text-[#27AAE1] hover:bg-[#27AAE1]/10 hover:-translate-y-0.5 hover:shadow-md active:translate-y-0 px-8 transition-all duration-300"
                 >
                   Get a free SEO + AI visibility audit
                 </Button>
