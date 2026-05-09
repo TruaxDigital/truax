@@ -3,9 +3,10 @@ import { Footer } from "@/components/footer";
 import { AboutPageContent } from "@/components/about-page-content";
 
 export const metadata = {
-  title: "Meet The Team | Truax Marketing Solutions",
+  title: "About Truax Marketing | Operator-Led B2B Marketing & AI",
   description:
-    "We help businesses increase their online visibility and reach to a wider audience through various digital channels.",
+    "Truax Marketing is led by Aaron Truax, a four-time active CMO with 20+ years in B2B marketing. HubSpot Solutions Partner. Built for revenue, not slides.",
+  keywords: "Aaron Truax fractional CMO, Truax Marketing Solutions, B2B fractional CMO, AI marketing operator, HubSpot Solutions Partner, mid-market marketing leader",
 };
 
 export default function AboutPage() {
