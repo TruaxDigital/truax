@@ -1,5 +1,5 @@
 import { MetadataRoute } from 'next'
-import { blogPosts } from '@/lib/insights-data'
+import { blogPosts } from '@/lib/blog-data'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://truaxmarketing.com'
