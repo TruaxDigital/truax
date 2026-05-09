@@ -40,6 +40,7 @@
     "@radix-ui/react-tooltip": "1.2.8",
     "@react-three/drei": "^10.7.7",
     "@react-three/fiber": "^9.6.1",
+    "@types/three": "^0.184.1",
     "@vercel/analytics": "1.6.1",
     "@vercel/blob": "^2.3.3",
     "@xmldom/xmldom": "^0.9.10",

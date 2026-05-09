@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { 
   Compass, Users, Calendar, Target, Database, Cpu, Link2, AlertTriangle,
-  ArrowRight, Check, X, ChevronDown, Quote
+  ArrowRight, Check, X, ChevronDown, Quote, Clock
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
@@ -12,7 +12,6 @@ import { Footer } from "@/components/footer";
 import { useState } from "react";
 import { getPostsByKeywords } from "@/lib/blog-data";
 import { getBlogImageUrl } from "@/lib/blog-image-urls";
-import { Clock } from "lucide-react";
 
 const responsibilities = [
   {

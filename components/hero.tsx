@@ -4,7 +4,14 @@ import { motion, useScroll, useTransform, useSpring, useInView } from "framer-mo
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { useRef, useMemo, useEffect, useState } from "react";
+import { useRef } from "react";
+import dynamic from "next/dynamic";
+
+// Dynamically import 3D heart to avoid SSR issues
+const HeroHeart3D = dynamic(
+  () => import("@/components/hero-heart-3d").then((mod) => mod.HeroHeart3D),
+  { ssr: false }
+);
 
 // Aurora / Northern Lights Background
 function AuroraBackground() {
@@ -39,253 +46,7 @@ function AuroraBackground() {
   );
 }
 
-// Network Visualization - AI to People to Profit
-function NetworkVisualization() {
-  // Define nodes: AI/Data (left), People/Business (center), Growth/Profit (right)
-  const nodes = useMemo(() => [
-    // AI/Data nodes (left side)
-    { id: "ai1", x: 8, y: 20, type: "ai", label: "AI" },
-    { id: "ai2", x: 5, y: 40, type: "ai", label: "Data" },
-    { id: "ai3", x: 10, y: 60, type: "ai", label: "ML" },
-    { id: "ai4", x: 3, y: 75, type: "ai", label: "Auto" },
-    
-    // People/Business nodes (center)
-    { id: "people1", x: 35, y: 25, type: "people", label: "" },
-    { id: "people2", x: 40, y: 50, type: "people", label: "" },
-    { id: "people3", x: 32, y: 70, type: "people", label: "" },
-    
-    // Growth/Profit nodes (right side)
-    { id: "growth1", x: 70, y: 30, type: "growth", label: "" },
-    { id: "growth2", x: 75, y: 55, type: "growth", label: "" },
-    { id: "growth3", x: 68, y: 78, type: "growth", label: "" },
-  ], []);
-  
-  // Define connections
-  const connections = useMemo(() => [
-    // AI to People
-    { from: "ai1", to: "people1", delay: 0 },
-    { from: "ai1", to: "people2", delay: 0.3 },
-    { from: "ai2", to: "people1", delay: 0.5 },
-    { from: "ai2", to: "people2", delay: 0.8 },
-    { from: "ai3", to: "people2", delay: 1 },
-    { from: "ai3", to: "people3", delay: 1.2 },
-    { from: "ai4", to: "people3", delay: 1.5 },
-    // People to Growth
-    { from: "people1", to: "growth1", delay: 1.8 },
-    { from: "people1", to: "growth2", delay: 2 },
-    { from: "people2", to: "growth1", delay: 2.2 },
-    { from: "people2", to: "growth2", delay: 2.4 },
-    { from: "people2", to: "growth3", delay: 2.6 },
-    { from: "people3", to: "growth2", delay: 2.8 },
-    { from: "people3", to: "growth3", delay: 3 },
-  ], []);
 
-  const getNode = (id: string) => nodes.find(n => n.id === id)!;
-  
-  return (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none">
-      <svg 
-        viewBox="0 0 100 100" 
-        className="absolute right-0 top-1/2 -translate-y-1/2 w-[60%] h-[80%] opacity-40"
-        preserveAspectRatio="xMidYMid slice"
-      >
-        <defs>
-          {/* Gradient for connections */}
-          <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stopColor="#27AAE1" stopOpacity="0.8" />
-            <stop offset="50%" stopColor="#2B3990" stopOpacity="0.6" />
-            <stop offset="100%" stopColor="#27AAE1" stopOpacity="0.8" />
-          </linearGradient>
-          
-          {/* Glow filter */}
-          <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
-            <feGaussianBlur stdDeviation="0.5" result="coloredBlur"/>
-            <feMerge>
-              <feMergeNode in="coloredBlur"/>
-              <feMergeNode in="SourceGraphic"/>
-            </feMerge>
-          </filter>
-          
-          {/* Pulse animation for data flow */}
-          <linearGradient id="flowGradient">
-            <stop offset="0%" stopColor="transparent" />
-            <stop offset="40%" stopColor="#27AAE1" />
-            <stop offset="60%" stopColor="#27AAE1" />
-            <stop offset="100%" stopColor="transparent" />
-          </linearGradient>
-        </defs>
-        
-        {/* Connection lines - static for performance, pulses animate via CSS */}
-        {connections.map((conn, i) => {
-          const from = getNode(conn.from);
-          const to = getNode(conn.to);
-          return (
-            <g key={i}>
-              {/* Base line - no initial animation */}
-              <line
-                x1={from.x}
-                y1={from.y}
-                x2={to.x}
-                y2={to.y}
-                stroke="#262466"
-                strokeWidth="0.15"
-                opacity="0.4"
-              />
-              {/* Animated pulse along the line - staggered with CSS animation */}
-              <circle
-                r="0.6"
-                fill="#27AAE1"
-                opacity="0.7"
-                style={{
-                  animation: `pulse-move-${i % 4} 4s ease-in-out ${conn.delay * 0.3}s infinite`,
-                }}
-              >
-                <animate
-                  attributeName="cx"
-                  values={`${from.x};${to.x};${from.x}`}
-                  dur="4s"
-                  begin={`${conn.delay * 0.3}s`}
-                  repeatCount="indefinite"
-                />
-                <animate
-                  attributeName="cy"
-                  values={`${from.y};${to.y};${from.y}`}
-                  dur="4s"
-                  begin={`${conn.delay * 0.3}s`}
-                  repeatCount="indefinite"
-                />
-                <animate
-                  attributeName="opacity"
-                  values="0;0.8;0.8;0"
-                  dur="4s"
-                  begin={`${conn.delay * 0.3}s`}
-                  repeatCount="indefinite"
-                />
-              </circle>
-            </g>
-          );
-        })}
-        
-        {/* Nodes - simplified with CSS animations for smooth performance */}
-        {nodes.map((node, i) => (
-          <g key={node.id} style={{ opacity: 0.9 }}>
-            {/* Outer glow ring - CSS animation */}
-            <circle
-              cx={node.x}
-              cy={node.y}
-              r={node.type === "ai" ? 3 : node.type === "people" ? 4 : 3.5}
-              fill="none"
-              stroke={node.type === "ai" ? "#27AAE1" : node.type === "people" ? "#2B3990" : "#27AAE1"}
-              strokeWidth="0.2"
-              opacity="0.3"
-            >
-              <animate
-                attributeName="r"
-                values={`${node.type === "ai" ? 3 : node.type === "people" ? 4 : 3.5};${node.type === "ai" ? 4 : node.type === "people" ? 5 : 4.5};${node.type === "ai" ? 3 : node.type === "people" ? 4 : 3.5}`}
-                dur="3s"
-                begin={`${i * 0.2}s`}
-                repeatCount="indefinite"
-              />
-              <animate
-                attributeName="opacity"
-                values="0.3;0.1;0.3"
-                dur="3s"
-                begin={`${i * 0.2}s`}
-                repeatCount="indefinite"
-              />
-            </circle>
-            
-            {/* Main node - static, no animation needed */}
-            <circle
-              cx={node.x}
-              cy={node.y}
-              r={node.type === "ai" ? 2 : node.type === "people" ? 2.5 : 2.2}
-              fill={node.type === "ai" ? "#27AAE1" : node.type === "people" ? "#2B3990" : "#27AAE1"}
-              filter="url(#glow)"
-            />
-            
-            {/* Icon inside node - no animation */}
-            <g>
-              {node.type === "ai" && (
-                // Brain/chip icon for AI
-                <g transform={`translate(${node.x - 1}, ${node.y - 1})`}>
-                  <rect x="0.3" y="0.3" width="1.4" height="1.4" rx="0.2" fill="none" stroke="#0a0a12" strokeWidth="0.15" />
-                  <line x1="0" y1="0.7" x2="0.3" y2="0.7" stroke="#0a0a12" strokeWidth="0.1" />
-                  <line x1="0" y1="1.3" x2="0.3" y2="1.3" stroke="#0a0a12" strokeWidth="0.1" />
-                  <line x1="1.7" y1="0.7" x2="2" y2="0.7" stroke="#0a0a12" strokeWidth="0.1" />
-                  <line x1="1.7" y1="1.3" x2="2" y2="1.3" stroke="#0a0a12" strokeWidth="0.1" />
-                  <circle cx="1" cy="1" r="0.3" fill="#0a0a12" />
-                </g>
-              )}
-              {node.type === "people" && (
-                // Person icon
-                <g transform={`translate(${node.x - 1.2}, ${node.y - 1.2})`}>
-                  <circle cx="1.2" cy="0.7" r="0.5" fill="#0a0a12" />
-                  <path d="M0.4 2.2 Q1.2 1.4 2 2.2" fill="none" stroke="#0a0a12" strokeWidth="0.25" strokeLinecap="round" />
-                </g>
-              )}
-              {node.type === "growth" && (
-                // Trending up arrow
-                <g transform={`translate(${node.x - 1}, ${node.y - 1})`}>
-                  <polyline 
-                    points="0.3,1.5 0.8,1 1.3,1.3 1.7,0.5" 
-                    fill="none" 
-                    stroke="#0a0a12" 
-                    strokeWidth="0.2" 
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                  <polyline 
-                    points="1.3,0.5 1.7,0.5 1.7,0.9" 
-                    fill="none" 
-                    stroke="#0a0a12" 
-                    strokeWidth="0.2" 
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </g>
-              )}
-            </g>
-          </g>
-        ))}
-        
-        {/* Floating particles - reduced count, CSS animations */}
-        {[...Array(6)].map((_, i) => {
-          const startX = 15 + (i % 3) * 30;
-          const startY = 20 + Math.floor(i / 3) * 40;
-          return (
-            <circle
-              key={`particle-${i}`}
-              r="0.3"
-              fill="#27AAE1"
-              cx={startX}
-              cy={startY}
-            >
-              <animate
-                attributeName="cx"
-                values={`${startX};${startX + 15};${startX}`}
-                dur={`${8 + i}s`}
-                repeatCount="indefinite"
-              />
-              <animate
-                attributeName="cy"
-                values={`${startY};${startY - 10};${startY}`}
-                dur={`${8 + i}s`}
-                repeatCount="indefinite"
-              />
-              <animate
-                attributeName="opacity"
-                values="0.1;0.4;0.1"
-                dur={`${8 + i}s`}
-                repeatCount="indefinite"
-              />
-            </circle>
-          );
-        })}
-      </svg>
-    </div>
-  );
-}
 
 // Fast word animation for first line
 function KineticText({ text, className, delay = 0 }: { text: string, className?: string, delay?: number }) {
@@ -420,8 +181,8 @@ export function Hero() {
       {/* Aurora Background */}
       <AuroraBackground />
 
-      {/* Network Visualization - AI to People to Profit */}
-      <NetworkVisualization />
+      {/* 3D Heart - Digital Marketing with Heart */}
+      <HeroHeart3D />
 
       {/* Noise texture overlay */}
       <div 
