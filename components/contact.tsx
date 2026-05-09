@@ -2,21 +2,60 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, Mail, MapPin, Send } from "lucide-react";
+import { ArrowRight, Mail, MapPin, Send, ChevronDown, Loader2, CheckCircle, AlertCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
+
+type FormStatus = "idle" | "loading" | "success" | "error";
+
+const serviceOptions = [
+  { value: "", label: "Select a service..." },
+  { value: "ai-enablement", label: "AI Enablement" },
+  { value: "seo", label: "SEO / Search Marketing" },
+  { value: "web-development", label: "Web Development" },
+  { value: "fractional-cmo", label: "Fractional CMO" },
+  { value: "content-marketing", label: "Content Marketing" },
+  { value: "social-media", label: "Social Media" },
+  { value: "crm-automation", label: "CRM & Automation" },
+  { value: "other", label: "Something else" },
+];
 
 export function Contact() {
   const [formState, setFormState] = useState({
     name: "",
     email: "",
+    company: "",
+    service: "",
     message: "",
   });
+  const [status, setStatus] = useState<FormStatus>("idle");
+  const [errorMessage, setErrorMessage] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission
+    setStatus("loading");
+    setErrorMessage("");
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formState),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || "Something went wrong");
+      }
+
+      setStatus("success");
+      setFormState({ name: "", email: "", company: "", service: "", message: "" });
+    } catch (error) {
+      setStatus("error");
+      setErrorMessage(error instanceof Error ? error.message : "Failed to send message");
+    }
   };
 
   return (
@@ -110,9 +149,10 @@ export function Contact() {
             <form onSubmit={handleSubmit} className="p-8 rounded-xl border border-[#262466] bg-[#12121f]/80 space-y-6">
               <div className="grid sm:grid-cols-2 gap-6">
                 <div>
-                  <label className="block text-sm font-medium mb-2">Name</label>
+                  <label className="block text-sm font-medium mb-2">Name <span className="text-[#27AAE1]">*</span></label>
                   <Input
                     type="text"
+                    required
                     placeholder="Your name"
                     value={formState.name}
                     onChange={(e) => setFormState({ ...formState, name: e.target.value })}
@@ -120,9 +160,10 @@ export function Contact() {
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium mb-2">Email</label>
+                  <label className="block text-sm font-medium mb-2">Email <span className="text-[#27AAE1]">*</span></label>
                   <Input
                     type="email"
+                    required
                     placeholder="you@company.com"
                     value={formState.email}
                     onChange={(e) => setFormState({ ...formState, email: e.target.value })}
@@ -131,22 +172,92 @@ export function Contact() {
                 </div>
               </div>
 
+              <div className="grid sm:grid-cols-2 gap-6">
+                <div>
+                  <label className="block text-sm font-medium mb-2">Company</label>
+                  <Input
+                    type="text"
+                    placeholder="Your company"
+                    value={formState.company}
+                    onChange={(e) => setFormState({ ...formState, company: e.target.value })}
+                    className="bg-[#0a0a12] border-[#262466] h-12 focus:border-[#27AAE1]"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium mb-2">What can we help with? <span className="text-[#27AAE1]">*</span></label>
+                  <div className="relative">
+                    <select
+                      required
+                      value={formState.service}
+                      onChange={(e) => setFormState({ ...formState, service: e.target.value })}
+                      className="w-full h-12 px-4 pr-10 rounded-lg bg-[#0a0a12] border border-[#262466] focus:border-[#27AAE1] focus:outline-none focus:ring-1 focus:ring-[#27AAE1] transition-all text-white appearance-none cursor-pointer"
+                    >
+                      {serviceOptions.map((option) => (
+                        <option key={option.value} value={option.value} className="bg-[#0a0a12]">
+                          {option.label}
+                        </option>
+                      ))}
+                    </select>
+                    <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-500 pointer-events-none" />
+                  </div>
+                </div>
+              </div>
+
               <div>
-                <label className="block text-sm font-medium mb-2">How can we help?</label>
+                <label className="block text-sm font-medium mb-2">Tell us more <span className="text-[#27AAE1]">*</span></label>
                 <textarea
+                  required
                   placeholder="Tell us about your project, goals, or challenges..."
-                  rows={6}
+                  rows={5}
                   value={formState.message}
                   onChange={(e) => setFormState({ ...formState, message: e.target.value })}
                   className="w-full px-4 py-3 rounded-lg bg-[#0a0a12] border border-[#262466] focus:border-[#27AAE1] focus:outline-none focus:ring-1 focus:ring-[#27AAE1] transition-all resize-none"
                 />
               </div>
 
-              <Button type="submit" size="lg" className="w-full h-14 text-base font-medium group bg-[#27AAE1] hover:bg-[#27AAE1]/90">
-                <Send className="mr-2 h-4 w-4" />
-                Send Message
-                <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+              <Button 
+                type="submit" 
+                size="lg" 
+                disabled={status === "loading"}
+                className="w-full h-14 text-base font-medium group bg-[#27AAE1] hover:bg-[#27AAE1]/90 disabled:opacity-50"
+              >
+                {status === "loading" ? (
+                  <>
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                    Sending...
+                  </>
+                ) : (
+                  <>
+                    <Send className="mr-2 h-4 w-4" />
+                    Send Message
+                    <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                  </>
+                )}
               </Button>
+
+              {/* Success Message */}
+              {status === "success" && (
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="flex items-center gap-3 p-4 rounded-lg bg-green-500/10 border border-green-500/30 text-green-400"
+                >
+                  <CheckCircle className="h-5 w-5 flex-shrink-0" />
+                  <p>Thanks for reaching out! We will get back to you within 24 hours.</p>
+                </motion.div>
+              )}
+
+              {/* Error Message */}
+              {status === "error" && (
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="flex items-center gap-3 p-4 rounded-lg bg-red-500/10 border border-red-500/30 text-red-400"
+                >
+                  <AlertCircle className="h-5 w-5 flex-shrink-0" />
+                  <p>{errorMessage}</p>
+                </motion.div>
+              )}
             </form>
           </motion.div>
         </div>

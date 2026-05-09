@@ -4,10 +4,7 @@ import { motion, useScroll, useTransform, useSpring, useInView } from "framer-mo
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { useRef, Suspense, useMemo } from "react";
-import { Canvas, useFrame } from "@react-three/fiber";
-import { Float, MeshDistortMaterial, Sphere, Torus, Icosahedron } from "@react-three/drei";
-import * as THREE from "three";
+import { useRef, useMemo, useEffect, useState } from "react";
 
 // Aurora / Northern Lights Background
 function AuroraBackground() {
@@ -42,105 +39,239 @@ function AuroraBackground() {
   );
 }
 
-// 3D Floating Elements
-function FloatingGeometry({ position, color, speed = 1 }: { position: [number, number, number], color: string, speed?: number }) {
-  const meshRef = useRef<THREE.Mesh>(null);
+// Network Visualization - AI to People to Profit
+function NetworkVisualization() {
+  // Define nodes: AI/Data (left), People/Business (center), Growth/Profit (right)
+  const nodes = useMemo(() => [
+    // AI/Data nodes (left side)
+    { id: "ai1", x: 8, y: 20, type: "ai", label: "AI" },
+    { id: "ai2", x: 5, y: 40, type: "ai", label: "Data" },
+    { id: "ai3", x: 10, y: 60, type: "ai", label: "ML" },
+    { id: "ai4", x: 3, y: 75, type: "ai", label: "Auto" },
+    
+    // People/Business nodes (center)
+    { id: "people1", x: 35, y: 25, type: "people", label: "" },
+    { id: "people2", x: 40, y: 50, type: "people", label: "" },
+    { id: "people3", x: 32, y: 70, type: "people", label: "" },
+    
+    // Growth/Profit nodes (right side)
+    { id: "growth1", x: 70, y: 30, type: "growth", label: "" },
+    { id: "growth2", x: 75, y: 55, type: "growth", label: "" },
+    { id: "growth3", x: 68, y: 78, type: "growth", label: "" },
+  ], []);
   
-  useFrame((state) => {
-    if (meshRef.current) {
-      meshRef.current.rotation.x = state.clock.elapsedTime * 0.2 * speed;
-      meshRef.current.rotation.y = state.clock.elapsedTime * 0.3 * speed;
-    }
-  });
+  // Define connections
+  const connections = useMemo(() => [
+    // AI to People
+    { from: "ai1", to: "people1", delay: 0 },
+    { from: "ai1", to: "people2", delay: 0.3 },
+    { from: "ai2", to: "people1", delay: 0.5 },
+    { from: "ai2", to: "people2", delay: 0.8 },
+    { from: "ai3", to: "people2", delay: 1 },
+    { from: "ai3", to: "people3", delay: 1.2 },
+    { from: "ai4", to: "people3", delay: 1.5 },
+    // People to Growth
+    { from: "people1", to: "growth1", delay: 1.8 },
+    { from: "people1", to: "growth2", delay: 2 },
+    { from: "people2", to: "growth1", delay: 2.2 },
+    { from: "people2", to: "growth2", delay: 2.4 },
+    { from: "people2", to: "growth3", delay: 2.6 },
+    { from: "people3", to: "growth2", delay: 2.8 },
+    { from: "people3", to: "growth3", delay: 3 },
+  ], []);
 
-  return (
-    <Float speed={2 * speed} rotationIntensity={0.5} floatIntensity={1}>
-      <mesh ref={meshRef} position={position}>
-        <icosahedronGeometry args={[0.5, 1]} />
-        <MeshDistortMaterial
-          color={color}
-          transparent
-          opacity={0.6}
-          distort={0.4}
-          speed={2}
-          roughness={0.2}
-          metalness={0.8}
-        />
-      </mesh>
-    </Float>
-  );
-}
-
-function FloatingTorus({ position, color }: { position: [number, number, number], color: string }) {
-  const meshRef = useRef<THREE.Mesh>(null);
+  const getNode = (id: string) => nodes.find(n => n.id === id)!;
   
-  useFrame((state) => {
-    if (meshRef.current) {
-      meshRef.current.rotation.x = state.clock.elapsedTime * 0.15;
-      meshRef.current.rotation.z = state.clock.elapsedTime * 0.1;
-    }
-  });
-
   return (
-    <Float speed={1.5} rotationIntensity={0.3} floatIntensity={0.8}>
-      <mesh ref={meshRef} position={position}>
-        <torusGeometry args={[0.6, 0.2, 16, 32]} />
-        <MeshDistortMaterial
-          color={color}
-          transparent
-          opacity={0.5}
-          distort={0.2}
-          speed={1.5}
-          roughness={0.3}
-          metalness={0.7}
-        />
-      </mesh>
-    </Float>
-  );
-}
-
-function FloatingSphere({ position, color, size = 0.4 }: { position: [number, number, number], color: string, size?: number }) {
-  const meshRef = useRef<THREE.Mesh>(null);
-  
-  useFrame((state) => {
-    if (meshRef.current) {
-      meshRef.current.position.y = position[1] + Math.sin(state.clock.elapsedTime * 0.5) * 0.3;
-    }
-  });
-
-  return (
-    <Float speed={2} rotationIntensity={0.2} floatIntensity={1.2}>
-      <mesh ref={meshRef} position={position}>
-        <sphereGeometry args={[size, 32, 32]} />
-        <MeshDistortMaterial
-          color={color}
-          transparent
-          opacity={0.7}
-          distort={0.5}
-          speed={3}
-          roughness={0.1}
-          metalness={0.9}
-        />
-      </mesh>
-    </Float>
-  );
-}
-
-function Scene3D() {
-  return (
-    <>
-      <ambientLight intensity={0.5} />
-      <pointLight position={[10, 10, 10]} intensity={1} color="#27AAE1" />
-      <pointLight position={[-10, -10, -10]} intensity={0.5} color="#2B3990" />
-      
-      {/* Main floating elements */}
-      <FloatingGeometry position={[3, 1, -2]} color="#27AAE1" speed={1.2} />
-      <FloatingGeometry position={[-3.5, -0.5, -3]} color="#2B3990" speed={0.8} />
-      <FloatingTorus position={[4, -1.5, -4]} color="#262466" />
-      <FloatingSphere position={[-4, 1.5, -2.5]} color="#27AAE1" size={0.5} />
-      <FloatingSphere position={[2, -2, -3]} color="#2B3990" size={0.3} />
-      <FloatingGeometry position={[-2, 2, -4]} color="#27AAE1" speed={0.6} />
-    </>
+    <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      <svg 
+        viewBox="0 0 100 100" 
+        className="absolute right-0 top-1/2 -translate-y-1/2 w-[60%] h-[80%] opacity-40"
+        preserveAspectRatio="xMidYMid slice"
+      >
+        <defs>
+          {/* Gradient for connections */}
+          <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stopColor="#27AAE1" stopOpacity="0.8" />
+            <stop offset="50%" stopColor="#2B3990" stopOpacity="0.6" />
+            <stop offset="100%" stopColor="#27AAE1" stopOpacity="0.8" />
+          </linearGradient>
+          
+          {/* Glow filter */}
+          <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="0.5" result="coloredBlur"/>
+            <feMerge>
+              <feMergeNode in="coloredBlur"/>
+              <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+          </filter>
+          
+          {/* Pulse animation for data flow */}
+          <linearGradient id="flowGradient">
+            <stop offset="0%" stopColor="transparent" />
+            <stop offset="40%" stopColor="#27AAE1" />
+            <stop offset="60%" stopColor="#27AAE1" />
+            <stop offset="100%" stopColor="transparent" />
+          </linearGradient>
+        </defs>
+        
+        {/* Connection lines */}
+        {connections.map((conn, i) => {
+          const from = getNode(conn.from);
+          const to = getNode(conn.to);
+          return (
+            <g key={i}>
+              {/* Base line */}
+              <motion.line
+                x1={from.x}
+                y1={from.y}
+                x2={to.x}
+                y2={to.y}
+                stroke="#262466"
+                strokeWidth="0.15"
+                initial={{ pathLength: 0, opacity: 0 }}
+                animate={{ pathLength: 1, opacity: 0.4 }}
+                transition={{ duration: 1, delay: conn.delay }}
+              />
+              {/* Animated pulse along the line */}
+              <motion.circle
+                r="0.8"
+                fill="#27AAE1"
+                filter="url(#glow)"
+                initial={{ opacity: 0 }}
+                animate={{
+                  opacity: [0, 1, 1, 0],
+                  cx: [from.x, to.x],
+                  cy: [from.y, to.y],
+                }}
+                transition={{
+                  duration: 2,
+                  delay: conn.delay + 1,
+                  repeat: Infinity,
+                  repeatDelay: 3,
+                  ease: "easeInOut",
+                }}
+              />
+            </g>
+          );
+        })}
+        
+        {/* Nodes */}
+        {nodes.map((node, i) => (
+          <g key={node.id}>
+            {/* Outer glow ring */}
+            <motion.circle
+              cx={node.x}
+              cy={node.y}
+              r={node.type === "ai" ? 3 : node.type === "people" ? 4 : 3.5}
+              fill="none"
+              stroke={node.type === "ai" ? "#27AAE1" : node.type === "people" ? "#2B3990" : "#27AAE1"}
+              strokeWidth="0.2"
+              initial={{ scale: 0, opacity: 0 }}
+              animate={{ 
+                scale: [1, 1.3, 1], 
+                opacity: [0.3, 0.1, 0.3],
+              }}
+              transition={{
+                duration: 3,
+                delay: i * 0.2,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+            />
+            
+            {/* Main node */}
+            <motion.circle
+              cx={node.x}
+              cy={node.y}
+              r={node.type === "ai" ? 2 : node.type === "people" ? 2.5 : 2.2}
+              fill={node.type === "ai" ? "#27AAE1" : node.type === "people" ? "#2B3990" : "#27AAE1"}
+              filter="url(#glow)"
+              initial={{ scale: 0, opacity: 0 }}
+              animate={{ scale: 1, opacity: 0.9 }}
+              transition={{ 
+                duration: 0.5, 
+                delay: i * 0.15,
+                type: "spring",
+                stiffness: 200,
+              }}
+            />
+            
+            {/* Icon inside node */}
+            <motion.g
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: i * 0.15 + 0.3 }}
+            >
+              {node.type === "ai" && (
+                // Brain/chip icon for AI
+                <g transform={`translate(${node.x - 1}, ${node.y - 1})`}>
+                  <rect x="0.3" y="0.3" width="1.4" height="1.4" rx="0.2" fill="none" stroke="#0a0a12" strokeWidth="0.15" />
+                  <line x1="0" y1="0.7" x2="0.3" y2="0.7" stroke="#0a0a12" strokeWidth="0.1" />
+                  <line x1="0" y1="1.3" x2="0.3" y2="1.3" stroke="#0a0a12" strokeWidth="0.1" />
+                  <line x1="1.7" y1="0.7" x2="2" y2="0.7" stroke="#0a0a12" strokeWidth="0.1" />
+                  <line x1="1.7" y1="1.3" x2="2" y2="1.3" stroke="#0a0a12" strokeWidth="0.1" />
+                  <circle cx="1" cy="1" r="0.3" fill="#0a0a12" />
+                </g>
+              )}
+              {node.type === "people" && (
+                // Person icon
+                <g transform={`translate(${node.x - 1.2}, ${node.y - 1.2})`}>
+                  <circle cx="1.2" cy="0.7" r="0.5" fill="#0a0a12" />
+                  <path d="M0.4 2.2 Q1.2 1.4 2 2.2" fill="none" stroke="#0a0a12" strokeWidth="0.25" strokeLinecap="round" />
+                </g>
+              )}
+              {node.type === "growth" && (
+                // Trending up arrow
+                <g transform={`translate(${node.x - 1}, ${node.y - 1})`}>
+                  <polyline 
+                    points="0.3,1.5 0.8,1 1.3,1.3 1.7,0.5" 
+                    fill="none" 
+                    stroke="#0a0a12" 
+                    strokeWidth="0.2" 
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                  <polyline 
+                    points="1.3,0.5 1.7,0.5 1.7,0.9" 
+                    fill="none" 
+                    stroke="#0a0a12" 
+                    strokeWidth="0.2" 
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </g>
+              )}
+            </motion.g>
+          </g>
+        ))}
+        
+        {/* Floating particles */}
+        {[...Array(12)].map((_, i) => (
+          <motion.circle
+            key={`particle-${i}`}
+            r="0.3"
+            fill="#27AAE1"
+            opacity="0.3"
+            initial={{ 
+              cx: Math.random() * 80 + 10, 
+              cy: Math.random() * 80 + 10,
+            }}
+            animate={{ 
+              cx: [null, Math.random() * 80 + 10, Math.random() * 80 + 10],
+              cy: [null, Math.random() * 80 + 10, Math.random() * 80 + 10],
+              opacity: [0.1, 0.4, 0.1],
+            }}
+            transition={{
+              duration: 8 + Math.random() * 4,
+              delay: i * 0.5,
+              repeat: Infinity,
+              ease: "linear",
+            }}
+          />
+        ))}
+      </svg>
+    </div>
   );
 }
 
@@ -268,18 +399,8 @@ export function Hero() {
       {/* Aurora Background */}
       <AuroraBackground />
 
-      {/* 3D Canvas */}
-      <div className="absolute inset-0 pointer-events-none">
-        <Suspense fallback={null}>
-          <Canvas
-            camera={{ position: [0, 0, 6], fov: 50 }}
-            style={{ background: "transparent" }}
-            gl={{ alpha: true, antialias: true }}
-          >
-            <Scene3D />
-          </Canvas>
-        </Suspense>
-      </div>
+      {/* Network Visualization - AI to People to Profit */}
+      <NetworkVisualization />
 
       {/* Noise texture overlay */}
       <div 
