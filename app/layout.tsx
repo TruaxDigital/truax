@@ -70,10 +70,7 @@ export const metadata: Metadata = {
   alternates: {
     canonical: 'https://truaxmarketing.com',
   },
-  icons: {
-    icon: '/icon.gif',
-    apple: '/icon.gif',
-  },
+
 }
 
 export default function RootLayout({
