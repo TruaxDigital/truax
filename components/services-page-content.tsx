@@ -60,8 +60,46 @@ const services = [
 ];
 
 const techStack = [
-  "WordPress", "Webflow", "HubSpot", "Salesforce", "Google Ads", 
-  "Meta Ads", "Mailchimp", "Klaviyo", "Shopify", "Analytics"
+  { 
+    name: "WordPress", 
+    logo: "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@v9/icons/wordpress.svg",
+  },
+  { 
+    name: "Webflow", 
+    logo: "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@v9/icons/webflow.svg",
+  },
+  { 
+    name: "HubSpot", 
+    logo: "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@v9/icons/hubspot.svg",
+  },
+  { 
+    name: "Salesforce", 
+    logo: "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@v9/icons/salesforce.svg",
+  },
+  { 
+    name: "Google Ads", 
+    logo: "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@v9/icons/googleads.svg",
+  },
+  { 
+    name: "Meta", 
+    logo: "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@v9/icons/meta.svg",
+  },
+  { 
+    name: "Mailchimp", 
+    logo: "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@v9/icons/mailchimp.svg",
+  },
+  { 
+    name: "Klaviyo", 
+    logo: "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@v9/icons/klaviyo.svg",
+  },
+  { 
+    name: "Shopify", 
+    logo: "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@v9/icons/shopify.svg",
+  },
+  { 
+    name: "Google Analytics", 
+    logo: "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@v9/icons/googleanalytics.svg",
+  },
 ];
 
 export function ServicesPageContent() {
@@ -182,19 +220,29 @@ export function ServicesPageContent() {
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            className="flex flex-wrap justify-center gap-4"
+            className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-6"
           >
             {techStack.map((tech, index) => (
-              <motion.span
-                key={tech}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
+              <motion.div
+                key={tech.name}
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.05 }}
-                className="px-5 py-3 rounded-full bg-[#0f0f1a] border border-[#262466] text-gray-300 font-medium"
+                className="group flex flex-col items-center gap-3 p-6 rounded-xl bg-[#0f0f1a] border border-[#262466] hover:border-[#27AAE1]/30 transition-all"
               >
-                {tech}
-              </motion.span>
+                <div className="w-10 h-10 flex items-center justify-center">
+                  <img 
+                    src={tech.logo} 
+                    alt={tech.name}
+                    className="w-8 h-8 opacity-60 group-hover:opacity-100 transition-opacity"
+                    style={{ filter: "brightness(0) invert(1)" }}
+                  />
+                </div>
+                <span className="text-sm text-gray-400 group-hover:text-white transition-colors text-center">
+                  {tech.name}
+                </span>
+              </motion.div>
             ))}
           </motion.div>
         </div>
