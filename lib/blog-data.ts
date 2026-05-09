@@ -6338,6 +6338,10 @@ Modern cameras & smartphones have the ability to take high resolution images. Ho
   },
 ];
 
+export function getAllBlogPosts(): BlogPost[] {
+  return blogPosts;
+}
+
 export function getPostBySlug(slug: string): BlogPost | undefined {
   return blogPosts.find(post => post.slug === slug);
 }
