@@ -115,94 +115,97 @@ function NetworkVisualization() {
           </linearGradient>
         </defs>
         
-        {/* Connection lines */}
+        {/* Connection lines - static for performance, pulses animate via CSS */}
         {connections.map((conn, i) => {
           const from = getNode(conn.from);
           const to = getNode(conn.to);
           return (
             <g key={i}>
-              {/* Base line */}
-              <motion.line
+              {/* Base line - no initial animation */}
+              <line
                 x1={from.x}
                 y1={from.y}
                 x2={to.x}
                 y2={to.y}
                 stroke="#262466"
                 strokeWidth="0.15"
-                initial={{ pathLength: 0, opacity: 0 }}
-                animate={{ pathLength: 1, opacity: 0.4 }}
-                transition={{ duration: 1, delay: conn.delay }}
+                opacity="0.4"
               />
-              {/* Animated pulse along the line */}
-              <motion.circle
-                r="0.8"
+              {/* Animated pulse along the line - staggered with CSS animation */}
+              <circle
+                r="0.6"
                 fill="#27AAE1"
-                filter="url(#glow)"
-                initial={{ opacity: 0 }}
-                animate={{
-                  opacity: [0, 1, 1, 0],
-                  cx: [from.x, to.x],
-                  cy: [from.y, to.y],
+                opacity="0.7"
+                style={{
+                  animation: `pulse-move-${i % 4} 4s ease-in-out ${conn.delay * 0.3}s infinite`,
                 }}
-                transition={{
-                  duration: 2,
-                  delay: conn.delay + 1,
-                  repeat: Infinity,
-                  repeatDelay: 3,
-                  ease: "easeInOut",
-                }}
-              />
+              >
+                <animate
+                  attributeName="cx"
+                  values={`${from.x};${to.x};${from.x}`}
+                  dur="4s"
+                  begin={`${conn.delay * 0.3}s`}
+                  repeatCount="indefinite"
+                />
+                <animate
+                  attributeName="cy"
+                  values={`${from.y};${to.y};${from.y}`}
+                  dur="4s"
+                  begin={`${conn.delay * 0.3}s`}
+                  repeatCount="indefinite"
+                />
+                <animate
+                  attributeName="opacity"
+                  values="0;0.8;0.8;0"
+                  dur="4s"
+                  begin={`${conn.delay * 0.3}s`}
+                  repeatCount="indefinite"
+                />
+              </circle>
             </g>
           );
         })}
         
-        {/* Nodes */}
+        {/* Nodes - simplified with CSS animations for smooth performance */}
         {nodes.map((node, i) => (
-          <g key={node.id}>
-            {/* Outer glow ring */}
-            <motion.circle
+          <g key={node.id} style={{ opacity: 0.9 }}>
+            {/* Outer glow ring - CSS animation */}
+            <circle
               cx={node.x}
               cy={node.y}
               r={node.type === "ai" ? 3 : node.type === "people" ? 4 : 3.5}
               fill="none"
               stroke={node.type === "ai" ? "#27AAE1" : node.type === "people" ? "#2B3990" : "#27AAE1"}
               strokeWidth="0.2"
-              initial={{ scale: 0, opacity: 0 }}
-              animate={{ 
-                scale: [1, 1.3, 1], 
-                opacity: [0.3, 0.1, 0.3],
-              }}
-              transition={{
-                duration: 3,
-                delay: i * 0.2,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
-            />
+              opacity="0.3"
+            >
+              <animate
+                attributeName="r"
+                values={`${node.type === "ai" ? 3 : node.type === "people" ? 4 : 3.5};${node.type === "ai" ? 4 : node.type === "people" ? 5 : 4.5};${node.type === "ai" ? 3 : node.type === "people" ? 4 : 3.5}`}
+                dur="3s"
+                begin={`${i * 0.2}s`}
+                repeatCount="indefinite"
+              />
+              <animate
+                attributeName="opacity"
+                values="0.3;0.1;0.3"
+                dur="3s"
+                begin={`${i * 0.2}s`}
+                repeatCount="indefinite"
+              />
+            </circle>
             
-            {/* Main node */}
-            <motion.circle
+            {/* Main node - static, no animation needed */}
+            <circle
               cx={node.x}
               cy={node.y}
               r={node.type === "ai" ? 2 : node.type === "people" ? 2.5 : 2.2}
               fill={node.type === "ai" ? "#27AAE1" : node.type === "people" ? "#2B3990" : "#27AAE1"}
               filter="url(#glow)"
-              initial={{ scale: 0, opacity: 0 }}
-              animate={{ scale: 1, opacity: 0.9 }}
-              transition={{ 
-                duration: 0.5, 
-                delay: i * 0.15,
-                type: "spring",
-                stiffness: 200,
-              }}
             />
             
-            {/* Icon inside node */}
-            <motion.g
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: i * 0.15 + 0.3 }}
-            >
+            {/* Icon inside node - no animation */}
+            <g>
               {node.type === "ai" && (
                 // Brain/chip icon for AI
                 <g transform={`translate(${node.x - 1}, ${node.y - 1})`}>
@@ -242,97 +245,95 @@ function NetworkVisualization() {
                   />
                 </g>
               )}
-            </motion.g>
+            </g>
           </g>
         ))}
         
-        {/* Floating particles */}
-        {[...Array(12)].map((_, i) => (
-          <motion.circle
-            key={`particle-${i}`}
-            r="0.3"
-            fill="#27AAE1"
-            opacity="0.3"
-            initial={{ 
-              cx: Math.random() * 80 + 10, 
-              cy: Math.random() * 80 + 10,
-            }}
-            animate={{ 
-              cx: [null, Math.random() * 80 + 10, Math.random() * 80 + 10],
-              cy: [null, Math.random() * 80 + 10, Math.random() * 80 + 10],
-              opacity: [0.1, 0.4, 0.1],
-            }}
-            transition={{
-              duration: 8 + Math.random() * 4,
-              delay: i * 0.5,
-              repeat: Infinity,
-              ease: "linear",
-            }}
-          />
-        ))}
+        {/* Floating particles - reduced count, CSS animations */}
+        {[...Array(6)].map((_, i) => {
+          const startX = 15 + (i % 3) * 30;
+          const startY = 20 + Math.floor(i / 3) * 40;
+          return (
+            <circle
+              key={`particle-${i}`}
+              r="0.3"
+              fill="#27AAE1"
+              cx={startX}
+              cy={startY}
+            >
+              <animate
+                attributeName="cx"
+                values={`${startX};${startX + 15};${startX}`}
+                dur={`${8 + i}s`}
+                repeatCount="indefinite"
+              />
+              <animate
+                attributeName="cy"
+                values={`${startY};${startY - 10};${startY}`}
+                dur={`${8 + i}s`}
+                repeatCount="indefinite"
+              />
+              <animate
+                attributeName="opacity"
+                values="0.1;0.4;0.1"
+                dur={`${8 + i}s`}
+                repeatCount="indefinite"
+              />
+            </circle>
+          );
+        })}
       </svg>
     </div>
   );
 }
 
-// Kinetic Typography - Letter by letter animation
+// Kinetic Typography - Word by word animation (optimized for smooth loading)
 function KineticText({ text, className, delay = 0 }: { text: string, className?: string, delay?: number }) {
   const words = text.split(" ");
   
   const container = {
     hidden: { opacity: 0 },
-    visible: (i = 1) => ({
+    visible: {
       opacity: 1,
-      transition: { staggerChildren: 0.08, delayChildren: delay },
-    }),
+      transition: { staggerChildren: 0.12, delayChildren: delay },
+    },
   };
 
   const child = {
     visible: {
       opacity: 1,
       y: 0,
-      rotateX: 0,
       transition: {
-        type: "spring",
-        damping: 12,
-        stiffness: 100,
+        duration: 0.5,
+        ease: [0.25, 0.4, 0.25, 1],
       },
     },
     hidden: {
       opacity: 0,
-      y: 50,
-      rotateX: -90,
-      transition: {
-        type: "spring",
-        damping: 12,
-        stiffness: 100,
-      },
+      y: 30,
     },
   };
 
   return (
     <motion.span
-      style={{ display: "flex", flexWrap: "wrap", overflow: "hidden" }}
+      style={{ display: "flex", flexWrap: "wrap", overflow: "hidden", willChange: "opacity" }}
       variants={container}
       initial="hidden"
       animate="visible"
       className={className}
     >
       {words.map((word, wordIndex) => (
-        <span key={wordIndex} style={{ display: "inline-flex", marginRight: "0.3em" }}>
-          {word.split("").map((char, charIndex) => (
-            <motion.span
-              key={charIndex}
-              variants={child}
-              style={{ 
-                display: "inline-block",
-                transformOrigin: "bottom",
-              }}
-            >
-              {char}
-            </motion.span>
-          ))}
-        </span>
+        <motion.span
+          key={wordIndex}
+          variants={child}
+          style={{ 
+            display: "inline-block",
+            marginRight: "0.3em",
+            willChange: "transform, opacity",
+          }}
+        >
+          {word}
+        </motion.span>
       ))}
     </motion.span>
   );
@@ -433,17 +434,17 @@ export function Hero() {
 
             {/* Kinetic Headline */}
             <h1 className="text-5xl sm:text-6xl lg:text-7xl font-semibold leading-[1.1] mb-6 tracking-tight">
-              <span className="block"><KineticText text="Digital marketing" delay={0.2} /></span>
+              <span className="block"><KineticText text="Digital marketing" delay={0.1} /></span>
               <ShimmerText>
-                <KineticText text="with heart." delay={0.8} />
+                <KineticText text="with heart." delay={0.4} />
               </ShimmerText>
             </h1>
 
             {/* Subhead */}
             <motion.p
-              initial={{ opacity: 0, y: 24 }}
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 1.2 }}
+              transition={{ duration: 0.5, delay: 0.6 }}
               className="text-base sm:text-lg text-gray-400 max-w-lg mb-10 leading-relaxed"
             >
               A boutique agency helping businesses grow through AI implementation, 
@@ -452,9 +453,9 @@ export function Hero() {
 
             {/* CTAs */}
             <motion.div
-              initial={{ opacity: 0, y: 24 }}
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 1.4 }}
+              transition={{ duration: 0.5, delay: 0.7 }}
               className="flex flex-wrap gap-4 mb-8"
             >
               <Link href="/meet">
@@ -486,22 +487,19 @@ export function Hero() {
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 0.6, delay: 1.6 }}
+              transition={{ duration: 0.4, delay: 0.8 }}
               className="flex items-center gap-4 text-sm text-gray-500"
             >
               <div className="flex items-center gap-1">
                 {[1, 2, 3, 4, 5].map((i) => (
-                  <motion.svg 
+                  <svg 
                     key={i} 
                     className="w-4 h-4 text-[#27AAE1]" 
                     fill="currentColor" 
                     viewBox="0 0 20 20"
-                    initial={{ opacity: 0, scale: 0 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: 1.6 + i * 0.1, type: "spring" }}
                   >
                     <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                  </motion.svg>
+                  </svg>
                 ))}
               </div>
               <span>Trusted by 50+ growing businesses</span>
@@ -510,35 +508,24 @@ export function Hero() {
 
           {/* Right side - Stats card - 5 columns */}
           <motion.div
-            initial={{ opacity: 0, x: 60, rotateY: -15 }}
-            animate={{ opacity: 1, x: 0, rotateY: 0 }}
-            transition={{ duration: 1, delay: 0.6, type: "spring", stiffness: 50 }}
+            initial={{ opacity: 0, x: 40 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, delay: 0.4, ease: [0.25, 0.4, 0.25, 1] }}
             className="lg:col-span-5"
-            style={{ perspective: "1000px" }}
           >
-            <motion.div 
-              className="relative p-8 rounded-xl border border-[#262466] bg-[#12121f]/80 backdrop-blur-md shadow-2xl"
-              whileHover={{ 
-                rotateY: 5,
-                rotateX: -5,
-                scale: 1.02,
-                boxShadow: "0 25px 50px -12px rgba(39, 170, 225, 0.25)",
-              }}
-              transition={{ duration: 0.4, type: "spring", stiffness: 200 }}
-              style={{ transformStyle: "preserve-3d" }}
+            <div 
+              className="relative p-8 rounded-xl border border-[#262466] bg-[#12121f]/80 backdrop-blur-md shadow-2xl hover:shadow-[0_25px_50px_-12px_rgba(39,170,225,0.25)] transition-shadow duration-500"
             >
               {/* Glowing border effect */}
-              <div className="absolute -inset-px rounded-xl bg-gradient-to-r from-[#27AAE1]/20 via-transparent to-[#2B3990]/20 opacity-0 group-hover:opacity-100 transition-opacity" />
+              <div className="absolute -inset-px rounded-xl bg-gradient-to-r from-[#27AAE1]/20 via-transparent to-[#2B3990]/20 opacity-0 hover:opacity-100 transition-opacity" />
               
               {/* Brand accent corner */}
               <div className="absolute top-0 right-0 w-24 h-24 overflow-hidden rounded-tr-xl">
-                <motion.div 
-                  className="absolute inset-0"
+                <div 
+                  className="absolute inset-0 opacity-30"
                   style={{
                     background: "linear-gradient(135deg, transparent 50%, #27AAE1 50%)",
                   }}
-                  animate={{ opacity: [0.2, 0.4, 0.2] }}
-                  transition={{ duration: 3, repeat: Infinity }}
                 />
               </div>
               
@@ -546,55 +533,42 @@ export function Hero() {
               
               <div className="space-y-6">
                 {[
-                  { value: "20+", label: "years combined experience", delay: 0.8 },
-                  { value: "2.4x", label: "average ROI increase", delay: 1 },
-                  { value: "48hr", label: "response guarantee", delay: 1.2 },
+                  { value: "20+", label: "years combined experience" },
+                  { value: "2.4x", label: "average ROI increase" },
+                  { value: "48hr", label: "response guarantee" },
                 ].map((stat, index) => (
                   <motion.div 
                     key={index}
                     className="flex items-baseline gap-4"
-                    initial={{ opacity: 0, x: 30 }}
+                    initial={{ opacity: 0, x: 20 }}
                     animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: stat.delay, type: "spring", stiffness: 100 }}
+                    transition={{ delay: 0.5 + index * 0.1, duration: 0.4, ease: [0.25, 0.4, 0.25, 1] }}
                   >
-                    <motion.span 
-                      className="text-5xl font-bold text-[#27AAE1] font-mono"
-                      initial={{ scale: 0.5 }}
-                      animate={{ scale: 1 }}
-                      transition={{ delay: stat.delay + 0.2, type: "spring", stiffness: 200 }}
-                    >
+                    <span className="text-5xl font-bold text-[#27AAE1] font-mono">
                       {stat.value}
-                    </motion.span>
+                    </span>
                     <span className="text-gray-400">{stat.label}</span>
                   </motion.div>
                 ))}
               </div>
-            </motion.div>
+            </div>
           </motion.div>
         </div>
       </motion.div>
 
-      {/* Scroll indicator */}
+      {/* Scroll indicator - CSS animation for smooth performance */}
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 2 }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1, duration: 0.4 }}
         className="absolute bottom-8 left-1/2 -translate-x-1/2"
       >
-        <motion.div
-          animate={{ y: [0, 10, 0] }}
-          transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
-          className="flex flex-col items-center gap-2"
-        >
+        <div className="flex flex-col items-center gap-2 animate-bounce" style={{ animationDuration: "2s" }}>
           <span className="text-xs text-gray-600 uppercase tracking-widest">Scroll</span>
           <div className="w-6 h-10 rounded-full border-2 border-[#262466] flex justify-center pt-2">
-            <motion.div 
-              className="w-1 h-2 rounded-full bg-[#27AAE1]"
-              animate={{ y: [0, 12, 0], opacity: [1, 0, 1] }}
-              transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
-            />
+            <div className="w-1 h-2 rounded-full bg-[#27AAE1] animate-pulse" />
           </div>
-        </motion.div>
+        </div>
       </motion.div>
     </section>
   );
