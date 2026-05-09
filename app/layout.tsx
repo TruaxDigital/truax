@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Work_Sans, Geist_Mono } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
+import { GoogleAnalytics, GoogleTagManager } from '@next/third-parties/google'
 import { JsonLd, organizationSchema, websiteSchema, localBusinessSchema } from '@/components/json-ld'
 import './globals.css'
 
@@ -102,6 +103,8 @@ export default function RootLayout({
         {children}
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>
+      <GoogleTagManager gtmId="GTM-N7VDVJB" />
+      <GoogleAnalytics gaId="G-RLJ3LES45Y" />
     </html>
   )
 }
