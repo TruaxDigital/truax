@@ -122,7 +122,7 @@ export function Footer() {
                       href={link.href} 
                       className="group text-gray-400 hover:text-white transition-all duration-300 text-sm inline-block"
                     >
-                      <span className="relative">
+                      <span className="relative inline-block">
                         {link.label}
                         <span className="absolute -bottom-0.5 left-0 right-0 h-0.5 bg-gradient-to-r from-[#27AAE1] to-[#2B3990] origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out" />
                         <span className="absolute -bottom-0.5 left-0 right-0 h-0.5 bg-[#27AAE1] blur-sm origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out opacity-50" />
@@ -145,7 +145,7 @@ export function Footer() {
                       href={link.href} 
                       className="group text-gray-400 hover:text-white transition-all duration-300 text-sm inline-block"
                     >
-                      <span className="relative">
+                      <span className="relative inline-block">
                         {link.label}
                         <span className="absolute -bottom-0.5 left-0 right-0 h-0.5 bg-gradient-to-r from-[#27AAE1] to-[#2B3990] origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out" />
                         <span className="absolute -bottom-0.5 left-0 right-0 h-0.5 bg-[#27AAE1] blur-sm origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out opacity-50" />
@@ -166,7 +166,7 @@ export function Footer() {
                   href="mailto:hello@truaxmarketing.com" 
                   className="group inline-block text-gray-400 hover:text-white transition-all duration-300"
                 >
-                  <span className="relative">
+                  <span className="relative inline-block">
                     hello@truaxmarketing.com
                     <span className="absolute -bottom-0.5 left-0 right-0 h-0.5 bg-gradient-to-r from-[#27AAE1] to-[#2B3990] origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out" />
                     <span className="absolute -bottom-0.5 left-0 right-0 h-0.5 bg-[#27AAE1] blur-sm origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out opacity-50" />
