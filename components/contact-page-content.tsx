@@ -2,12 +2,24 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Mail, MapPin, Calendar, Send, ArrowRight, CheckCircle, AlertCircle, Loader2 } from "lucide-react";
+import { Mail, MapPin, Calendar, Send, ArrowRight, CheckCircle, AlertCircle, Loader2, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
 
 type FormStatus = "idle" | "loading" | "success" | "error";
+
+const serviceOptions = [
+  { value: "", label: "Select a service..." },
+  { value: "ai-enablement", label: "AI Enablement" },
+  { value: "seo", label: "SEO / Search Marketing" },
+  { value: "web-development", label: "Web Development" },
+  { value: "fractional-cmo", label: "Fractional CMO" },
+  { value: "content-marketing", label: "Content Marketing" },
+  { value: "social-media", label: "Social Media" },
+  { value: "crm-automation", label: "CRM & Automation" },
+  { value: "other", label: "Something else" },
+];
 
 const contactMethods = [
   {
@@ -35,6 +47,7 @@ export function ContactPageContent() {
     name: "",
     email: "",
     company: "",
+    service: "",
     message: "",
   });
   const [status, setStatus] = useState<FormStatus>("idle");
@@ -59,7 +72,7 @@ export function ContactPageContent() {
       }
 
       setStatus("success");
-      setFormState({ name: "", email: "", company: "", message: "" });
+      setFormState({ name: "", email: "", company: "", service: "", message: "" });
     } catch (error) {
       setStatus("error");
       setErrorMessage(error instanceof Error ? error.message : "Failed to send message");
@@ -161,15 +174,41 @@ export function ContactPageContent() {
                     />
                   </div>
                 </div>
-                <div>
-                  <label className="block text-sm font-medium mb-2 text-gray-300">Company</label>
-                  <Input
-                    type="text"
-                    placeholder="Your company"
-                    value={formState.company}
-                    onChange={(e) => setFormState({ ...formState, company: e.target.value })}
-                    className="bg-[#0a0a12] border-[#262466] focus:border-[#27AAE1] h-12"
-                  />
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div>
+                    <label className="block text-sm font-medium mb-2 text-gray-300">Company</label>
+                    <Input
+                      type="text"
+                      placeholder="Your company"
+                      value={formState.company}
+                      onChange={(e) => setFormState({ ...formState, company: e.target.value })}
+                      className="bg-[#0a0a12] border-[#262466] focus:border-[#27AAE1] h-12"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium mb-2 text-gray-300">
+                      What can we help with? <span className="text-[#27AAE1]">*</span>
+                    </label>
+                    <div className="relative">
+                      <select
+                        required
+                        value={formState.service}
+                        onChange={(e) => setFormState({ ...formState, service: e.target.value })}
+                        className="w-full h-12 px-4 pr-10 rounded-lg bg-[#0a0a12] border border-[#262466] focus:border-[#27AAE1] focus:outline-none focus:ring-2 focus:ring-[#27AAE1]/20 transition-all text-white appearance-none cursor-pointer"
+                      >
+                        {serviceOptions.map((option) => (
+                          <option 
+                            key={option.value} 
+                            value={option.value}
+                            className="bg-[#0a0a12]"
+                          >
+                            {option.label}
+                          </option>
+                        ))}
+                      </select>
+                      <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-500 pointer-events-none" />
+                    </div>
+                  </div>
                 </div>
                 <div>
                   <label className="block text-sm font-medium mb-2 text-gray-300">Message</label>

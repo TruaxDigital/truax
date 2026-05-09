@@ -9,9 +9,9 @@ export async function POST(request: Request) {
     const { name, email, company, service, message } = body;
 
     // Validate required fields
-    if (!name || !email || !message) {
+    if (!name || !email || !service || !message) {
       return NextResponse.json(
-        { error: "Name, email, and message are required" },
+        { error: "Please fill out all required fields" },
         { status: 400 }
       );
     }
@@ -30,7 +30,7 @@ export async function POST(request: Request) {
       from: "Truax Marketing Website <onboarding@resend.dev>",
       to: ["aaron@truaxmarketing.com"],
       replyTo: email,
-      subject: `New Contact Form Submission from ${name}`,
+      subject: `[${service}] New inquiry from ${name}${company ? ` at ${company}` : ""}`,
       html: `
         <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto;">
           <h2 style="color: #2B3990;">New Contact Form Submission</h2>
