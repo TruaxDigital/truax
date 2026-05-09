@@ -126,10 +126,10 @@ export default function BlogPage() {
                 setSelectedCategory(null);
                 setVisibleCount(POSTS_PER_PAGE);
               }}
-              className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
+              className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
                 selectedCategory === null
-                  ? "bg-[#27AAE1] text-black"
-                  : "bg-[#0f0f1a] border border-[#262466] text-gray-400 hover:border-[#27AAE1]/50"
+                  ? "bg-[#27AAE1] text-black shadow-lg shadow-[#27AAE1]/25"
+                  : "bg-[#0f0f1a] border border-[#262466] text-gray-400 hover:border-[#27AAE1]/50 hover:text-white hover:bg-[#27AAE1]/10 hover:-translate-y-0.5 hover:shadow-md hover:shadow-[#27AAE1]/10"
               }`}
             >
               All Posts
@@ -141,10 +141,10 @@ export default function BlogPage() {
                   setSelectedCategory(category);
                   setVisibleCount(POSTS_PER_PAGE);
                 }}
-                className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
+                className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
                   selectedCategory === category
-                    ? "bg-[#27AAE1] text-black"
-                    : "bg-[#0f0f1a] border border-[#262466] text-gray-400 hover:border-[#27AAE1]/50"
+                    ? "bg-[#27AAE1] text-black shadow-lg shadow-[#27AAE1]/25"
+                    : "bg-[#0f0f1a] border border-[#262466] text-gray-400 hover:border-[#27AAE1]/50 hover:text-white hover:bg-[#27AAE1]/10 hover:-translate-y-0.5 hover:shadow-md hover:shadow-[#27AAE1]/10"
                 }`}
               >
                 {category}

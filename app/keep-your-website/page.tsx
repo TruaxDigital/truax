@@ -331,7 +331,7 @@ function KeepYourWebsiteContent() {
                     href={displayUrl!}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="mt-6 inline-flex items-center gap-2 bg-[#27AAE1] text-white px-5 py-2.5 rounded-md text-sm font-semibold hover:bg-[#2B3990] transition"
+                    className="mt-6 inline-flex items-center gap-2 bg-[#27AAE1] text-white px-5 py-2.5 rounded-md text-sm font-semibold hover:bg-[#2B3990] hover:-translate-y-0.5 hover:shadow-lg hover:shadow-[#27AAE1]/25 active:translate-y-0 transition-all duration-300"
                   >
                     View my live website
                     <ArrowRight className="w-4 h-4" />
@@ -654,7 +654,7 @@ function KeepYourWebsiteContent() {
               href={STRIPE_MONTHLY_LINK}
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-[#27AAE1] text-white px-8 py-4 rounded-md font-semibold text-base hover:bg-[#2B3990] transition"
+              className="bg-[#27AAE1] text-white px-8 py-4 rounded-md font-semibold text-base hover:bg-[#2B3990] hover:-translate-y-0.5 hover:shadow-lg hover:shadow-[#27AAE1]/25 active:translate-y-0 transition-all duration-300"
             >
               $99 a month, cancel anytime
             </a>

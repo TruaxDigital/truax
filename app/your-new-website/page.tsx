@@ -178,13 +178,13 @@ function YourNewWebsiteContent() {
               href={STRIPE_MONTHLY}
               target="_blank"
               rel="noopener"
-              className="inline-flex items-center justify-center px-6 py-4 rounded-md font-semibold text-base bg-[#27AAE1] text-black hover:bg-[#27AAE1]/90 transition"
+              className="inline-flex items-center justify-center px-6 py-4 rounded-md font-semibold text-base bg-[#27AAE1] text-black hover:bg-[#27AAE1]/90 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-[#27AAE1]/25 active:translate-y-0 transition-all duration-300"
             >
               Claim my site for $99 per month
             </a>
             <a
               href="#your-site"
-              className="inline-flex items-center justify-center gap-2 px-6 py-4 rounded-md font-semibold text-base border-2 border-[#262466] text-white hover:bg-[#262466]/50 transition"
+              className="inline-flex items-center justify-center gap-2 px-6 py-4 rounded-md font-semibold text-base border-2 border-[#262466] text-white hover:bg-[#262466]/50 hover:-translate-y-0.5 hover:shadow-md active:translate-y-0 transition-all duration-300"
             >
               See my website
               <ExternalLink className="w-4 h-4" />
@@ -320,7 +320,7 @@ function YourNewWebsiteContent() {
               href={siteUrl}
               target="_blank"
               rel="noopener"
-              className="inline-flex items-center gap-2 px-5 py-3 rounded-md text-sm font-semibold bg-[#27AAE1] text-black hover:bg-[#27AAE1]/90 transition w-fit"
+              className="inline-flex items-center gap-2 px-5 py-3 rounded-md text-sm font-semibold bg-[#27AAE1] text-black hover:bg-[#27AAE1]/90 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-[#27AAE1]/25 active:translate-y-0 transition-all duration-300 w-fit"
             >
               Open my website
               <ExternalLink className="w-4 h-4" />
@@ -357,7 +357,7 @@ function YourNewWebsiteContent() {
                   href={siteUrl}
                   target="_blank"
                   rel="noopener"
-                  className="mt-6 inline-flex items-center gap-2 bg-[#27AAE1] text-black px-5 py-2.5 rounded-md text-sm font-semibold hover:bg-[#27AAE1]/90 transition"
+                  className="mt-6 inline-flex items-center gap-2 bg-[#27AAE1] text-black px-5 py-2.5 rounded-md text-sm font-semibold hover:bg-[#27AAE1]/90 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-[#27AAE1]/25 active:translate-y-0 transition-all duration-300"
                 >
                   View my live website
                   <ExternalLink className="w-4 h-4" />
@@ -555,7 +555,7 @@ function YourNewWebsiteContent() {
                 href={STRIPE_MONTHLY}
                 target="_blank"
                 rel="noopener"
-                className="mt-6 inline-flex items-center gap-2 bg-[#27AAE1] text-black px-6 py-3 rounded-md font-semibold hover:bg-[#27AAE1]/90 transition"
+                className="mt-6 inline-flex items-center gap-2 bg-[#27AAE1] text-black px-6 py-3 rounded-md font-semibold hover:bg-[#27AAE1]/90 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-[#27AAE1]/25 active:translate-y-0 transition-all duration-300"
               >
                 Lock it in at $99 a month
                 <ExternalLink className="w-4 h-4" />
@@ -759,7 +759,7 @@ function YourNewWebsiteContent() {
                 href="https://truaxmarketing.com"
                 target="_blank"
                 rel="noopener"
-                className="bg-[#27AAE1] text-black px-5 py-3 rounded-md text-sm font-semibold text-center whitespace-nowrap hover:bg-[#27AAE1]/90 transition"
+                className="bg-[#27AAE1] text-black px-5 py-3 rounded-md text-sm font-semibold text-center whitespace-nowrap hover:bg-[#27AAE1]/90 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-[#27AAE1]/25 active:translate-y-0 transition-all duration-300"
               >
                 See what Truax does
               </a>
@@ -793,7 +793,7 @@ function YourNewWebsiteContent() {
               href={STRIPE_MONTHLY}
               target="_blank"
               rel="noopener"
-              className="bg-[#27AAE1] text-black px-8 py-4 rounded-md font-semibold text-base hover:bg-[#27AAE1]/90 transition"
+              className="bg-[#27AAE1] text-black px-8 py-4 rounded-md font-semibold text-base hover:bg-[#27AAE1]/90 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-[#27AAE1]/25 active:translate-y-0 transition-all duration-300"
             >
               $99 a month, cancel anytime
             </a>
