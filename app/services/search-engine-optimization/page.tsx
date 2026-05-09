@@ -12,6 +12,11 @@ import {
   CheckCircle,
   X,
   Check,
+  Shield,
+  Code2,
+  RefreshCcw,
+  Briefcase,
+  Users,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
@@ -392,12 +397,41 @@ export default function SEOPage() {
         </div>
       </section>
 
-      {/* Trust Bar */}
-      <section className="py-8 px-6 border-y border-[#262466]/50">
+      {/* Industries Served */}
+      <section className="py-16 px-6 border-y border-[#262466]/50 bg-[#0a0a12]/50">
         <div className="max-w-6xl mx-auto">
-          <p className="text-center text-gray-500 text-sm">
-            Industries served: Insurance | SaaS | Warranty | B2B Services | Financial Services | Professional Services
-          </p>
+          <motion.p
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center text-gray-500 text-sm uppercase tracking-widest mb-8"
+          >
+            Industries we serve
+          </motion.p>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+            {[
+              { icon: Shield, name: "Insurance" },
+              { icon: Code2, name: "SaaS" },
+              { icon: RefreshCcw, name: "Warranty" },
+              { icon: Briefcase, name: "B2B Services" },
+              { icon: TrendingUp, name: "Financial Services" },
+              { icon: Users, name: "Professional Services" },
+            ].map((industry, index) => (
+              <motion.div
+                key={industry.name}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: index * 0.08 }}
+                className="group flex flex-col items-center gap-3 p-4 rounded-xl border border-transparent hover:border-[#262466] hover:bg-[#0f0f1a] transition-all duration-300"
+              >
+                <div className="w-12 h-12 rounded-lg bg-[#27AAE1]/10 flex items-center justify-center group-hover:bg-[#27AAE1]/20 group-hover:scale-110 transition-all duration-300">
+                  <industry.icon className="h-6 w-6 text-[#27AAE1]" />
+                </div>
+                <span className="text-sm text-gray-400 group-hover:text-white transition-colors text-center">{industry.name}</span>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </section>
 
