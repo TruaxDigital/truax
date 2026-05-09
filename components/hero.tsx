@@ -5,13 +5,6 @@ import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { useRef } from "react";
-import dynamic from "next/dynamic";
-
-// Dynamically import 3D heart to avoid SSR issues
-const HeroHeart3D = dynamic(
-  () => import("@/components/hero-heart-3d").then((mod) => mod.HeroHeart3D),
-  { ssr: false }
-);
 
 // Aurora / Northern Lights Background
 function AuroraBackground() {
@@ -181,8 +174,7 @@ export function Hero() {
       {/* Aurora Background */}
       <AuroraBackground />
 
-      {/* 3D Heart - Digital Marketing with Heart */}
-      <HeroHeart3D />
+
 
       {/* Noise texture overlay */}
       <div 
