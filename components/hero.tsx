@@ -287,37 +287,13 @@ function NetworkVisualization() {
   );
 }
 
-// Kinetic Typography - Word by word animation (optimized for smooth loading)
+// Fast word animation for first line
 function KineticText({ text, className, delay = 0 }: { text: string, className?: string, delay?: number }) {
   const words = text.split(" ");
   
-  const container = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.12, delayChildren: delay },
-    },
-  };
-
-  const child = {
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.5,
-        ease: [0.25, 0.4, 0.25, 1],
-      },
-    },
-    hidden: {
-      opacity: 0,
-      y: 30,
-    },
-  };
-
   return (
     <motion.span
-      style={{ display: "flex", flexWrap: "wrap", overflow: "hidden", willChange: "opacity" }}
-      variants={container}
+      style={{ display: "flex", flexWrap: "wrap", overflow: "hidden" }}
       initial="hidden"
       animate="visible"
       className={className}
@@ -325,15 +301,59 @@ function KineticText({ text, className, delay = 0 }: { text: string, className?:
       {words.map((word, wordIndex) => (
         <motion.span
           key={wordIndex}
-          variants={child}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ 
+            duration: 0.4,
+            delay: delay + wordIndex * 0.08,
+            ease: [0.25, 0.4, 0.25, 1],
+          }}
           style={{ 
             display: "inline-block",
             marginRight: "0.3em",
-            willChange: "transform, opacity",
           }}
         >
           {word}
         </motion.span>
+      ))}
+    </motion.span>
+  );
+}
+
+// Letter-by-letter animation for "with heart" - the wow factor
+function KineticLetters({ text, className, delay = 0 }: { text: string, className?: string, delay?: number }) {
+  const words = text.split(" ");
+  let charIndex = 0;
+  
+  return (
+    <motion.span
+      style={{ display: "flex", flexWrap: "wrap", overflow: "hidden" }}
+      className={className}
+    >
+      {words.map((word, wordIndex) => (
+        <span key={wordIndex} style={{ display: "inline-flex", marginRight: "0.3em" }}>
+          {word.split("").map((char) => {
+            const currentIndex = charIndex++;
+            return (
+              <motion.span
+                key={currentIndex}
+                initial={{ opacity: 0, y: 40, rotateX: -60 }}
+                animate={{ opacity: 1, y: 0, rotateX: 0 }}
+                transition={{
+                  duration: 0.5,
+                  delay: delay + currentIndex * 0.05,
+                  ease: [0.25, 0.4, 0.25, 1],
+                }}
+                style={{ 
+                  display: "inline-block",
+                  transformOrigin: "bottom",
+                }}
+              >
+                {char}
+              </motion.span>
+            );
+          })}
+        </span>
       ))}
     </motion.span>
   );
@@ -436,7 +456,7 @@ export function Hero() {
             <h1 className="text-5xl sm:text-6xl lg:text-7xl font-semibold leading-[1.1] mb-6 tracking-tight">
               <span className="block"><KineticText text="Digital marketing" delay={0.1} /></span>
               <ShimmerText>
-                <KineticText text="with heart." delay={0.4} />
+                <KineticLetters text="with heart." delay={0.35} />
               </ShimmerText>
             </h1>
 
