@@ -7,6 +7,7 @@ import Link from "next/link";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import { BlogPost, getAllBlogPosts } from "@/lib/blog-data";
+import { getBlogImageUrl } from "@/lib/blog-image-urls";
 import { JsonLd, createArticleSchema, createBreadcrumbSchema } from "@/components/json-ld";
 
 interface Props {
@@ -238,24 +239,27 @@ export default function BlogPostContent({ post }: Props) {
       </section>
 
       {/* Featured Image */}
-      {post.featuredImage && (
-        <section className="px-6 pb-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="max-w-4xl mx-auto"
-          >
-            <div className="aspect-[16/9] rounded-2xl overflow-hidden border border-[#262466]">
-              <img 
-                src={post.featuredImage} 
-                alt={post.title}
-                className="w-full h-full object-cover"
-              />
-            </div>
-          </motion.div>
-        </section>
-      )}
+      {(() => {
+        const imageUrl = getBlogImageUrl(post.slug, post.featuredImage);
+        return imageUrl && (
+          <section className="px-6 pb-8">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              className="max-w-4xl mx-auto"
+            >
+              <div className="aspect-[16/9] rounded-2xl overflow-hidden border border-[#262466]">
+                <img 
+                  src={imageUrl} 
+                  alt={post.title}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            </motion.div>
+          </section>
+        );
+      })()}
 
       {/* Content */}
       <section className="py-8 px-6">

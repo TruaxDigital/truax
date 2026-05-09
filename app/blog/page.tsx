@@ -7,6 +7,7 @@ import Link from "next/link";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import { getAllBlogPosts, getAllCategories } from "@/lib/blog-data";
+import { getBlogImageUrl } from "@/lib/blog-image-urls";
 import { useState, useMemo } from "react";
 
 const POSTS_PER_PAGE = 6;
@@ -184,19 +185,22 @@ export default function BlogPage() {
                 {/* Featured Image */}
                 <Link href={`/blog/${post.slug}`}>
                   <div className="aspect-video bg-gradient-to-br from-[#2B3990]/40 to-[#27AAE1]/20 relative overflow-hidden">
-                    {post.featuredImage ? (
-                      <img 
-                        src={post.featuredImage} 
-                        alt={post.title}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                      />
-                    ) : (
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <div className="w-14 h-14 rounded-xl bg-[#27AAE1]/20 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                          <Tag className="h-6 w-6 text-[#27AAE1]" />
+                    {(() => {
+                      const imageUrl = getBlogImageUrl(post.slug, post.featuredImage);
+                      return imageUrl ? (
+                        <img 
+                          src={imageUrl} 
+                          alt={post.title}
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        />
+                      ) : (
+                        <div className="absolute inset-0 flex items-center justify-center">
+                          <div className="w-14 h-14 rounded-xl bg-[#27AAE1]/20 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                            <Tag className="h-6 w-6 text-[#27AAE1]" />
+                          </div>
                         </div>
-                      </div>
-                    )}
+                      );
+                    })()}
                     <div className="absolute bottom-0 left-0 right-0 h-1/2 bg-gradient-to-t from-[#0f0f1a] to-transparent" />
                   </div>
                 </Link>
