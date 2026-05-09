@@ -8,6 +8,13 @@ Truax Marketing Solutions is a results-focused marketing agency founded by Aaron
 
 ## Services
 
+### AI Enablement
+- AI readiness assessments and implementation
+- Custom AI agent development
+- Workflow automation with AI
+- Team training and change management
+- URL: /ai-enablement
+
 ### AI Sales Agents
 - Automated lead qualification and outreach
 - B2B contact database integration
