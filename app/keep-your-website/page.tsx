@@ -668,7 +668,7 @@ function KeepYourWebsiteContent() {
             </a>
           </div>
           <p className="mt-8 text-white/60 text-sm font-medium">
-            Questions? Email <a href="mailto:aaron@truaxmarketing.com" className="underline text-[#27AAE1] hover:text-white">aaron@truaxmarketing.com</a> or call 858-220-9501.
+            Questions? Email <a href="mailto:aaron@truaxmarketing.com" className="underline text-[#27AAE1] hover:text-white">aaron@truaxmarketing.com</a> or call 1-571-200-1351.
           </p>
         </div>
       </section>
@@ -688,7 +688,7 @@ function KeepYourWebsiteContent() {
               {[
                 { href: "https://truaxmarketing.com", label: "truaxmarketing.com", external: true },
                 { href: "mailto:aaron@truaxmarketing.com", label: "aaron@truaxmarketing.com" },
-                { href: "tel:8582209501", label: "858-220-9501" },
+                { href: "tel:15712001351", label: "1-571-200-1351" },
               ].map((link) => (
                 <a 
                   key={link.href}

@@ -54,7 +54,7 @@ function YourNewWebsiteContent() {
     },
     {
       q: "Is this some kind of scam?",
-      a: "No. Truax Marketing Solutions is a real US marketing firm. You can reach us by phone (858-220-9501), email, or at truaxmarketing.com. We have no access to your accounts, your money, or anything else. The only way you pay is if you decide to keep the site through a Stripe checkout.",
+      a: "No. Truax Marketing Solutions is a real US marketing firm. You can reach us by phone (1-571-200-1351), email, or at truaxmarketing.com. We have no access to your accounts, your money, or anything else. The only way you pay is if you decide to keep the site through a Stripe checkout.",
     },
     {
       q: "What happens to my site if I do nothing?",
@@ -811,7 +811,7 @@ function YourNewWebsiteContent() {
             <a href="mailto:aaron@truaxmarketing.com" className="underline text-[#27AAE1] hover:text-white">
               aaron@truaxmarketing.com
             </a>{" "}
-            or call 858-220-9501.
+            or call 1-571-200-1351.
           </p>
         </div>
       </section>
@@ -835,7 +835,7 @@ function CustomFooter() {
             {[
               { href: "https://truaxmarketing.com", label: "truaxmarketing.com", external: true },
               { href: "mailto:aaron@truaxmarketing.com", label: "aaron@truaxmarketing.com" },
-              { href: "tel:8582209501", label: "858-220-9501" },
+              { href: "tel:15712001351", label: "1-571-200-1351" },
             ].map((link) => (
               <a 
                 key={link.href}
