@@ -1,0 +1,215 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+@custom-variant dark (&:is(.dark *));
+
+/* Truax Brand Colors from Brand Guide 2022 */
+/* Nebula: #262466 | Starstuff: #2B3990 | Sky: #27AAE1 | Carbon: #000000 | Beam: #FFFFFF */
+
+:root {
+  /* Dark theme using Nebula as base */
+  --background: #0a0a12;
+  --foreground: #f5f5f7;
+  --card: #12121f;
+  --card-foreground: #f5f5f7;
+  --popover: #0f0f1a;
+  --popover-foreground: #f5f5f7;
+  
+  /* Primary: Sky blue - the bright accent */
+  --primary: #27AAE1;
+  --primary-foreground: #0a0a12;
+  
+  /* Secondary uses Starstuff */
+  --secondary: #2B3990;
+  --secondary-foreground: #f5f5f7;
+  
+  --muted: #1a1a2e;
+  --muted-foreground: #8888a0;
+  
+  /* Accent matches primary for consistency */
+  --accent: #27AAE1;
+  --accent-foreground: #0a0a12;
+  
+  --destructive: #e53935;
+  --destructive-foreground: #f5f5f7;
+  --border: #262466;
+  --input: #1a1a2e;
+  --ring: #27AAE1;
+  
+  /* Brand gradients */
+  --nebula: #262466;
+  --starstuff: #2B3990;
+  --sky: #27AAE1;
+  
+  --chart-1: #27AAE1;
+  --chart-2: #2B3990;
+  --chart-3: #262466;
+  --chart-4: #5bc0eb;
+  --chart-5: #4361ee;
+  
+  --radius: 0.5rem;
+  
+  --sidebar: #0f0f1a;
+  --sidebar-foreground: #f5f5f7;
+  --sidebar-primary: #27AAE1;
+  --sidebar-primary-foreground: #0a0a12;
+  --sidebar-accent: #2B3990;
+  --sidebar-accent-foreground: #f5f5f7;
+  --sidebar-border: #262466;
+  --sidebar-ring: #27AAE1;
+}
+
+.dark {
+  --background: #0a0a12;
+  --foreground: #f5f5f7;
+  --card: #12121f;
+  --card-foreground: #f5f5f7;
+  --popover: #0f0f1a;
+  --popover-foreground: #f5f5f7;
+  --primary: #27AAE1;
+  --primary-foreground: #0a0a12;
+  --secondary: #2B3990;
+  --secondary-foreground: #f5f5f7;
+  --muted: #1a1a2e;
+  --muted-foreground: #8888a0;
+  --accent: #27AAE1;
+  --accent-foreground: #0a0a12;
+  --destructive: #e53935;
+  --destructive-foreground: #f5f5f7;
+  --border: #262466;
+  --input: #1a1a2e;
+  --ring: #27AAE1;
+  --chart-1: #27AAE1;
+  --chart-2: #2B3990;
+  --chart-3: #262466;
+  --chart-4: #5bc0eb;
+  --chart-5: #4361ee;
+  --sidebar: #0f0f1a;
+  --sidebar-foreground: #f5f5f7;
+  --sidebar-primary: #27AAE1;
+  --sidebar-primary-foreground: #0a0a12;
+  --sidebar-accent: #2B3990;
+  --sidebar-accent-foreground: #f5f5f7;
+  --sidebar-border: #262466;
+  --sidebar-ring: #27AAE1;
+}
+
+@theme inline {
+  --font-sans: 'Work Sans', var(--font-work-sans), system-ui, -apple-system, sans-serif;
+  --font-mono: 'Geist Mono', var(--font-geist-mono), ui-monospace, monospace;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Truax brand gradient - Comet (Starstuff + Sky) */
+.gradient-comet {
+  background: linear-gradient(135deg, #2B3990 0%, #27AAE1 100%);
+}
+
+/* Truax brand gradient - Obsidian (Starstuff + Nebula + Carbon) */
+.gradient-obsidian {
+  background: linear-gradient(135deg, #000000 0%, #262466 50%, #2B3990 100%);
+}
+
+/* Truax brand gradient - Moonlight (Starstuff + Beam) */
+.gradient-moonlight {
+  background: linear-gradient(135deg, #2B3990 0%, #FFFFFF 100%);
+}
+
+/* Light beam effect from brand guide */
+.light-beam {
+  background: linear-gradient(
+    135deg,
+    transparent 0%,
+    rgba(39, 170, 225, 0.1) 25%,
+    rgba(43, 57, 144, 0.15) 50%,
+    rgba(38, 36, 102, 0.1) 75%,
+    transparent 100%
+  );
+}
+
+/* Soft shadow for cards */
+.shadow-brand {
+  box-shadow: 
+    0 1px 2px rgba(0, 0, 0, 0.2),
+    0 4px 8px rgba(0, 0, 0, 0.15),
+    0 16px 32px rgba(38, 36, 102, 0.2);
+}
+
+/* Card hover effect */
+.card-hover {
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+.card-hover:hover {
+  transform: translateY(-4px);
+  border-color: #27AAE1;
+  box-shadow: 
+    0 2px 4px rgba(0, 0, 0, 0.15),
+    0 8px 16px rgba(0, 0, 0, 0.15),
+    0 24px 48px rgba(39, 170, 225, 0.15);
+}
+
+/* Monospace accent for stats */
+.mono-stat {
+  font-family: var(--font-mono);
+  letter-spacing: -0.02em;
+}
+
+/* Tight heading letter-spacing */
+.tracking-display {
+  letter-spacing: -0.02em;
+}
+
+/* Text gradient using brand colors */
+.text-gradient {
+  background: linear-gradient(135deg, #27AAE1 0%, #2B3990 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}

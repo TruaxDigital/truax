@@ -1,0 +1,74 @@
+# Truax Marketing Solutions
+
+> A boutique digital marketing agency specializing in AI implementation, SEO, web development, and strategic marketing for growing businesses.
+
+## About
+
+Truax Marketing Solutions is a results-focused marketing agency founded by Aaron Truax with 20+ years of marketing leadership experience. We take a human-first approach to developing creative strategies, scalable growth systems, and targeted communications.
+
+## Services
+
+### AI Sales Agents
+- Automated lead qualification and outreach
+- B2B contact database integration
+- Multi-channel campaign automation
+- Pricing: Starter ($297/mo), Growth ($597/mo), Scale ($997/mo)
+- URL: /ai-agents
+
+### Search Engine Optimization (SEO)
+- Technical SEO audits and optimization
+- Content strategy and keyword research
+- Local SEO for Portland and national businesses
+- Pricing: $500-$1,000/month based on scope
+- URL: /services/search-engine-optimization
+
+### Web Design & Development
+- Custom WordPress development
+- Conversion-optimized landing pages
+- E-commerce solutions
+- URL: /services/web-design-development
+
+### Digital Strategy
+- Marketing roadmap development
+- Competitive analysis
+- Channel strategy and planning
+- URL: /services/digital-strategy
+
+### Fractional CMO
+- Part-time executive marketing leadership
+- Strategic planning and team management
+- Marketing operations optimization
+- URL: /services/fractional-cmo
+
+### Demand Generation
+- Lead generation campaigns
+- Marketing automation
+- Pipeline development
+- URL: /services/demand-generation
+
+### Managed Hosting
+- WordPress hosting with 24/7 monitoring
+- Security updates and backups
+- Performance optimization
+- URL: /services/managed-hosting
+
+## Contact
+
+- Website: https://truaxmarketing.com
+- Email: hello@truaxmarketing.com
+- Phone: (503) 928-7386
+- Location: Portland, Oregon
+- Book a call: /meet
+
+## Key Differentiators
+
+- Human-first approach in a data-driven world
+- 20+ years of marketing leadership experience
+- Response time under 24 hours
+- No hidden fees or long-term contracts
+- 100% senior talent (no junior account managers)
+- Average client tenure of 3+ years
+
+## Blog Topics
+
+Our blog covers SEO, digital strategy, content marketing, paid advertising, leadership, and web development. Visit /blog for articles on marketing best practices.
