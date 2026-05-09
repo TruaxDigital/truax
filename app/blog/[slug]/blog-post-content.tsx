@@ -98,12 +98,34 @@ export default function BlogPostContent({ post }: Props) {
       const block = blocks[i].trim();
       if (!block) continue;
 
-      // H2 Headings
+      // H2 Headings (## or ****bold heading****)
       if (block.startsWith("## ")) {
         elements.push(
           <h2 key={key++} className="text-2xl font-semibold mt-12 mb-4 text-white">
             {parseInlineMarkdown(block.replace("## ", ""))}
           </h2>
+        );
+        continue;
+      }
+
+      // Bold-only lines as H3 headings (****text**** or **text** on its own line)
+      const quadBoldMatch = block.match(/^\*\*\*\*(.+?)\*\*\*\*$/);
+      if (quadBoldMatch) {
+        elements.push(
+          <h3 key={key++} className="text-xl font-semibold mt-10 mb-4 text-white">
+            {quadBoldMatch[1]}
+          </h3>
+        );
+        continue;
+      }
+
+      // Double bold as subheading (**text** alone on a line)
+      const doubleBoldMatch = block.match(/^\*\*(.+?)\*\*$/);
+      if (doubleBoldMatch && !block.includes("\n")) {
+        elements.push(
+          <h3 key={key++} className="text-xl font-semibold mt-10 mb-4 text-white">
+            {doubleBoldMatch[1]}
+          </h3>
         );
         continue;
       }
