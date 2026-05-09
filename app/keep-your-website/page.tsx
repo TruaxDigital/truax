@@ -331,7 +331,7 @@ function KeepYourWebsiteContent() {
                     href={displayUrl!}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="mt-6 inline-flex items-center gap-2 bg-[#27AAE1] text-white px-5 py-2.5 rounded-md text-sm font-semibold hover:bg-[#2B3990] transition"
+                    className="mt-6 inline-flex items-center gap-2 bg-[#27AAE1] text-white px-5 py-2.5 rounded-md text-sm font-semibold hover:bg-[#2B3990] hover:-translate-y-0.5 hover:shadow-lg hover:shadow-[#27AAE1]/25 active:translate-y-0 transition-all duration-300"
                   >
                     View my live website
                     <ArrowRight className="w-4 h-4" />
@@ -654,7 +654,7 @@ function KeepYourWebsiteContent() {
               href={STRIPE_MONTHLY_LINK}
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-[#27AAE1] text-white px-8 py-4 rounded-md font-semibold text-base hover:bg-[#2B3990] transition"
+              className="bg-[#27AAE1] text-white px-8 py-4 rounded-md font-semibold text-base hover:bg-[#2B3990] hover:-translate-y-0.5 hover:shadow-lg hover:shadow-[#27AAE1]/25 active:translate-y-0 transition-all duration-300"
             >
               $99 a month, cancel anytime
             </a>
@@ -668,7 +668,7 @@ function KeepYourWebsiteContent() {
             </a>
           </div>
           <p className="mt-8 text-white/60 text-sm font-medium">
-            Questions? Email <a href="mailto:aaron@truaxmarketing.com" className="underline text-[#27AAE1] hover:text-white">aaron@truaxmarketing.com</a> or call 858-220-9501.
+            Questions? Email <a href="mailto:aaron@truaxmarketing.com" className="underline text-[#27AAE1] hover:text-white">aaron@truaxmarketing.com</a> or call 1-571-200-1351.
           </p>
         </div>
       </section>
@@ -688,7 +688,7 @@ function KeepYourWebsiteContent() {
               {[
                 { href: "https://truaxmarketing.com", label: "truaxmarketing.com", external: true },
                 { href: "mailto:aaron@truaxmarketing.com", label: "aaron@truaxmarketing.com" },
-                { href: "tel:8582209501", label: "858-220-9501" },
+                { href: "tel:15712001351", label: "1-571-200-1351" },
               ].map((link) => (
                 <a 
                   key={link.href}

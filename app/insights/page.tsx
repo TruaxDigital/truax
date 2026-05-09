@@ -7,6 +7,7 @@ import Link from "next/link";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import { getAllBlogPosts, getAllCategories } from "@/lib/blog-data";
+import { getBlogImageUrl } from "@/lib/blog-image-urls";
 import { useState, useMemo } from "react";
 
 const POSTS_PER_PAGE = 6;
@@ -70,7 +71,7 @@ export default function BlogPage() {
             transition={{ duration: 0.5 }}
             className="text-[#27AAE1] font-medium mb-4 tracking-wide"
           >
-            Blog
+            Insights
           </motion.p>
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
@@ -125,10 +126,10 @@ export default function BlogPage() {
                 setSelectedCategory(null);
                 setVisibleCount(POSTS_PER_PAGE);
               }}
-              className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
+              className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
                 selectedCategory === null
-                  ? "bg-[#27AAE1] text-black"
-                  : "bg-[#0f0f1a] border border-[#262466] text-gray-400 hover:border-[#27AAE1]/50"
+                  ? "bg-[#27AAE1] text-black shadow-lg shadow-[#27AAE1]/25"
+                  : "bg-[#0f0f1a] border border-[#262466] text-gray-400 hover:border-[#27AAE1]/50 hover:text-white hover:bg-[#27AAE1]/10 hover:-translate-y-0.5 hover:shadow-md hover:shadow-[#27AAE1]/10"
               }`}
             >
               All Posts
@@ -140,10 +141,10 @@ export default function BlogPage() {
                   setSelectedCategory(category);
                   setVisibleCount(POSTS_PER_PAGE);
                 }}
-                className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
+                className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
                   selectedCategory === category
-                    ? "bg-[#27AAE1] text-black"
-                    : "bg-[#0f0f1a] border border-[#262466] text-gray-400 hover:border-[#27AAE1]/50"
+                    ? "bg-[#27AAE1] text-black shadow-lg shadow-[#27AAE1]/25"
+                    : "bg-[#0f0f1a] border border-[#262466] text-gray-400 hover:border-[#27AAE1]/50 hover:text-white hover:bg-[#27AAE1]/10 hover:-translate-y-0.5 hover:shadow-md hover:shadow-[#27AAE1]/10"
                 }`}
               >
                 {category}
@@ -182,21 +183,24 @@ export default function BlogPage() {
                 className="group rounded-2xl bg-[#0f0f1a] border border-[#262466] overflow-hidden hover:border-[#27AAE1]/50 transition-all"
               >
                 {/* Featured Image */}
-                <Link href={`/blog/${post.slug}`}>
+                <Link href={`/insights/${post.slug}`}>
                   <div className="aspect-video bg-gradient-to-br from-[#2B3990]/40 to-[#27AAE1]/20 relative overflow-hidden">
-                    {post.featuredImage ? (
-                      <img 
-                        src={post.featuredImage} 
-                        alt={post.title}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                      />
-                    ) : (
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <div className="w-14 h-14 rounded-xl bg-[#27AAE1]/20 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                          <Tag className="h-6 w-6 text-[#27AAE1]" />
+                    {(() => {
+                      const imageUrl = getBlogImageUrl(post.slug, post.featuredImage);
+                      return imageUrl ? (
+                        <img 
+                          src={imageUrl} 
+                          alt={post.title}
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        />
+                      ) : (
+                        <div className="absolute inset-0 flex items-center justify-center">
+                          <div className="w-14 h-14 rounded-xl bg-[#27AAE1]/20 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                            <Tag className="h-6 w-6 text-[#27AAE1]" />
+                          </div>
                         </div>
-                      </div>
-                    )}
+                      );
+                    })()}
                     <div className="absolute bottom-0 left-0 right-0 h-1/2 bg-gradient-to-t from-[#0f0f1a] to-transparent" />
                   </div>
                 </Link>
@@ -210,13 +214,13 @@ export default function BlogPage() {
                       {post.publishedAt}
                     </span>
                   </div>
-                  <Link href={`/blog/${post.slug}`}>
+                  <Link href={`/insights/${post.slug}`}>
                     <h2 className="text-lg font-semibold mb-3 group-hover:text-[#27AAE1] transition-colors line-clamp-2">
                       {post.title}
                     </h2>
                   </Link>
                   <p className="text-gray-400 text-sm mb-4 line-clamp-3 leading-relaxed">{post.excerpt}</p>
-                  <Link href={`/blog/${post.slug}`}>
+                  <Link href={`/insights/${post.slug}`}>
                     <span className="inline-flex items-center text-sm text-[#27AAE1] font-medium group-hover:gap-2 transition-all">
                       Read More
                       <ArrowRight className="h-4 w-4 ml-1 group-hover:translate-x-1 transition-transform" />

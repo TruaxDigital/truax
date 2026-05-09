@@ -7,6 +7,7 @@ import Link from "next/link";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import { BlogPost, getAllBlogPosts } from "@/lib/blog-data";
+import { getBlogImageUrl } from "@/lib/blog-image-urls";
 import { JsonLd, createArticleSchema, createBreadcrumbSchema } from "@/components/json-ld";
 
 interface Props {
@@ -83,8 +84,8 @@ export default function BlogPostContent({ post }: Props) {
 
   const breadcrumbSchema = createBreadcrumbSchema([
     { name: "Home", url: "/" },
-    { name: "Blog", url: "/blog" },
-    { name: post.title, url: `/blog/${post.slug}` },
+    { name: "Insights", url: "/insights" },
+    { name: post.title, url: `/insights/${post.slug}` },
   ]);
 
   // Convert markdown-style content to properly formatted HTML
@@ -97,12 +98,34 @@ export default function BlogPostContent({ post }: Props) {
       const block = blocks[i].trim();
       if (!block) continue;
 
-      // H2 Headings
+      // H2 Headings (## or ****bold heading****)
       if (block.startsWith("## ")) {
         elements.push(
           <h2 key={key++} className="text-2xl font-semibold mt-12 mb-4 text-white">
             {parseInlineMarkdown(block.replace("## ", ""))}
           </h2>
+        );
+        continue;
+      }
+
+      // Bold-only lines as H3 headings (****text**** or **text** on its own line)
+      const quadBoldMatch = block.match(/^\*\*\*\*(.+?)\*\*\*\*$/);
+      if (quadBoldMatch) {
+        elements.push(
+          <h3 key={key++} className="text-xl font-semibold mt-10 mb-4 text-white">
+            {quadBoldMatch[1]}
+          </h3>
+        );
+        continue;
+      }
+
+      // Double bold as subheading (**text** alone on a line)
+      const doubleBoldMatch = block.match(/^\*\*(.+?)\*\*$/);
+      if (doubleBoldMatch && !block.includes("\n")) {
+        elements.push(
+          <h3 key={key++} className="text-xl font-semibold mt-10 mb-4 text-white">
+            {doubleBoldMatch[1]}
+          </h3>
         );
         continue;
       }
@@ -189,7 +212,7 @@ export default function BlogPostContent({ post }: Props) {
         </div>
 
         <div className="relative z-10 max-w-3xl mx-auto">
-          <Link href="/blog" className="inline-flex items-center gap-2 text-gray-400 hover:text-[#27AAE1] transition-colors mb-8">
+          <Link href="/insights" className="inline-flex items-center gap-2 text-gray-400 hover:text-[#27AAE1] transition-colors mb-8">
             <ArrowLeft className="h-4 w-4" />
             Back to Blog
           </Link>
@@ -238,24 +261,27 @@ export default function BlogPostContent({ post }: Props) {
       </section>
 
       {/* Featured Image */}
-      {post.featuredImage && (
-        <section className="px-6 pb-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="max-w-4xl mx-auto"
-          >
-            <div className="aspect-[16/9] rounded-2xl overflow-hidden border border-[#262466]">
-              <img 
-                src={post.featuredImage} 
-                alt={post.title}
-                className="w-full h-full object-cover"
-              />
-            </div>
-          </motion.div>
-        </section>
-      )}
+      {(() => {
+        const imageUrl = getBlogImageUrl(post.slug, post.featuredImage);
+        return imageUrl && (
+          <section className="px-6 pb-8">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              className="max-w-4xl mx-auto"
+            >
+              <div className="aspect-[16/9] rounded-2xl overflow-hidden border border-[#262466]">
+                <img 
+                  src={imageUrl} 
+                  alt={post.title}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            </motion.div>
+          </section>
+        );
+      })()}
 
       {/* Content */}
       <section className="py-8 px-6">
@@ -291,7 +317,7 @@ export default function BlogPostContent({ post }: Props) {
         <div className="max-w-3xl mx-auto">
           <div className="grid md:grid-cols-2 gap-6">
             {prevPost && (
-              <Link href={`/blog/${prevPost.slug}`} className="group">
+              <Link href={`/insights/${prevPost.slug}`} className="group">
                 <div className="p-6 rounded-xl bg-[#0f0f1a] border border-[#262466] hover:border-[#27AAE1]/50 transition-all">
                   <span className="text-sm text-gray-500 flex items-center gap-1 mb-2">
                     <ArrowLeft className="h-3 w-3" />
@@ -304,7 +330,7 @@ export default function BlogPostContent({ post }: Props) {
               </Link>
             )}
             {nextPost && (
-              <Link href={`/blog/${nextPost.slug}`} className="group md:ml-auto">
+              <Link href={`/insights/${nextPost.slug}`} className="group md:ml-auto">
                 <div className="p-6 rounded-xl bg-[#0f0f1a] border border-[#262466] hover:border-[#27AAE1]/50 transition-all text-right">
                   <span className="text-sm text-gray-500 flex items-center justify-end gap-1 mb-2">
                     Next

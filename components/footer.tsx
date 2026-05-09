@@ -52,7 +52,7 @@ const footerLinks = {
   ],
   company: [
     { label: "About Us", href: "/about" },
-    { label: "Blog", href: "/blog" },
+    { label: "Insights", href: "/insights" },
     { label: "Contact", href: "/contact" },
     { label: "Book a Call", href: "/meet" },
   ],
@@ -94,11 +94,15 @@ export function Footer() {
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group relative w-10 h-10 rounded-lg bg-[#0f0f1a] border border-[#262466] flex items-center justify-center text-gray-500 overflow-hidden transition-all duration-300 hover:border-[#27AAE1]/50 hover:shadow-lg hover:shadow-[#27AAE1]/10 hover:-translate-y-0.5"
+                    className="group relative w-10 h-10 rounded-lg bg-[#0f0f1a] border border-[#262466] flex items-center justify-center text-gray-500 overflow-hidden transition-all duration-300 hover:border-[#27AAE1]/50 hover:shadow-lg hover:shadow-[#27AAE1]/20 hover:-translate-y-1"
                     aria-label={`Follow us on ${social.name}`}
                   >
-                    <span className="absolute inset-0 bg-gradient-to-br from-[#27AAE1]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                    <span className="relative z-10 group-hover:text-[#27AAE1] transition-colors duration-300">
+                    {/* Gradient overlay on hover */}
+                    <span className="absolute inset-0 bg-gradient-to-br from-[#27AAE1]/30 via-[#2B3990]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    {/* Glow effect */}
+                    <span className="absolute inset-0 bg-[#27AAE1]/10 blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    {/* Icon */}
+                    <span className="relative z-10 group-hover:text-[#27AAE1] transition-colors duration-300 group-hover:scale-110 transform">
                       {social.icon}
                     </span>
                   </a>
@@ -116,10 +120,13 @@ export function Footer() {
                   <li key={link.href}>
                     <Link 
                       href={link.href} 
-                      className="group text-gray-400 hover:text-white transition-colors text-sm inline-flex items-center gap-2"
+                      className="group text-gray-400 hover:text-white transition-all duration-300 text-sm inline-block"
                     >
-                      <span className="w-0 h-px bg-[#27AAE1] group-hover:w-3 transition-all duration-300" />
-                      {link.label}
+                      <span className="relative">
+                        {link.label}
+                        <span className="absolute -bottom-0.5 left-0 right-0 h-0.5 bg-gradient-to-r from-[#27AAE1] to-[#2B3990] origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out" />
+                        <span className="absolute -bottom-0.5 left-0 right-0 h-0.5 bg-[#27AAE1] blur-sm origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out opacity-50" />
+                      </span>
                     </Link>
                   </li>
                 ))}
@@ -136,10 +143,13 @@ export function Footer() {
                   <li key={link.href}>
                     <Link 
                       href={link.href} 
-                      className="group text-gray-400 hover:text-white transition-colors text-sm inline-flex items-center gap-2"
+                      className="group text-gray-400 hover:text-white transition-all duration-300 text-sm inline-block"
                     >
-                      <span className="w-0 h-px bg-[#27AAE1] group-hover:w-3 transition-all duration-300" />
-                      {link.label}
+                      <span className="relative">
+                        {link.label}
+                        <span className="absolute -bottom-0.5 left-0 right-0 h-0.5 bg-gradient-to-r from-[#27AAE1] to-[#2B3990] origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out" />
+                        <span className="absolute -bottom-0.5 left-0 right-0 h-0.5 bg-[#27AAE1] blur-sm origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out opacity-50" />
+                      </span>
                     </Link>
                   </li>
                 ))}
@@ -154,10 +164,13 @@ export function Footer() {
               <div className="space-y-3 text-sm">
                 <a 
                   href="mailto:hello@truaxmarketing.com" 
-                  className="group inline-flex items-center gap-2 text-gray-400 hover:text-white transition-colors"
+                  className="group inline-block text-gray-400 hover:text-white transition-all duration-300"
                 >
-                  <span className="w-0 h-px bg-[#27AAE1] group-hover:w-3 transition-all duration-300" />
-                  hello@truaxmarketing.com
+                  <span className="relative">
+                    hello@truaxmarketing.com
+                    <span className="absolute -bottom-0.5 left-0 right-0 h-0.5 bg-gradient-to-r from-[#27AAE1] to-[#2B3990] origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out" />
+                    <span className="absolute -bottom-0.5 left-0 right-0 h-0.5 bg-[#27AAE1] blur-sm origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out opacity-50" />
+                  </span>
                 </a>
                 <p className="text-gray-500">
                   Washington, DC
@@ -175,11 +188,11 @@ export function Footer() {
               
               <button
                 onClick={scrollToTop}
-                className="group flex items-center gap-2 text-gray-500 hover:text-[#27AAE1] transition-colors text-xs"
+                className="group flex items-center gap-2 text-gray-500 hover:text-[#27AAE1] transition-all duration-300 text-xs hover:-translate-y-0.5"
               >
                 Back to top
-                <span className="w-6 h-6 rounded-full border border-current flex items-center justify-center group-hover:bg-[#27AAE1]/10 transition-colors">
-                  <ArrowUp className="w-3 h-3" />
+                <span className="w-6 h-6 rounded-full border border-current flex items-center justify-center group-hover:bg-[#27AAE1]/10 group-hover:border-[#27AAE1] group-hover:shadow-sm group-hover:shadow-[#27AAE1]/30 transition-all duration-300">
+                  <ArrowUp className="w-3 h-3 group-hover:-translate-y-0.5 transition-transform" />
                 </span>
               </button>
             </div>

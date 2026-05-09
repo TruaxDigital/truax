@@ -9,6 +9,7 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "@fal-ai/serverless-client": "^0.15.0",
     "@hookform/resolvers": "^3.9.1",
     "@radix-ui/react-accordion": "1.2.12",
     "@radix-ui/react-alert-dialog": "1.1.15",
@@ -39,7 +40,10 @@
     "@radix-ui/react-tooltip": "1.2.8",
     "@react-three/drei": "^10.7.7",
     "@react-three/fiber": "^9.6.1",
+    "@types/three": "^0.184.1",
     "@vercel/analytics": "1.6.1",
+    "@vercel/blob": "^2.3.3",
+    "@xmldom/xmldom": "^0.9.10",
     "autoprefixer": "^10.4.20",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
