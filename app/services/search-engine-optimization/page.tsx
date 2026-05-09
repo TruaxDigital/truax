@@ -361,20 +361,20 @@ export default function SEOPage() {
               </motion.p>
             </div>
 
-            {/* Right column - Abstract geometric illustration */}
+            {/* Right column - Hero image */}
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 1, delay: 0.3 }}
               className="hidden lg:block"
             >
-              <div className="relative aspect-square max-w-lg mx-auto">
-                <div className="absolute inset-0 bg-gradient-to-br from-[#2B3990]/30 to-[#27AAE1]/20 rounded-3xl border border-[#262466]" />
-                <div className="absolute top-12 left-12 w-24 h-24 bg-[#27AAE1]/20 rounded-full" />
-                <div className="absolute top-8 right-16 w-32 h-8 bg-[#2B3990]/40 rounded-full" />
-                <div className="absolute bottom-20 left-20 w-28 h-28 border-2 border-[#27AAE1]/30 rounded-2xl rotate-12" />
-                <div className="absolute bottom-12 right-12 w-20 h-20 bg-[#27AAE1]/30 rounded-lg" />
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 bg-[#27AAE1] rounded-full opacity-60" />
+              <div className="relative aspect-square max-w-lg mx-auto rounded-3xl overflow-hidden border border-[#262466] shadow-2xl shadow-[#27AAE1]/10">
+                <img 
+                  src="/images/services/seo-hero.jpg" 
+                  alt="Abstract visualization of search visibility with rising data graphs and neural connections"
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a12]/40 via-transparent to-transparent" />
               </div>
             </motion.div>
           </div>

@@ -369,20 +369,20 @@ export default function WebDesignPage() {
               </motion.p>
             </div>
 
-            {/* Right column - Abstract geometric illustration */}
+            {/* Right column - Hero image */}
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 1, delay: 0.3 }}
               className="hidden lg:block"
             >
-              <div className="relative aspect-square max-w-lg mx-auto">
-                <div className="absolute inset-0 bg-gradient-to-br from-[#2B3990]/30 to-[#27AAE1]/20 rounded-3xl border border-[#262466]" />
-                <div className="absolute top-8 left-8 w-32 h-32 bg-[#27AAE1]/20 rounded-2xl" />
-                <div className="absolute top-24 right-12 w-24 h-24 bg-[#2B3990]/30 rounded-full" />
-                <div className="absolute bottom-16 left-16 w-40 h-2 bg-[#27AAE1]/40 rounded-full" />
-                <div className="absolute bottom-32 right-8 w-20 h-20 border-2 border-[#27AAE1]/30 rounded-xl" />
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 bg-[#27AAE1] rounded-lg opacity-60" />
+              <div className="relative aspect-square max-w-lg mx-auto rounded-3xl overflow-hidden border border-[#262466] shadow-2xl shadow-[#27AAE1]/10">
+                <img 
+                  src="/images/services/web-design-hero.jpg" 
+                  alt="Abstract visualization of modern web architecture with floating glass panels"
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a12]/40 via-transparent to-transparent" />
               </div>
             </motion.div>
           </div>
