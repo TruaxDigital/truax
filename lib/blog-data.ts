@@ -1793,7 +1793,7 @@ Website owners often face the dilemma of choosing between rebuilding their site 
 
 The choice to rebuild your website tells you that just tweaking things won't be enough. Here are some signs that rebuilding might be the way to go:
 
-**- Outdated Design and Poor User Experience:** If your website looks like it���s stuck in the past, users may struggle to navigate it. A modern, user-friendly design is crucial to keep visitors engaged and make navigation easier.
+**- Outdated Design and Poor User Experience:** If your website looks like it�����s stuck in the past, users may struggle to navigate it. A modern, user-friendly design is crucial to keep visitors engaged and make navigation easier.
 
 **- Severe Security Vulnerabilities:** Websites sometimes get hacked or experience frequent breaches, which can severely damage your reputation. If these issues persist, a rebuild with improved security features can be a more effective long-term fix.
 
@@ -6372,13 +6372,6 @@ export function getRelatedPosts(currentSlug: string, limit = 3): BlogPost[] {
 
 export function getAllCategories(): string[] {
   return [...new Set(blogPosts.map(post => post.category))];
-}
-
-export function getPostsByCategory(category: string, limit: number = 3): BlogPost[] {
-  return blogPosts
-    .filter(post => post.category.toLowerCase() === category.toLowerCase())
-    .sort((a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime())
-    .slice(0, limit);
 }
 
 export function getPostsByKeywords(keywords: string[], limit: number = 3): BlogPost[] {

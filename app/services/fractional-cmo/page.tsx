@@ -12,7 +12,7 @@ import { Footer } from "@/components/footer";
 import { useState } from "react";
 import { getPostsByKeywords } from "@/lib/blog-data";
 import { getBlogImageUrl } from "@/lib/blog-image-urls";
-import { Calendar, Clock, Compass as CompassIcon } from "lucide-react";
+import { Clock } from "lucide-react";
 
 const responsibilities = [
   {
