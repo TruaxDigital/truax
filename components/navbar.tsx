@@ -22,10 +22,11 @@ const aiEnablementLinks = [
 ];
 
 const navLinks = [
+  { href: "/portfolio", label: "Portfolio" },
   { href: "/about", label: "About" },
   { href: "/insights", label: "Insights" },
   { href: "/contact", label: "Contact" },
-];
+  ];
 
 // Animated underline component for nav links
 function NavLink({ href, children, delay = 0 }: { href: string; children: React.ReactNode; delay?: number }) {
