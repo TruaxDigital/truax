@@ -23,6 +23,7 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
+import { PortfolioSlider } from "@/components/PortfolioSlider";
 import { getPostsByKeywords } from "@/lib/blog-data";
 import { getBlogImageUrl } from "@/lib/blog-image-urls";
 import { Calendar, Clock } from "lucide-react";
@@ -704,6 +705,9 @@ export default function WebDesignPage() {
           </motion.p>
         </div>
       </section>
+
+      {/* Portfolio Slider - Recent Builds */}
+      <PortfolioSlider />
 
       {/* Section 6: Comparison table */}
       <section className="py-24 px-6">
