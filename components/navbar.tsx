@@ -31,14 +31,14 @@ const navLinks = [
 // Animated underline component for nav links
 function NavLink({ href, children, delay = 0 }: { href: string; children: React.ReactNode; delay?: number }) {
   return (
-    <Link href={href} className="group">
+    <Link href={href}>
       <motion.span
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay, duration: 0.3 }}
-        className="text-gray-300 group-hover:text-white transition-colors cursor-pointer inline-block"
+        className="group text-gray-300 hover:text-white transition-colors cursor-pointer inline-block"
       >
-        <span className="relative inline-block">
+        <span className="relative">
           {children}
           {/* Animated underline - using scale transform for smooth animation */}
           <span className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-[#27AAE1] to-[#2B3990] origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out" />
