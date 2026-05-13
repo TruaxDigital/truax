@@ -118,11 +118,8 @@ export function Footer() {
               <ul className="space-y-3">
                 {footerLinks.services.map((link) => (
                   <li key={link.href}>
-                    <Link 
-                      href={link.href} 
-                      className="group text-gray-400 hover:text-white transition-all duration-300 text-sm inline-block"
-                    >
-                      <span className="relative">
+                    <Link href={link.href}>
+                      <span className="group relative text-gray-400 hover:text-white transition-all duration-300 text-sm inline-block">
                         {link.label}
                         <span className="absolute -bottom-0.5 left-0 right-0 h-0.5 bg-gradient-to-r from-[#27AAE1] to-[#2B3990] origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out" />
                       </span>
@@ -140,11 +137,8 @@ export function Footer() {
               <ul className="space-y-3">
                 {footerLinks.company.map((link) => (
                   <li key={link.href}>
-                    <Link 
-                      href={link.href} 
-                      className="group text-gray-400 hover:text-white transition-all duration-300 text-sm inline-block"
-                    >
-                      <span className="relative">
+                    <Link href={link.href}>
+                      <span className="group relative text-gray-400 hover:text-white transition-all duration-300 text-sm inline-block">
                         {link.label}
                         <span className="absolute -bottom-0.5 left-0 right-0 h-0.5 bg-gradient-to-r from-[#27AAE1] to-[#2B3990] origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out" />
                       </span>
@@ -160,11 +154,8 @@ export function Footer() {
                 Get in Touch
               </h4>
               <div className="space-y-3 text-sm">
-                <a 
-                  href="mailto:hello@truaxmarketing.com" 
-                  className="group inline-block text-gray-400 hover:text-white transition-all duration-300"
-                >
-                  <span className="relative">
+                <a href="mailto:hello@truaxmarketing.com">
+                  <span className="group relative inline-block text-gray-400 hover:text-white transition-all duration-300">
                     hello@truaxmarketing.com
                     <span className="absolute -bottom-0.5 left-0 right-0 h-0.5 bg-gradient-to-r from-[#27AAE1] to-[#2B3990] origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out" />
                   </span>
