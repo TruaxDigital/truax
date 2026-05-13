@@ -1,7 +1,33 @@
 "use client";
 
+import { useState } from "react";
 import { ArrowUp } from "lucide-react";
 import Link from "next/link";
+
+// Footer link with hover underline effect
+function FooterLink({ href, children, isExternal = false }: { href: string; children: React.ReactNode; isExternal?: boolean }) {
+  const [isHovered, setIsHovered] = useState(false);
+  
+  const content = (
+    <span 
+      className={`relative inline-block text-sm transition-colors duration-300 ${isHovered ? 'text-white' : 'text-gray-400'}`}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      {children}
+      <span 
+        className="absolute -bottom-0.5 left-0 right-0 h-0.5 bg-gradient-to-r from-[#27AAE1] to-[#2B3990] origin-left transition-transform duration-300 ease-out"
+        style={{ transform: isHovered ? 'scaleX(1)' : 'scaleX(0)' }}
+      />
+    </span>
+  );
+  
+  if (isExternal) {
+    return <a href={href}>{content}</a>;
+  }
+  
+  return <Link href={href}>{content}</Link>;
+}
 
 const socialLinks = [
   {
@@ -118,12 +144,7 @@ export function Footer() {
               <ul className="space-y-3">
                 {footerLinks.services.map((link) => (
                   <li key={link.href}>
-                    <Link href={link.href}>
-                      <span className="group relative text-gray-400 hover:text-white transition-all duration-300 text-sm inline-block">
-                        {link.label}
-                        <span className="absolute -bottom-0.5 left-0 right-0 h-0.5 bg-gradient-to-r from-[#27AAE1] to-[#2B3990] origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out" />
-                      </span>
-                    </Link>
+                    <FooterLink href={link.href}>{link.label}</FooterLink>
                   </li>
                 ))}
               </ul>
@@ -137,12 +158,7 @@ export function Footer() {
               <ul className="space-y-3">
                 {footerLinks.company.map((link) => (
                   <li key={link.href}>
-                    <Link href={link.href}>
-                      <span className="group relative text-gray-400 hover:text-white transition-all duration-300 text-sm inline-block">
-                        {link.label}
-                        <span className="absolute -bottom-0.5 left-0 right-0 h-0.5 bg-gradient-to-r from-[#27AAE1] to-[#2B3990] origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out" />
-                      </span>
-                    </Link>
+                    <FooterLink href={link.href}>{link.label}</FooterLink>
                   </li>
                 ))}
               </ul>
@@ -154,12 +170,9 @@ export function Footer() {
                 Get in Touch
               </h4>
               <div className="space-y-3 text-sm">
-                <a href="mailto:hello@truaxmarketing.com">
-                  <span className="group relative inline-block text-gray-400 hover:text-white transition-all duration-300">
-                    hello@truaxmarketing.com
-                    <span className="absolute -bottom-0.5 left-0 right-0 h-0.5 bg-gradient-to-r from-[#27AAE1] to-[#2B3990] origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out" />
-                  </span>
-                </a>
+                <FooterLink href="mailto:hello@truaxmarketing.com" isExternal>
+                  hello@truaxmarketing.com
+                </FooterLink>
                 <p className="text-gray-500">
                   Washington, DC
                 </p>
