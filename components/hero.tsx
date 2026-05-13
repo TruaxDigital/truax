@@ -6,40 +6,71 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { useRef } from "react";
 
-// Animated Gradient Mesh Background - CSS animations for better performance
+// Animated Gradient Mesh Background - Framer Motion for reliable animations
 function GradientMeshBackground() {
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none">
       {/* Primary blob - cyan, top right */}
-      <div 
-        className="absolute w-[800px] h-[800px] rounded-full animate-blob-1"
+      <motion.div 
+        className="absolute w-[800px] h-[800px] rounded-full"
         style={{
           background: "radial-gradient(circle, rgba(39, 170, 225, 0.35) 0%, rgba(39, 170, 225, 0.1) 40%, transparent 70%)",
           right: "-15%",
           top: "-20%",
           filter: "blur(80px)",
         }}
+        animate={{
+          x: [0, 40, -30, 0],
+          y: [0, -30, 25, 0],
+          scale: [1, 1.08, 0.95, 1],
+        }}
+        transition={{
+          duration: 20,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
       />
 
       {/* Secondary blob - deep blue, center left */}
-      <div 
-        className="absolute w-[700px] h-[700px] rounded-full animate-blob-2"
+      <motion.div 
+        className="absolute w-[700px] h-[700px] rounded-full"
         style={{
           background: "radial-gradient(circle, rgba(43, 57, 144, 0.3) 0%, rgba(43, 57, 144, 0.1) 40%, transparent 70%)",
           left: "-10%",
           top: "15%",
           filter: "blur(80px)",
         }}
+        animate={{
+          x: [0, -35, 25, 0],
+          y: [0, 20, -30, 0],
+          scale: [1, 0.95, 1.05, 1],
+        }}
+        transition={{
+          duration: 25,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
       />
 
       {/* Tertiary blob - purple tint, bottom center */}
-      <div 
-        className="absolute w-[600px] h-[600px] rounded-full animate-blob-3"
+      <motion.div 
+        className="absolute w-[600px] h-[600px] rounded-full"
         style={{
           background: "radial-gradient(circle, rgba(38, 36, 102, 0.25) 0%, rgba(38, 36, 102, 0.08) 40%, transparent 70%)",
           right: "10%",
           bottom: "-5%",
           filter: "blur(80px)",
+        }}
+        animate={{
+          x: [0, 25, -20, 0],
+          y: [0, -25, 20, 0],
+          scale: [1, 1.05, 0.97, 1],
+        }}
+        transition={{
+          duration: 22,
+          repeat: Infinity,
+          ease: "easeInOut",
+          delay: 2,
         }}
       />
     </div>
