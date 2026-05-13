@@ -6,87 +6,105 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { useRef } from "react";
 
-// Floating Stars Background
-function StarfieldBackground() {
-  // Generate deterministic star positions
-  const stars = Array.from({ length: 60 }, (_, i) => ({
-    id: i,
-    x: ((i * 17) % 100),
-    y: ((i * 23) % 100),
-    size: 1 + (i % 3) * 0.5,
-    opacity: 0.2 + (i % 5) * 0.1,
-    duration: 15 + (i % 10) * 3,
-    delay: (i % 8) * 0.5,
-  }));
-
+// Animated Gradient Mesh Background
+function GradientMeshBackground() {
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none">
-      {/* Subtle gradient wash */}
-      <div 
-        className="absolute inset-0"
+      {/* Primary blob - cyan, top right */}
+      <motion.div
+        className="absolute w-[600px] h-[600px] rounded-full blur-[120px]"
         style={{
-          background: "radial-gradient(ellipse at 70% 30%, rgba(39, 170, 225, 0.04) 0%, transparent 50%), radial-gradient(ellipse at 30% 70%, rgba(43, 57, 144, 0.05) 0%, transparent 50%)",
+          background: "radial-gradient(circle, rgba(39, 170, 225, 0.15) 0%, transparent 70%)",
+          right: "-10%",
+          top: "-20%",
+        }}
+        animate={{
+          x: [0, 50, -30, 0],
+          y: [0, 30, -20, 0],
+          scale: [1, 1.1, 0.95, 1],
+        }}
+        transition={{
+          duration: 20,
+          repeat: Infinity,
+          ease: "easeInOut",
         }}
       />
 
-      {/* Floating stars */}
-      {stars.map((star) => (
-        <motion.div
-          key={star.id}
-          className="absolute rounded-full bg-white"
-          style={{
-            left: `${star.x}%`,
-            top: `${star.y}%`,
-            width: star.size,
-            height: star.size,
-          }}
-          animate={{
-            y: [0, -20, 0],
-            x: [0, star.id % 2 === 0 ? 10 : -10, 0],
-            opacity: [star.opacity * 0.5, star.opacity, star.opacity * 0.5],
-            scale: [1, 1.2, 1],
-          }}
-          transition={{
-            duration: star.duration,
-            delay: star.delay,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        />
-      ))}
+      {/* Secondary blob - deep blue, center left */}
+      <motion.div
+        className="absolute w-[500px] h-[500px] rounded-full blur-[100px]"
+        style={{
+          background: "radial-gradient(circle, rgba(43, 57, 144, 0.12) 0%, transparent 70%)",
+          left: "-5%",
+          top: "20%",
+        }}
+        animate={{
+          x: [0, -40, 30, 0],
+          y: [0, -30, 40, 0],
+          scale: [1, 0.9, 1.05, 1],
+        }}
+        transition={{
+          duration: 25,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+      />
 
-      {/* Larger accent particles - cyan tinted */}
-      {[...Array(8)].map((_, i) => (
-        <motion.div
-          key={`accent-${i}`}
-          className="absolute rounded-full"
-          style={{
-            left: `${15 + i * 12}%`,
-            top: `${20 + (i % 3) * 25}%`,
-            width: 2 + (i % 2),
-            height: 2 + (i % 2),
-            background: "rgba(39, 170, 225, 0.4)",
-            boxShadow: "0 0 6px rgba(39, 170, 225, 0.3)",
-          }}
-          animate={{
-            y: [0, -30, 0],
-            x: [0, i % 2 === 0 ? 15 : -15, 0],
-            opacity: [0.2, 0.5, 0.2],
-          }}
-          transition={{
-            duration: 20 + i * 2,
-            delay: i * 0.8,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        />
-      ))}
+      {/* Tertiary blob - purple tint, bottom right */}
+      <motion.div
+        className="absolute w-[450px] h-[450px] rounded-full blur-[100px]"
+        style={{
+          background: "radial-gradient(circle, rgba(38, 36, 102, 0.1) 0%, transparent 70%)",
+          right: "10%",
+          bottom: "-10%",
+        }}
+        animate={{
+          x: [0, -30, 20, 0],
+          y: [0, 40, -30, 0],
+          scale: [1, 1.05, 0.9, 1],
+        }}
+        transition={{
+          duration: 22,
+          repeat: Infinity,
+          ease: "easeInOut",
+          delay: 2,
+        }}
+      />
+
+      {/* Accent blob - bright cyan, floating */}
+      <motion.div
+        className="absolute w-[300px] h-[300px] rounded-full blur-[80px]"
+        style={{
+          background: "radial-gradient(circle, rgba(39, 170, 225, 0.08) 0%, transparent 70%)",
+          left: "30%",
+          top: "60%",
+        }}
+        animate={{
+          x: [0, 60, -40, 0],
+          y: [0, -50, 30, 0],
+          scale: [1, 1.15, 0.85, 1],
+        }}
+        transition={{
+          duration: 18,
+          repeat: Infinity,
+          ease: "easeInOut",
+          delay: 1,
+        }}
+      />
+
+      {/* Subtle noise/grain overlay for texture */}
+      <div 
+        className="absolute inset-0 opacity-[0.015]"
+        style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
+        }}
+      />
 
       {/* Depth gradient overlay */}
       <div 
         className="absolute inset-0"
         style={{
-          background: "radial-gradient(ellipse at 50% 0%, transparent 0%, #0a0a12 80%)",
+          background: "radial-gradient(ellipse at 50% 0%, transparent 0%, #0a0a12 85%)",
         }}
       />
     </div>
@@ -225,8 +243,8 @@ export function Hero() {
 
   return (
     <section ref={ref} className="relative min-h-screen flex items-center pt-24 overflow-hidden bg-[#0a0a12]">
-      {/* Starfield Background */}
-      <StarfieldBackground />
+      {/* Animated Gradient Mesh Background */}
+      <GradientMeshBackground />
 
 
 
