@@ -120,9 +120,12 @@ export function Footer() {
                   <li key={link.href}>
                     <Link 
                       href={link.href} 
-                      className="nav-link-underline text-gray-400 hover:text-white transition-all duration-300 text-sm inline-block"
+                      className="group text-gray-400 hover:text-white transition-all duration-300 text-sm inline-block"
                     >
-                      {link.label}
+                      <span className="relative">
+                        {link.label}
+                        <span className="absolute -bottom-0.5 left-0 right-0 h-0.5 bg-gradient-to-r from-[#27AAE1] to-[#2B3990] origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out" />
+                      </span>
                     </Link>
                   </li>
                 ))}
@@ -139,9 +142,12 @@ export function Footer() {
                   <li key={link.href}>
                     <Link 
                       href={link.href} 
-                      className="nav-link-underline text-gray-400 hover:text-white transition-all duration-300 text-sm inline-block"
+                      className="group text-gray-400 hover:text-white transition-all duration-300 text-sm inline-block"
                     >
-                      {link.label}
+                      <span className="relative">
+                        {link.label}
+                        <span className="absolute -bottom-0.5 left-0 right-0 h-0.5 bg-gradient-to-r from-[#27AAE1] to-[#2B3990] origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out" />
+                      </span>
                     </Link>
                   </li>
                 ))}
@@ -156,9 +162,12 @@ export function Footer() {
               <div className="space-y-3 text-sm">
                 <a 
                   href="mailto:hello@truaxmarketing.com" 
-                  className="nav-link-underline inline-block text-gray-400 hover:text-white transition-all duration-300"
+                  className="group inline-block text-gray-400 hover:text-white transition-all duration-300"
                 >
-                  hello@truaxmarketing.com
+                  <span className="relative">
+                    hello@truaxmarketing.com
+                    <span className="absolute -bottom-0.5 left-0 right-0 h-0.5 bg-gradient-to-r from-[#27AAE1] to-[#2B3990] origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out" />
+                  </span>
                 </a>
                 <p className="text-gray-500">
                   Washington, DC

@@ -28,17 +28,21 @@ const navLinks = [
   { href: "/contact", label: "Contact" },
   ];
 
-// Animated underline component for nav links - uses CSS class for reliable hover
+// Animated underline component for nav links - matches DropdownButton pattern
 function NavLink({ href, children, delay = 0 }: { href: string; children: React.ReactNode; delay?: number }) {
   return (
-    <Link href={href}>
+    <Link href={href} className="group">
       <motion.span
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay, duration: 0.3 }}
-        className="nav-link-underline text-gray-300 hover:text-white transition-colors cursor-pointer inline-block"
+        className="relative text-gray-300 group-hover:text-white transition-colors cursor-pointer inline-block"
       >
-        {children}
+        <span className="relative">
+          {children}
+          <span className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-[#27AAE1] to-[#2B3990] origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out" />
+          <span className="absolute -bottom-1 left-0 right-0 h-0.5 bg-[#27AAE1] blur-sm origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out opacity-50" />
+        </span>
       </motion.span>
     </Link>
   );
