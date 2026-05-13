@@ -6,97 +6,37 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { useRef } from "react";
 
-// Animated Gradient Mesh Background
+// Animated Gradient Mesh Background - CSS animations for better performance
 function GradientMeshBackground() {
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none">
       {/* Primary blob - cyan, top right */}
-      <motion.div
-        className="absolute w-[600px] h-[600px] rounded-full blur-[120px]"
+      <div 
+        className="absolute w-[600px] h-[600px] rounded-full blur-[120px] animate-blob-1"
         style={{
-          background: "radial-gradient(circle, rgba(39, 170, 225, 0.15) 0%, transparent 70%)",
+          background: "radial-gradient(circle, rgba(39, 170, 225, 0.18) 0%, transparent 70%)",
           right: "-10%",
-          top: "-20%",
-        }}
-        animate={{
-          x: [0, 50, -30, 0],
-          y: [0, 30, -20, 0],
-          scale: [1, 1.1, 0.95, 1],
-        }}
-        transition={{
-          duration: 20,
-          repeat: Infinity,
-          ease: "easeInOut",
+          top: "-15%",
         }}
       />
 
       {/* Secondary blob - deep blue, center left */}
-      <motion.div
-        className="absolute w-[500px] h-[500px] rounded-full blur-[100px]"
+      <div 
+        className="absolute w-[500px] h-[500px] rounded-full blur-[100px] animate-blob-2"
         style={{
-          background: "radial-gradient(circle, rgba(43, 57, 144, 0.12) 0%, transparent 70%)",
+          background: "radial-gradient(circle, rgba(43, 57, 144, 0.15) 0%, transparent 70%)",
           left: "-5%",
           top: "20%",
-        }}
-        animate={{
-          x: [0, -40, 30, 0],
-          y: [0, -30, 40, 0],
-          scale: [1, 0.9, 1.05, 1],
-        }}
-        transition={{
-          duration: 25,
-          repeat: Infinity,
-          ease: "easeInOut",
         }}
       />
 
       {/* Tertiary blob - purple tint, bottom right */}
-      <motion.div
-        className="absolute w-[450px] h-[450px] rounded-full blur-[100px]"
-        style={{
-          background: "radial-gradient(circle, rgba(38, 36, 102, 0.1) 0%, transparent 70%)",
-          right: "10%",
-          bottom: "-10%",
-        }}
-        animate={{
-          x: [0, -30, 20, 0],
-          y: [0, 40, -30, 0],
-          scale: [1, 1.05, 0.9, 1],
-        }}
-        transition={{
-          duration: 22,
-          repeat: Infinity,
-          ease: "easeInOut",
-          delay: 2,
-        }}
-      />
-
-      {/* Accent blob - bright cyan, floating */}
-      <motion.div
-        className="absolute w-[300px] h-[300px] rounded-full blur-[80px]"
-        style={{
-          background: "radial-gradient(circle, rgba(39, 170, 225, 0.08) 0%, transparent 70%)",
-          left: "30%",
-          top: "60%",
-        }}
-        animate={{
-          x: [0, 60, -40, 0],
-          y: [0, -50, 30, 0],
-          scale: [1, 1.15, 0.85, 1],
-        }}
-        transition={{
-          duration: 18,
-          repeat: Infinity,
-          ease: "easeInOut",
-          delay: 1,
-        }}
-      />
-
-      {/* Subtle noise/grain overlay for texture */}
       <div 
-        className="absolute inset-0 opacity-[0.015]"
+        className="absolute w-[400px] h-[400px] rounded-full blur-[100px] animate-blob-3"
         style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
+          background: "radial-gradient(circle, rgba(38, 36, 102, 0.12) 0%, transparent 70%)",
+          right: "15%",
+          bottom: "10%",
         }}
       />
 
@@ -104,7 +44,7 @@ function GradientMeshBackground() {
       <div 
         className="absolute inset-0"
         style={{
-          background: "radial-gradient(ellipse at 50% 0%, transparent 0%, #0a0a12 85%)",
+          background: "radial-gradient(ellipse at 50% 0%, transparent 0%, #0a0a12 80%)",
         }}
       />
     </div>

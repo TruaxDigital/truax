@@ -28,7 +28,7 @@ const navLinks = [
   { href: "/contact", label: "Contact" },
   ];
 
-// Animated underline component for nav links
+// Animated underline component for nav links - uses CSS class for reliable hover
 function NavLink({ href, children, delay = 0 }: { href: string; children: React.ReactNode; delay?: number }) {
   return (
     <Link href={href}>
@@ -36,15 +36,9 @@ function NavLink({ href, children, delay = 0 }: { href: string; children: React.
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay, duration: 0.3 }}
-        className="group text-gray-300 hover:text-white transition-colors cursor-pointer inline-block"
+        className="nav-link-underline text-gray-300 hover:text-white transition-colors cursor-pointer inline-block"
       >
-        <span className="relative">
-          {children}
-          {/* Animated underline - using scale transform for smooth animation */}
-          <span className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-[#27AAE1] to-[#2B3990] origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out" />
-          {/* Subtle glow on hover */}
-          <span className="absolute -bottom-1 left-0 right-0 h-0.5 bg-[#27AAE1] blur-sm origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out opacity-50" />
-        </span>
+        {children}
       </motion.span>
     </Link>
   );
