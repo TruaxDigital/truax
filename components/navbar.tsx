@@ -74,8 +74,8 @@ function DropdownButton({
     <motion.button
       className="flex items-center gap-1 text-gray-300 hover:text-white transition-colors relative group cursor-pointer"
       onClick={onClick}
-      whileHover={{ y: -1 }}
-      transition={{ duration: 0.2 }}
+      whileTap={{ scale: 0.97 }}
+      transition={{ duration: 0.15, ease: [0.23, 1, 0.32, 1] }}
     >
       <span className="relative">
         {label}
@@ -175,11 +175,12 @@ export function Navbar() {
               <AnimatePresence>
                 {isServicesOpen && (
                   <motion.div
-                    initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                    initial={{ opacity: 0, y: 8, scale: 0.96 }}
                     animate={{ opacity: 1, y: 0, scale: 1 }}
-                    exit={{ opacity: 0, y: 10, scale: 0.95 }}
-                    transition={{ duration: 0.2, ease: [0.25, 0.4, 0.25, 1] }}
+                    exit={{ opacity: 0, y: 8, scale: 0.96 }}
+                    transition={{ duration: 0.15, ease: [0.23, 1, 0.32, 1] }}
                     className="absolute top-full left-0 pt-3"
+                    style={{ transformOrigin: 'top left' }}
                   >
                     <div className="w-72 rounded-2xl bg-[#0f0f1a]/95 backdrop-blur-xl border border-[#262466]/80 shadow-2xl shadow-black/50 overflow-hidden">
                       {/* Gradient accent at top */}
@@ -237,11 +238,12 @@ export function Navbar() {
               <AnimatePresence>
                 {isAiEnablementOpen && (
                   <motion.div
-                    initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                    initial={{ opacity: 0, y: 8, scale: 0.96 }}
                     animate={{ opacity: 1, y: 0, scale: 1 }}
-                    exit={{ opacity: 0, y: 10, scale: 0.95 }}
-                    transition={{ duration: 0.2, ease: [0.25, 0.4, 0.25, 1] }}
+                    exit={{ opacity: 0, y: 8, scale: 0.96 }}
+                    transition={{ duration: 0.15, ease: [0.23, 1, 0.32, 1] }}
                     className="absolute top-full left-0 pt-3"
+                    style={{ transformOrigin: 'top left' }}
                   >
                     <div className="w-56 rounded-2xl bg-[#0f0f1a]/95 backdrop-blur-xl border border-[#262466]/80 shadow-2xl shadow-black/50 overflow-hidden">
                       {/* Gradient accent at top */}
@@ -339,7 +341,7 @@ export function Navbar() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3, ease: [0.25, 0.4, 0.25, 1] }}
+            transition={{ duration: 0.25, ease: [0.32, 0.72, 0, 1] }}
             className="fixed top-16 left-0 right-0 z-40 bg-[#0a0a12]/98 backdrop-blur-xl border-b border-[#262466] overflow-hidden md:hidden"
           >
             <nav className="flex flex-col p-6 gap-1">

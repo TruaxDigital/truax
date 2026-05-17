@@ -216,9 +216,9 @@ export function Hero() {
             >
               <Link href="/meet">
                 <motion.div
-                  whileHover={{ scale: 1.05, y: -2 }}
-                  whileTap={{ scale: 0.98 }}
-                  transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                  whileHover={{ scale: 1.02, y: -2 }}
+                  whileTap={{ scale: 0.97 }}
+                  transition={{ duration: 0.15, ease: [0.23, 1, 0.32, 1] }}
                 >
                   <Button size="lg" className="h-12 px-6 text-sm font-medium group bg-[#27AAE1] hover:bg-[#27AAE1]/90 text-black shadow-lg shadow-[#27AAE1]/25">
                     Book a Discovery Call
@@ -228,11 +228,11 @@ export function Hero() {
               </Link>
               <Link href="/services">
                 <motion.div
-                  whileHover={{ scale: 1.05, y: -2 }}
-                  whileTap={{ scale: 0.98 }}
-                  transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                  whileHover={{ scale: 1.02, y: -2 }}
+                  whileTap={{ scale: 0.97 }}
+                  transition={{ duration: 0.15, ease: [0.23, 1, 0.32, 1] }}
                 >
-                  <Button size="lg" variant="outline" className="h-12 px-6 text-sm font-medium group border-[#262466] hover:bg-[#262466]/20 hover:border-[#27AAE1]">
+                  <Button size="lg" variant="outline" className="h-12 px-6 text-sm font-medium group border-[#262466] hover:bg-[#262466]/20 hover:border-[#27AAE1] hover:text-white">
                     View Services
                   </Button>
                 </motion.div>

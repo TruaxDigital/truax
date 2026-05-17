@@ -6,7 +6,15 @@
 /* Truax Brand Colors from Brand Guide 2022 */
 /* Nebula: #262466 | Starstuff: #2B3990 | Sky: #27AAE1 | Carbon: #000000 | Beam: #FFFFFF */
 
+/* Design Engineering: Custom Easing Curves (Emil Kowalski philosophy) */
 :root {
+  /* Strong ease-out for UI interactions - feels responsive */
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  /* Strong ease-in-out for on-screen movement */
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  /* iOS-like drawer/modal curve */
+  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+  
   /* Dark theme using Nebula as base */
   --background: #0a0a12;
   --foreground: #f5f5f7;
@@ -267,4 +275,34 @@
 .nav-link-underline:hover::after,
 .nav-link-underline:hover::before {
   transform: scaleX(1);
+}
+
+/* Design Engineering: Button press feedback */
+/* Buttons must feel responsive - scale down on press (Emil Kowalski) */
+button, 
+[role="button"],
+a.btn,
+.btn {
+  transition: transform 160ms var(--ease-out, cubic-bezier(0.23, 1, 0.32, 1));
+}
+
+button:active:not(:disabled), 
+[role="button"]:active:not(:disabled),
+a.btn:active,
+.btn:active {
+  transform: scale(0.97);
+}
+
+/* Card hover lift effect with proper easing */
+.card-hover {
+  transition: transform 200ms var(--ease-out), box-shadow 200ms var(--ease-out);
+}
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+}
+
+/* Smooth focus ring transitions */
+*:focus-visible {
+  transition: box-shadow 150ms var(--ease-out), outline 150ms var(--ease-out);
 }
