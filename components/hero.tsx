@@ -232,7 +232,7 @@ export function Hero() {
                   whileTap={{ scale: 0.97 }}
                   transition={{ duration: 0.15, ease: [0.23, 1, 0.32, 1] }}
                 >
-                  <Button size="lg" variant="outline" className="h-12 px-6 text-sm font-medium group border-[#262466] hover:bg-[#262466]/20 hover:border-[#27AAE1]">
+                  <Button size="lg" variant="outline" className="h-12 px-6 text-sm font-medium group border-[#262466] hover:bg-[#262466]/20 hover:border-[#27AAE1] hover:text-white">
                     View Services
                   </Button>
                 </motion.div>
