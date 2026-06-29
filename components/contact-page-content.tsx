@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { track } from "@vercel/analytics";
 import { Mail, MapPin, Calendar, Send, ArrowRight, CheckCircle, AlertCircle, Loader2, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -72,6 +73,7 @@ export function ContactPageContent() {
       }
 
       setStatus("success");
+      track("Form Submit", { form: "contact", location: "contact-page", service: formState.service || "unspecified" });
       setFormState({ name: "", email: "", company: "", service: "", message: "" });
     } catch (error) {
       setStatus("error");

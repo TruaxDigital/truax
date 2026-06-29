@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { track } from "@vercel/analytics";
 import { ArrowRight, Mail, MapPin, Send, ChevronDown, Loader2, CheckCircle, AlertCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -51,6 +52,7 @@ export function Contact() {
       }
 
       setStatus("success");
+      track("Form Submit", { form: "contact", location: "contact-section", service: formState.service || "unspecified" });
       setFormState({ name: "", email: "", company: "", service: "", message: "" });
     } catch (error) {
       setStatus("error");

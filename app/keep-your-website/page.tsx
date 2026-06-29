@@ -3,6 +3,7 @@
 import { Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { motion } from "framer-motion";
+import { track } from "@vercel/analytics";
 import { Check, ExternalLink, Globe, Clock, DollarSign, AlertTriangle, Quote, ArrowRight } from "lucide-react";
 import Link from "next/link";
 
@@ -695,6 +696,11 @@ function KeepYourWebsiteContent() {
                   href={link.href} 
                   target={link.external ? "_blank" : undefined}
                   rel={link.external ? "noopener noreferrer" : undefined}
+                  onClick={() => {
+                    if (link.href.startsWith("tel:")) {
+                      track("Phone Click", { location: "keep-your-website", number: link.label });
+                    }
+                  }}
                   className="text-sm font-medium hover:text-[#27AAE1] transition-colors"
                 >
                   {link.label}
