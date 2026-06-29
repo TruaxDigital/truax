@@ -4,6 +4,7 @@ import { useEffect, useState, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { track } from "@vercel/analytics";
 import { Check, Plus, ExternalLink, Quote, Shield, Smartphone, Mail, TrendingUp } from "lucide-react";
 
 
@@ -842,6 +843,11 @@ function CustomFooter() {
                 href={link.href} 
                 target={link.external ? "_blank" : undefined}
                 rel={link.external ? "noopener noreferrer" : undefined}
+                onClick={() => {
+                  if (link.href.startsWith("tel:")) {
+                    track("Phone Click", { location: "your-new-website", number: link.label });
+                  }
+                }}
                 className="text-sm font-medium hover:text-[#27AAE1] transition-colors"
               >
                 {link.label}
