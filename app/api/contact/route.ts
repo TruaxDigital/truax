@@ -1,5 +1,6 @@
 import { Resend } from "resend";
 import { NextResponse } from "next/server";
+import { insertLead, updateLeadEmailStatus } from "@/lib/db";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -198,7 +199,7 @@ function buildConfirmationEmail(input: { name: string; service?: string }) {
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const { name, email, company, service, message } = body;
+    const { name, email, company, service, message, source } = body;
 
     // Validate required fields
     if (!name || !email || !service || !message) {
@@ -217,20 +218,47 @@ export async function POST(request: Request) {
       );
     }
 
-    // Send email to Truax Marketing
-    const { error: notifyError } = await resend.emails.send({
-      from: "Truax Marketing Website <leads@truax.marketing>",
-      to: ["aaron@truaxmarketing.com"],
-      replyTo: email,
-      subject: `[${service}] New inquiry from ${name}${company ? ` at ${company}` : ""}`,
-      html: buildLeadEmail({ name, email, company, service, message }),
-    });
+    // 1. Save the lead to the database FIRST. This is the durable record of truth,
+    // so a bounced or blocked email can never lose a lead again.
+    let leadId: number | null = null;
+    try {
+      leadId = await insertLead({ name, email, company, service, message, source });
+    } catch (dbError) {
+      console.error("Contact form: failed to save lead to database", dbError);
+    }
 
-    // If the lead notification itself failed, surface the error so the lead is not silently lost
-    if (notifyError) {
-      console.error("Contact form: lead notification failed", notifyError);
+    // 2. Send the notification email to Truax Marketing.
+    let emailSent = false;
+    try {
+      const { error: notifyError } = await resend.emails.send({
+        from: "Truax Marketing Website <leads@truax.marketing>",
+        to: ["aaron@truaxmarketing.com"],
+        replyTo: email,
+        subject: `[${service}] New inquiry from ${name}${company ? ` at ${company}` : ""}`,
+        html: buildLeadEmail({ name, email, company, service, message }),
+      });
+      if (notifyError) {
+        console.error("Contact form: lead notification failed", notifyError);
+      } else {
+        emailSent = true;
+      }
+    } catch (sendError) {
+      console.error("Contact form: lead notification threw", sendError);
+    }
+
+    // Record the delivery outcome against the saved lead.
+    if (leadId !== null) {
+      try {
+        await updateLeadEmailStatus(leadId, emailSent ? "sent" : "failed");
+      } catch (statusError) {
+        console.error("Contact form: failed to update email status", statusError);
+      }
+    }
+
+    // Only fail the request if BOTH capture paths failed (no DB row and no email).
+    if (leadId === null && !emailSent) {
       return NextResponse.json(
-        { error: "Failed to send your message. Please try again or email us directly." },
+        { error: "Failed to submit your message. Please try again or email us directly." },
         { status: 500 }
       );
     }
