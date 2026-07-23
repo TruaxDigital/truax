@@ -203,7 +203,7 @@ export function Hero() {
               transition={{ duration: 0.5, delay: 0.6 }}
               className="text-base sm:text-lg text-gray-400 max-w-lg mb-10 leading-relaxed"
             >
-              A boutique firm building AI, AI-SEO, CRM, and beautiful digital 
+              A boutique firm building AI, AI-SEO, CRM, and thoughtful digital 
               experiences that turn marketing into pipeline. Built to run without 
               adding headcount.
             </motion.p>
