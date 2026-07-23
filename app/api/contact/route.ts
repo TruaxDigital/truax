@@ -1,5 +1,6 @@
 import { Resend } from "resend";
 import { NextResponse } from "next/server";
+import { insertLead, updateLeadEmailStatus } from "@/lib/db";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -113,10 +114,92 @@ function buildLeadEmail(input: {
   </html>`;
 }
 
+// Warm confirmation email sent to the person who submitted the form
+function buildConfirmationEmail(input: { name: string; service?: string }) {
+  const name = escapeHtml(input.name);
+  const service = input.service ? escapeHtml(input.service) : "";
+
+  const step = (num: string, title: string, body: string) => `
+    <tr>
+      <td style="padding:0 0 18px;font-family:Arial,Helvetica,sans-serif;">
+        <table role="presentation" cellpadding="0" cellspacing="0" width="100%">
+          <tr>
+            <td width="36" valign="top">
+              <div style="width:28px;height:28px;background-color:#27AAE1;color:#0a0a12;border-radius:999px;text-align:center;line-height:28px;font-size:13px;font-weight:700;">${num}</div>
+            </td>
+            <td valign="top" style="padding-left:12px;">
+              <span style="display:block;color:#1a1a24;font-size:15px;font-weight:700;margin-bottom:2px;">${title}</span>
+              <span style="display:block;color:#6b6b7b;font-size:14px;line-height:1.5;">${body}</span>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>`;
+
+  return `
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="color-scheme" content="light only" />
+    <title>Thanks for reaching out to Truax Marketing</title>
+  </head>
+  <body style="margin:0;padding:0;background-color:#f2f2f7;">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color:#f2f2f7;padding:32px 16px;">
+      <tr>
+        <td align="center">
+          <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="max-width:600px;width:100%;background-color:#ffffff;border-radius:12px;box-shadow:0 4px 24px rgba(15,15,30,0.08);">
+            ${emailHeader()}
+            <tr>
+              <td style="padding:40px 40px 8px;font-family:Arial,Helvetica,sans-serif;">
+                <span style="display:inline-block;background-color:#eef7fc;color:#2B3990;font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:6px 12px;border-radius:999px;">Message Received</span>
+                <h1 style="margin:16px 0 8px;color:#1a1a24;font-size:24px;">Thanks, ${name}. We&#39;ve got it.</h1>
+                <p style="margin:0;color:#4a4a58;font-size:15px;line-height:1.6;">
+                  Your message landed in our inbox and a real person will read it. ${service ? `We saw you&#39;re interested in <strong style="color:#1a1a24;">${service}</strong>, and we&#39;ll` : "We&#39;ll"} reach out within one business day.
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td style="padding:24px 40px 8px;">
+                <span style="display:block;color:#8b8b9a;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:16px;font-family:Arial,Helvetica,sans-serif;">What happens next</span>
+                <table role="presentation" cellpadding="0" cellspacing="0" width="100%">
+                  ${step("1", "We review your note", "We read every message and match you with the right person on our team.")}
+                  ${step("2", "We reach out", "Expect a reply within one business day to set up a time to talk.")}
+                  ${step("3", "We map a plan", "A short discovery call to understand your goals and where we can help.")}
+                </table>
+              </td>
+            </tr>
+            <tr>
+              <td style="padding:8px 40px 8px;font-family:Arial,Helvetica,sans-serif;">
+                <div style="height:1px;background-color:#ececf2;margin:8px 0 20px;"></div>
+                <p style="margin:0 0 12px;color:#4a4a58;font-size:15px;line-height:1.6;">While you wait, take a look around:</p>
+                <p style="margin:0 0 10px;">
+                  <a href="https://truaxmarketing.com/services" style="color:#2B3990;font-size:15px;text-decoration:none;font-weight:600;">Explore our services &rarr;</a>
+                </p>
+                <p style="margin:0 0 4px;">
+                  <a href="https://truaxmarketing.com/blog" style="color:#2B3990;font-size:15px;text-decoration:none;font-weight:600;">Read our latest insights &rarr;</a>
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td style="padding:24px 40px 36px;font-family:Arial,Helvetica,sans-serif;">
+                <p style="margin:0;color:#4a4a58;font-size:15px;line-height:1.6;">Talk soon,<br /><strong style="color:#1a1a24;">The Truax Marketing Team</strong></p>
+              </td>
+            </tr>
+            ${emailFooter()}
+          </table>
+        </td>
+      </tr>
+    </table>
+  </body>
+  </html>`;
+}
+
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const { name, email, company, service, message } = body;
+    const { name, email, company, service, message, source } = body;
 
     // Validate required fields
     if (!name || !email || !service || !message) {
@@ -135,20 +218,47 @@ export async function POST(request: Request) {
       );
     }
 
-    // Send email to Truax Marketing
-    const { error: notifyError } = await resend.emails.send({
-      from: "Truax Marketing Website <leads@truax.marketing>",
-      to: ["aaron@truaxmarketing.com"],
-      replyTo: email,
-      subject: `[${service}] New inquiry from ${name}${company ? ` at ${company}` : ""}`,
-      html: buildLeadEmail({ name, email, company, service, message }),
-    });
+    // 1. Save the lead to the database FIRST. This is the durable record of truth,
+    // so a bounced or blocked email can never lose a lead again.
+    let leadId: number | null = null;
+    try {
+      leadId = await insertLead({ name, email, company, service, message, source });
+    } catch (dbError) {
+      console.error("Contact form: failed to save lead to database", dbError);
+    }
 
-    // If the lead notification itself failed, surface the error so the lead is not silently lost
-    if (notifyError) {
-      console.error("Contact form: lead notification failed", notifyError);
+    // 2. Send the notification email to Truax Marketing.
+    let emailSent = false;
+    try {
+      const { error: notifyError } = await resend.emails.send({
+        from: "Truax Marketing Website <leads@truax.marketing>",
+        to: ["aaron@truaxmarketing.com"],
+        replyTo: email,
+        subject: `[${service}] New inquiry from ${name}${company ? ` at ${company}` : ""}`,
+        html: buildLeadEmail({ name, email, company, service, message }),
+      });
+      if (notifyError) {
+        console.error("Contact form: lead notification failed", notifyError);
+      } else {
+        emailSent = true;
+      }
+    } catch (sendError) {
+      console.error("Contact form: lead notification threw", sendError);
+    }
+
+    // Record the delivery outcome against the saved lead.
+    if (leadId !== null) {
+      try {
+        await updateLeadEmailStatus(leadId, emailSent ? "sent" : "failed");
+      } catch (statusError) {
+        console.error("Contact form: failed to update email status", statusError);
+      }
+    }
+
+    // Only fail the request if BOTH capture paths failed (no DB row and no email).
+    if (leadId === null && !emailSent) {
       return NextResponse.json(
-        { error: "Failed to send your message. Please try again or email us directly." },
+        { error: "Failed to submit your message. Please try again or email us directly." },
         { status: 500 }
       );
     }
@@ -159,43 +269,7 @@ export async function POST(request: Request) {
         from: "Truax Marketing <leads@truax.marketing>",
         to: [email],
         subject: "Thanks for reaching out to Truax Marketing",
-        html: `
-        <!DOCTYPE html>
-        <html lang="en">
-        <head>
-          <meta charset="utf-8" />
-          <meta name="viewport" content="width=device-width,initial-scale=1" />
-          <meta name="color-scheme" content="light only" />
-          <title>Thanks for reaching out</title>
-        </head>
-        <body style="margin:0;padding:0;background-color:#f2f2f7;">
-          <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color:#f2f2f7;padding:32px 16px;">
-            <tr>
-              <td align="center">
-                <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="max-width:600px;width:100%;background-color:#ffffff;border-radius:12px;box-shadow:0 4px 24px rgba(15,15,30,0.08);">
-                  ${emailHeader()}
-                  <tr>
-                    <td style="padding:36px 40px 24px;font-family:Arial,Helvetica,sans-serif;">
-                      <h1 style="margin:0 0 12px;color:#1a1a24;font-size:22px;">Thanks for reaching out, ${escapeHtml(name)}</h1>
-                      <p style="margin:0 0 16px;color:#4a4a58;font-size:15px;line-height:1.6;">We got your message and will get back to you within 24 hours.</p>
-                      <p style="margin:0 0 12px;color:#4a4a58;font-size:15px;line-height:1.6;">In the meantime:</p>
-                      <p style="margin:0 0 10px;">
-                        <a href="https://truaxmarketing.com/blog" style="color:#2B3990;font-size:15px;text-decoration:none;font-weight:600;">Read our latest insights &rarr;</a>
-                      </p>
-                      <p style="margin:0 0 24px;">
-                        <a href="https://truaxmarketing.com/services" style="color:#2B3990;font-size:15px;text-decoration:none;font-weight:600;">Explore our services &rarr;</a>
-                      </p>
-                      <p style="margin:0;color:#4a4a58;font-size:15px;line-height:1.6;">Best,<br />The Truax Marketing Team</p>
-                    </td>
-                  </tr>
-                  ${emailFooter()}
-                </table>
-              </td>
-            </tr>
-          </table>
-        </body>
-        </html>
-      `,
+        html: buildConfirmationEmail({ name, service }),
       });
     } catch (confirmationError) {
       // Confirmation to the lead is non-critical; log but still count the lead as received
