@@ -190,9 +190,9 @@ export function Hero() {
 
             {/* Kinetic Headline */}
             <h1 className="text-5xl sm:text-6xl lg:text-7xl font-semibold leading-[1.1] mb-6 tracking-tight">
-              <span className="block"><KineticText text="Digital marketing" delay={0.1} /></span>
+              <span className="block"><KineticText text="Marketing, CRM, and AI systems" delay={0.1} /></span>
               <ShimmerText>
-                <KineticLetters text="with heart." delay={0.35} />
+                <KineticLetters text="built to grow revenue." delay={0.35} />
               </ShimmerText>
             </h1>
 
@@ -203,8 +203,9 @@ export function Hero() {
               transition={{ duration: 0.5, delay: 0.6 }}
               className="text-base sm:text-lg text-gray-400 max-w-lg mb-10 leading-relaxed"
             >
-              A boutique agency helping businesses grow through AI implementation, 
-              strategic SEO, CRM integrations, and stunning web experiences.
+              A boutique firm building AI, AI-SEO, CRM, and beautiful digital 
+              experiences that turn marketing into pipeline. Built to run without 
+              adding headcount.
             </motion.p>
 
             {/* CTAs */}
