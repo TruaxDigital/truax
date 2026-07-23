@@ -26,8 +26,8 @@ export async function POST(request: Request) {
     }
 
     // Send email to Truax Marketing
-    await resend.emails.send({
-      from: "Truax Marketing Website <onboarding@resend.dev>",
+    const { error: notifyError } = await resend.emails.send({
+      from: "Truax Marketing Website <leads@truax.marketing>",
       to: ["aaron@truaxmarketing.com"],
       replyTo: email,
       subject: `[${service}] New inquiry from ${name}${company ? ` at ${company}` : ""}`,
@@ -52,11 +52,21 @@ export async function POST(request: Request) {
       `,
     });
 
-    // Send confirmation email to the user
-    await resend.emails.send({
-      from: "Truax Marketing <onboarding@resend.dev>",
-      to: [email],
-      subject: "Thanks for reaching out to Truax Marketing",
+    // If the lead notification itself failed, surface the error so the lead is not silently lost
+    if (notifyError) {
+      console.error("Contact form: lead notification failed", notifyError);
+      return NextResponse.json(
+        { error: "Failed to send your message. Please try again or email us directly." },
+        { status: 500 }
+      );
+    }
+
+    // Send confirmation email to the user (best-effort; must not block the lead)
+    try {
+      await resend.emails.send({
+        from: "Truax Marketing <leads@truax.marketing>",
+        to: [email],
+        subject: "Thanks for reaching out to Truax Marketing",
       html: `
         <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto;">
           <h2 style="color: #2B3990;">Thanks for reaching out, ${name}!</h2>
@@ -78,7 +88,11 @@ export async function POST(request: Request) {
           </p>
         </div>
       `,
-    });
+      });
+    } catch (confirmationError) {
+      // Confirmation to the lead is non-critical; log but still count the lead as received
+      console.error("Contact form: confirmation email failed", confirmationError);
+    }
 
     return NextResponse.json(
       { message: "Email sent successfully" },
