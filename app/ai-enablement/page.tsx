@@ -247,11 +247,11 @@ export default function AIEnablementPage() {
               <p className="text-sm text-gray-400">
                 Trusted by teams in insurance, warranty, SaaS, and B2B services
               </p>
-            </motion.div>
-            <div className="hidden lg:block">
-              <div className="relative aspect-square max-w-lg mx-auto rounded-3xl overflow-hidden border border-[#262466] shadow-2xl shadow-[#27AAE1]/10">
-                <ServiceMotion scene="enablement" />
-              </div>
+  </motion.div>
+  <div>
+  <div className="relative aspect-square max-w-lg mx-auto rounded-3xl overflow-hidden border border-[#262466] shadow-2xl shadow-[#27AAE1]/10">
+  <ServiceMotion scene="enablement" />
+  </div>
             </div>
           </div>
         </div>
