@@ -24,14 +24,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     };
   }
 
+  const description = post.excerpt.replace(/\*+/g, "").replace(/\s+/g, " ").trim();
+
   return {
     title: post.title,
-    description: post.excerpt,
+    description,
     keywords: post.tags,
     authors: [{ name: post.author }],
     openGraph: {
       title: post.title,
-      description: post.excerpt,
+      description,
       type: "article",
       publishedTime: post.publishedAt,
       authors: [post.author],
@@ -41,7 +43,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     twitter: {
       card: "summary_large_image",
       title: post.title,
-      description: post.excerpt,
+      description,
     },
     alternates: {
       canonical: `https://truaxmarketing.com/insights/${post.slug}`,
@@ -57,5 +59,11 @@ export default async function BlogPostPage({ params }: Props) {
     notFound();
   }
 
-  return <BlogPostContent post={post} />;
+  // Strip stray markdown asterisks from the excerpt before it is shown or used in schema
+  const cleanExcerpt = post.excerpt.replace(/\*+/g, "").replace(/\s+/g, " ").trim();
+
+  // Imported WordPress posts mark section headings as ****Heading****. Turn them into real H2s.
+  const cleanContent = post.content.replace(/\*\*\*\*(.+?)\*\*\*\*/g, "\n\n## $1\n\n");
+
+  return <BlogPostContent post={{ ...post, excerpt: cleanExcerpt, content: cleanContent }} />;
 }
