@@ -161,7 +161,8 @@ export const generatedImageUrls: Record<string, string> = {
   "seo-website-ranking-in-2022": "https://yd7xw8j43d5hdlrd.public.blob.vercel-storage.com/blog-images/seo-website-ranking-in-2022.jpg",
   "five-ways-to-use-data-to-transform-your-strategy": "https://yd7xw8j43d5hdlrd.public.blob.vercel-storage.com/blog-images/five-ways-to-use-data-to-transform-your-strategy.jpg",
   "choosing-terms-rank-on-google": "https://yd7xw8j43d5hdlrd.public.blob.vercel-storage.com/blog-images/choosing-terms-rank-on-google.jpg",
-  "2022-seo-tips-load-speed-images": "https://yd7xw8j43d5hdlrd.public.blob.vercel-storage.com/blog-images/2022-seo-tips-load-speed-images.jpg"
+  "2022-seo-tips-load-speed-images": "https://yd7xw8j43d5hdlrd.public.blob.vercel-storage.com/blog-images/2022-seo-tips-load-speed-images.jpg",
+  "managed-wordpress-hosting-vs-shared": "https://yd7xw8j43d5hdlrd.public.blob.vercel-storage.com/blog-images/managed-wordpress-hosting-vs-shared.jpg"
 };
 
 /**
