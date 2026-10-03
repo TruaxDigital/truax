@@ -65,12 +65,8 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
-  verification: {
-    google: 'your-google-verification-code',
-  },
-  alternates: {
-    canonical: 'https://truaxmarketing.com',
-  },
+  // No site-wide canonical here. Each page sets its own, so pages never
+  // inherit the home page URL as their canonical.
   icons: {
     icon: [
       { url: '/favicon.ico', sizes: 'any' },
