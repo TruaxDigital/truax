@@ -32,6 +32,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { ServiceMotion } from "@/components/service-motion";
 
 // Operating System for Revenue framework cards
 const frameworkCards = [
@@ -378,12 +379,7 @@ export default function DigitalStrategyPage() {
               className="hidden lg:block"
             >
               <div className="relative aspect-square max-w-lg mx-auto rounded-3xl overflow-hidden border border-[#262466] shadow-2xl shadow-[#27AAE1]/10">
-                <img 
-                  src="/images/services/digital-strategy-hero.jpg" 
-                  alt="Abstract visualization of strategic planning with interconnected pathways and milestones"
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a12]/40 via-transparent to-transparent" />
+                <ServiceMotion scene="strategy" />
               </div>
             </motion.div>
           </div>

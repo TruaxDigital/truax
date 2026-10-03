@@ -12,6 +12,7 @@ import { Footer } from "@/components/footer";
 import { useState } from "react";
 import { getPostsByKeywords } from "@/lib/blog-data";
 import { getBlogImageUrl } from "@/lib/blog-image-urls";
+import { ServiceMotion } from "@/components/service-motion";
 
 const responsibilities = [
   {
@@ -271,12 +272,7 @@ export default function FractionalCMOPage() {
               className="hidden lg:block"
             >
               <div className="relative aspect-square max-w-lg mx-auto rounded-3xl overflow-hidden border border-[#262466] shadow-2xl shadow-[#27AAE1]/10">
-                <img 
-                  src="/images/services/fractional-cmo-hero.jpg" 
-                  alt="Abstract visualization of executive marketing leadership with strategic compass elements"
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a12]/40 via-transparent to-transparent" />
+                <ServiceMotion scene="cmo" />
               </div>
             </motion.div>
           </div>

@@ -33,6 +33,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { ServiceMotion } from "@/components/service-motion";
 
 // Pipeline-Grade Build framework cards
 const frameworkCards = [
@@ -378,12 +379,7 @@ export default function WebDesignPage() {
               className="hidden lg:block"
             >
               <div className="relative aspect-square max-w-lg mx-auto rounded-3xl overflow-hidden border border-[#262466] shadow-2xl shadow-[#27AAE1]/10">
-                <img 
-                  src="/images/services/web-design-hero.jpg" 
-                  alt="Abstract visualization of modern web architecture with floating glass panels"
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a12]/40 via-transparent to-transparent" />
+                <ServiceMotion scene="web" />
               </div>
             </motion.div>
           </div>
