@@ -10,7 +10,7 @@ import { Footer } from "@/components/footer";
 import { JsonLd, createBreadcrumbSchema } from "@/components/json-ld";
 
 export const metadata: Metadata = {
-  title: "Truax Marketing Solutions | Digital Marketing with Heart",
+  title: "Marketing, CRM, and AI Systems | Truax Marketing Solutions",
   description: "A boutique digital marketing agency specializing in AI implementation, SEO, web development, and strategic marketing. 20+ years of experience helping businesses grow.",
   alternates: {
     canonical: "https://truaxmarketing.com",
@@ -22,7 +22,7 @@ const homePageSchema = {
   "@type": "WebPage",
   "@id": "https://truaxmarketing.com/#webpage",
   url: "https://truaxmarketing.com",
-  name: "Truax Marketing Solutions | Digital Marketing with Heart",
+  name: "Marketing, CRM, and AI Systems | Truax Marketing Solutions",
   description: "A boutique digital marketing agency specializing in AI implementation, SEO, web development, and strategic marketing.",
   isPartOf: {
     "@id": "https://truaxmarketing.com/#website",
