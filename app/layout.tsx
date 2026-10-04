@@ -18,7 +18,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL('https://truaxmarketing.com'),
   title: {
-    default: 'Truax Marketing Solutions | Digital Marketing with Heart',
+    default: 'Marketing, CRM, and AI Systems | Truax Marketing Solutions',
     template: '%s | Truax Marketing Solutions',
   },
   description: 'A results-focused, boutique marketing agency specializing in AI implementation, CRM integrations, SEO/SEM, WordPress development, and social media.',
@@ -36,20 +36,20 @@ export const metadata: Metadata = {
     locale: 'en_US',
     url: 'https://truaxmarketing.com',
     siteName: 'Truax Marketing Solutions',
-    title: 'Truax Marketing Solutions | Digital Marketing with Heart',
+    title: 'Marketing, CRM, and AI Systems | Truax Marketing Solutions',
     description: 'A results-focused, boutique marketing agency specializing in AI implementation, CRM integrations, SEO/SEM, WordPress development, and social media.',
     images: [
       {
         url: '/og-image.jpg',
         width: 1024,
         height: 1024,
-        alt: 'Truax Marketing Solutions - Digital Marketing with Heart',
+        alt: 'Truax Marketing Solutions: marketing, CRM, and AI systems',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Truax Marketing Solutions | Digital Marketing with Heart',
+    title: 'Marketing, CRM, and AI Systems | Truax Marketing Solutions',
     description: 'A results-focused, boutique marketing agency specializing in AI implementation, CRM integrations, SEO/SEM, WordPress development, and social media.',
     images: ['/og-image.jpg'],
     creator: '@truaxmarketing',
@@ -65,12 +65,8 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
-  verification: {
-    google: 'your-google-verification-code',
-  },
-  alternates: {
-    canonical: 'https://truaxmarketing.com',
-  },
+  // No site-wide canonical here. Each page sets its own, so pages never
+  // inherit the home page URL as their canonical.
   icons: {
     icon: [
       { url: '/favicon.ico', sizes: 'any' },

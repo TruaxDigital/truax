@@ -3,8 +3,8 @@
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { AboutMotion } from "@/components/about-motion";
 import Link from "next/link";
-import Image from "next/image";
 import { useRef } from "react";
 
 export function About() {
@@ -35,14 +35,7 @@ export function About() {
               whileHover={{ scale: 1.02, rotateY: -5 }}
               transition={{ duration: 0.4 }}
             >
-              <Image 
-                src="/images/illustration-strategy.jpg" 
-                alt="Digital Strategy Illustration" 
-                width={600}
-                height={450}
-                className="w-full h-full object-cover"
-                priority
-              />
+              <AboutMotion />
             </motion.div>
             {/* Floating stat card with bounce */}
             <motion.div 

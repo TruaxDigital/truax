@@ -26,6 +26,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import Link from "next/link";
+import { ServiceMotion } from "@/components/service-motion";
 
 // Section wrapper with scroll animation
 function AnimatedSection({ children, className = "", id }: { children: React.ReactNode; className?: string; id?: string }) {
@@ -214,38 +215,45 @@ export default function AIEnablementPage() {
         <div className="absolute bottom-0 left-0 w-64 h-64 bg-[#262466]/30 rounded-full blur-2xl" />
         
         <div className="relative max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="max-w-3xl"
-          >
-            <p className="text-[#27AAE1] font-medium mb-4 tracking-wide">AI Enablement</p>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-semibold leading-[1.1] tracking-tight mb-6">
-              Bring AI into your marketing operation. Without the mess.
-            </h1>
-            <p className="text-xl text-gray-300 leading-relaxed mb-8 max-w-2xl">
-              We help enterprise teams adopt AI with real governance, then automate the marcomm stack so your team ships more, faster, with fewer tools.
-            </p>
-            
-            <div className="flex flex-wrap gap-4 mb-8">
-              <Link href="/meet">
-                <Button size="lg" className="h-12 px-6 bg-[#27AAE1] hover:bg-[#27AAE1]/90 text-black font-medium">
-                  Book a Strategy Call
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </Button>
-              </Link>
-              <Link href="#services">
-                <Button size="lg" variant="outline" className="h-12 px-6 border-white/20 hover:bg-white/10">
-                  See What We Build
-                </Button>
-              </Link>
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="max-w-3xl"
+            >
+              <p className="text-[#27AAE1] font-medium mb-4 tracking-wide">AI Enablement</p>
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-semibold leading-[1.1] tracking-tight mb-6">
+                Bring AI into your marketing operation. Without the mess.
+              </h1>
+              <p className="text-xl text-gray-300 leading-relaxed mb-8 max-w-2xl">
+                We help enterprise teams adopt AI with real governance, then automate the marcomm stack so your team ships more, faster, with fewer tools.
+              </p>
+              
+              <div className="flex flex-wrap gap-4 mb-8">
+                <Link href="/meet">
+                  <Button size="lg" className="h-12 px-6 bg-[#27AAE1] hover:bg-[#27AAE1]/90 text-black font-medium">
+                    Book a Strategy Call
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </Button>
+                </Link>
+                <Link href="#services">
+                  <Button size="lg" variant="outline" className="h-12 px-6 border-white/20 hover:bg-white/10">
+                    See What We Build
+                  </Button>
+                </Link>
+              </div>
+              
+              <p className="text-sm text-gray-400">
+                Trusted by teams in insurance, warranty, SaaS, and B2B services
+              </p>
+  </motion.div>
+  <div>
+  <div className="relative aspect-square max-w-lg mx-auto rounded-3xl overflow-hidden border border-[#262466] shadow-2xl shadow-[#27AAE1]/10">
+  <ServiceMotion scene="enablement" />
+  </div>
             </div>
-            
-            <p className="text-sm text-gray-400">
-              Trusted by teams in insurance, warranty, SaaS, and B2B services
-            </p>
-          </motion.div>
+          </div>
         </div>
       </section>
 

@@ -106,13 +106,6 @@ export const organizationSchema = {
       },
     ],
   },
-  aggregateRating: {
-    '@type': 'AggregateRating',
-    ratingValue: '5',
-    reviewCount: '50',
-    bestRating: '5',
-    worstRating: '1',
-  },
 }
 
 // Website schema
@@ -125,14 +118,6 @@ export const websiteSchema = {
   description: 'Digital marketing with heart',
   publisher: {
     '@id': 'https://truaxmarketing.com/#organization',
-  },
-  potentialAction: {
-    '@type': 'SearchAction',
-    target: {
-      '@type': 'EntryPoint',
-      urlTemplate: 'https://truaxmarketing.com/blog?q={search_term_string}',
-    },
-    'query-input': 'required name=search_term_string',
   },
 }
 
@@ -208,15 +193,17 @@ export function createArticleSchema(post: {
   author: string
   category: string
 }) {
+  const parsed = new Date(post.publishedAt)
+  const isoDate = isNaN(parsed.getTime()) ? post.publishedAt : parsed.toISOString().slice(0, 10)
   return {
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',
-    '@id': `https://truaxmarketing.com/blog/${post.slug}#article`,
+    '@id': `https://truaxmarketing.com/insights/${post.slug}#article`,
     headline: post.title,
     description: post.description,
-    url: `https://truaxmarketing.com/blog/${post.slug}`,
-    datePublished: post.publishedAt,
-    dateModified: post.publishedAt,
+    url: `https://truaxmarketing.com/insights/${post.slug}`,
+    datePublished: isoDate,
+    dateModified: isoDate,
     author: {
       '@type': 'Person',
       name: post.author,
@@ -226,7 +213,7 @@ export function createArticleSchema(post: {
     },
     mainEntityOfPage: {
       '@type': 'WebPage',
-      '@id': `https://truaxmarketing.com/blog/${post.slug}`,
+      '@id': `https://truaxmarketing.com/insights/${post.slug}`,
     },
     articleSection: post.category,
   }

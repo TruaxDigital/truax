@@ -35,6 +35,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { ServiceMotion } from "@/components/service-motion";
 
 // Pipeline Protection layer cards
 const frameworkCards = [
@@ -425,15 +426,9 @@ export default function ManagedHostingPage() {
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 1, delay: 0.3 }}
-              className="hidden lg:block"
             >
               <div className="relative aspect-square max-w-lg mx-auto rounded-3xl overflow-hidden border border-[#262466] shadow-2xl shadow-[#27AAE1]/10">
-                <img 
-                  src="/images/services/managed-hosting-hero.jpg" 
-                  alt="Abstract visualization of cloud infrastructure with server nodes and secure connections"
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a12]/40 via-transparent to-transparent" />
+                <ServiceMotion scene="hosting" />
               </div>
             </motion.div>
           </div>

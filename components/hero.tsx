@@ -3,6 +3,7 @@
 import { motion, useScroll, useTransform, useSpring, useInView } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { HeroMotion } from "@/components/hero-motion";
 import Link from "next/link";
 import { useRef } from "react";
 
@@ -263,32 +264,18 @@ export function Hero() {
             </motion.div>
           </div>
 
-          {/* Right side - Stats card - 5 columns */}
+          {/* Right side - Motion graphic + stats - 5 columns */}
           <motion.div
             initial={{ opacity: 0, x: 40 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.4, ease: [0.25, 0.4, 0.25, 1] }}
             className="lg:col-span-5"
           >
-            <div 
-              className="relative p-8 rounded-xl border border-[#262466] bg-[#12121f]/80 backdrop-blur-md shadow-2xl hover:shadow-[0_25px_50px_-12px_rgba(39,170,225,0.25)] transition-shadow duration-500"
-            >
-              {/* Glowing border effect */}
-              <div className="absolute -inset-px rounded-xl bg-gradient-to-r from-[#27AAE1]/20 via-transparent to-[#2B3990]/20 opacity-0 hover:opacity-100 transition-opacity" />
-              
-              {/* Brand accent corner */}
-              <div className="absolute top-0 right-0 w-24 h-24 overflow-hidden rounded-tr-xl">
-                <div 
-                  className="absolute inset-0 opacity-30"
-                  style={{
-                    background: "linear-gradient(135deg, transparent 50%, #27AAE1 50%)",
-                  }}
-                />
-              </div>
-              
-              <p className="text-sm text-gray-500 uppercase tracking-wider mb-6 font-medium">Why work with us</p>
-              
-              <div className="space-y-6">
+            <div className="mx-auto w-full max-w-md lg:max-w-none">
+              <HeroMotion className="hover:shadow-[0_25px_50px_-12px_rgba(39,170,225,0.25)] transition-shadow duration-500" />
+
+              {/* Stats row (moved from the old "Why work with us" card) */}
+              <div className="mt-5 grid grid-cols-3 gap-4">
                 {[
                   { value: "20+", label: "years combined experience" },
                   { value: "2.4x", label: "average ROI increase" },
@@ -296,15 +283,15 @@ export function Hero() {
                 ].map((stat, index) => (
                   <motion.div 
                     key={index}
-                    className="flex items-baseline gap-4"
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
+                    className="flex flex-col gap-1"
+                    initial={{ opacity: 0, y: 12 }}
+                    animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.5 + index * 0.1, duration: 0.4, ease: [0.25, 0.4, 0.25, 1] }}
                   >
-                    <span className="text-5xl font-bold text-[#27AAE1] font-mono">
+                    <span className="text-2xl sm:text-3xl font-bold text-[#27AAE1] font-mono">
                       {stat.value}
                     </span>
-                    <span className="text-gray-400">{stat.label}</span>
+                    <span className="text-xs text-gray-400 leading-snug">{stat.label}</span>
                   </motion.div>
                 ))}
               </div>

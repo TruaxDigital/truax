@@ -18,6 +18,7 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
+import { ServiceMotion } from "@/components/service-motion";
 
 const features = [
   {
@@ -136,6 +137,9 @@ export default function AIAgentsPage() {
               </Button>
             </Link>
           </motion.div>
+          <div className="relative aspect-square w-full max-w-lg mx-auto mt-14 rounded-3xl overflow-hidden border border-[#262466] shadow-2xl shadow-[#27AAE1]/10">
+            <ServiceMotion scene="agents" />
+          </div>
         </div>
       </section>
 
