@@ -1,3 +1,5 @@
+import { newBlogPosts } from "./blog-data-new";
+
 export interface BlogPost {
   id: string;
   slug: string;
@@ -12,6 +14,7 @@ export interface BlogPost {
 }
 
 export const blogPosts: BlogPost[] = [
+  ...newBlogPosts,
   {
     id: "1",
     slug: "questioning-boutique-digital-marketing-agency",
