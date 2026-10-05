@@ -1,10 +1,832 @@
 import type { BlogPost } from "./blog-data";
 
-// Scheduled posts, one every two weeks from Oct 19 to Dec 28, 2026.
+// Scheduled posts, one every two weeks from Oct 19, 2026 to Mar 22, 2027.
 // Listed newest first. Each post goes live on its publishedAt date
 // (see the scheduling notes in lib/blog-data.ts).
 // Each post links only to posts published on or before its own date.
 export const scheduledBlogPosts: BlogPost[] = [
+  // ---- Q1 2027: one post every two weeks, Jan 11 to Mar 22 ----
+  {
+    id: "2027-03-biotech-lead-generation",
+    slug: "biotech-lead-generation",
+    title: "Biotech Lead Generation: 7 Channels for a Long, Technical Sale",
+    excerpt: "Biotech lead generation fails when it copies consumer tactics. Here are seven channels that fit a long, technical sale, with what each one needs and how to measure it.",
+    content: `**Key takeaways**
+
+- In a 2026 survey of life sciences marketers, direct sales and B2B events had the highest perceived return, and both depend on follow-up.
+- A biotech lead is rarely one person. Plan for a scientist, a lab or department head, and procurement.
+- Pick two or three channels, connect them to one CRM, and measure opportunities created, not form fills.
+
+Biotech lead generation works when each channel feeds one tracked pipeline and a technical buyer gets a useful answer at every step. Seven channels follow, with the work each takes.
+
+## What makes a biotech lead different
+
+Three things separate this sale from most B2B.
+
+- **Several people decide.** A scientist evaluates, a principal investigator or department head approves, and procurement negotiates.
+- **The cycle is long.** Evaluations, pilots, and budget cycles add months.
+- **Claims are regulated.** What you can say depends on the product and its regulatory status.
+
+## What marketers in the field report
+
+The State of Life Sciences Marketing Report 2026, summarized in [Life Science Leader](https://www.lifescienceleader.com/doc/visibility-without-discoverability-a-life-sciences-marketing-challenge-0001), surveyed 52 professionals across 23 countries. The sample is small, so read it as a signal.
+
+- Most used channels: websites (71%), LinkedIn (60%), events and trade shows (54%), direct sales (46%), email (46%)
+- Highest perceived return: direct sales (35%), B2B events (33%), websites (31%)
+- Lowest perceived return: SEO and content marketing (10%)
+
+Two points stand behind those numbers. The channels rated highest involve a person. And the channel used most, the website, is often not measured well enough to get credit.
+
+## Seven channels that fit
+
+### 1. Technical content on your own site
+
+Application notes, protocols, method comparisons, and data sheets answer the questions scientists search for. Gate only the deepest assets. Measure: opportunities that touched a content page.
+
+### 2. Conferences and trade shows
+
+Events put you in front of the right people for a few days. The value is lost when badge scans sit in a spreadsheet. Load leads into the CRM the same day and start follow-up within the week. Measure: meetings booked and opportunities opened per event.
+
+### 3. Webinars and virtual demos
+
+A 30-minute session with a scientist presenting real data draws qualified interest. Record it and reuse it. Measure: attendees who request a follow-up.
+
+### 4. LinkedIn
+
+Use it to reach department heads, operations leaders, and business development roles. Have your scientists and commercial leads post about methods and results, not announcements. Measure: conversations started with target accounts.
+
+### 5. Account-based outreach
+
+Build a list of 50 to 100 target organizations. Map the roles in each. Send short, specific emails that reference the lab's published work or stated focus. Measure: reply rate and meetings by account.
+
+### 6. Email nurture
+
+Most contacts are not ready when you meet them. Send a useful technical note every few weeks. Segment by application area, not by job title alone. Measure: contacts who return to request a quote or demo.
+
+### 7. Partners and distributors
+
+Distributors, core facilities, and complementary vendors already hold relationships. Give them co-branded material and a clear way to pass leads. Measure: introductions per partner per quarter.
+
+## The step that decides the return
+
+Fast, organized follow-up matters more than the channel. A Harvard Business Review audit of 2,241 US companies found that firms responding within an hour were about seven times more likely to qualify a lead than those that responded later, and 23% never responded.
+
+Before you add budget to any channel, confirm:
+
+- Every inquiry, scan, and registration lands in one CRM with its source
+- An owner is assigned within the hour during business hours
+- A technical question gets a technical answer, routed to an application scientist when needed
+
+## Check claims before you publish
+
+Have regulatory or legal review any promotional claim. For investigational drugs, [21 CFR 312.7(a)](https://www.law.cornell.edu/cfr/text/21/312.7) bars a sponsor from representing in a promotional context that the drug is safe or effective for the use under investigation. Products labeled for research use only have their own FDA guidance. This article is not legal or regulatory advice.
+
+## How to choose your first three
+
+- **Selling instruments, reagents, or software to labs:** technical content, events, and email nurture.
+- **Selling services such as contract research or manufacturing:** account-based outreach, LinkedIn, and events.
+- **Early-stage with a small team:** account-based outreach, webinars, and one strong content series.
+
+Run them for two quarters. Compare opportunities and revenue by source. Move budget toward what opened real opportunities.
+
+## What a qualified biotech lead looks like
+
+Agree on a definition so marketing and sales count the same thing:
+
+- The organization fits your target profile
+- The contact has a named application or project
+- There is a timeline or a funding source
+- They have agreed to a technical conversation or evaluation
+
+Want help building the pipeline behind these channels? [Book a call](https://truaxmarketing.com/meet).
+
+## Frequently asked questions
+
+**How long does biotech lead generation take to show results?**
+It depends on your sales cycle. Outreach and events can open conversations within weeks. Content and search build over several quarters.
+
+**Should a biotech company buy lead lists?**
+Purchased lists can help you identify organizations. Verify contacts and follow anti-spam rules before emailing. Lists do not replace a clear target account plan.
+
+**What is a good cost per lead in biotech?**
+There is no reliable public benchmark that fits every segment. Track cost per opportunity and cost per closed deal for your own business.
+
+## Related reading
+
+- [Life Sciences Marketing in 2027](https://truaxmarketing.com/insights/life-sciences-marketing-strategy)
+- [CRM for Life Sciences](https://truaxmarketing.com/insights/crm-for-life-sciences)
+- [Biotech SEO and Content Marketing](https://truaxmarketing.com/insights/biotech-seo-content-marketing)
+- [Demand generation services from Truax Marketing](https://truaxmarketing.com/services/demand-generation)
+
+## Next step
+
+Want a lead generation plan sized for your team and your sales cycle? [Book a call](https://truaxmarketing.com/meet). We will review your channels, your CRM, and your follow-up, and show you where opportunities are being lost.
+
+## Sources
+
+- [Visibility Without Discoverability: A Life Sciences Marketing Challenge](https://www.lifescienceleader.com/doc/visibility-without-discoverability-a-life-sciences-marketing-challenge-0001), Life Science Leader, Jan 9, 2026
+- [The Short Life of Online Sales Leads](https://hbr.org/2011/03/the-short-life-of-online-sales-leads), Harvard Business Review, March 2011
+- [21 CFR 312.7, Promotion of investigational drugs](https://www.law.cornell.edu/cfr/text/21/312.7), Cornell Legal Information Institute
+- [Distribution of In Vitro Diagnostic Products Labeled for Research Use Only or Investigational Use Only](https://www.fda.gov/regulatory-information/search-fda-guidance-documents/distribution-in-vitro-diagnostic-products-labeled-research-use-only-or-investigational-use-only), FDA guidance, November 2013`,
+    publishedAt: "Mar 22, 2027",
+    author: "Aaron Truax",
+    category: "Demand Generation",
+    tags: ["biotech lead generation", "life science lead generation", "account-based marketing", "biotech marketing"],
+    featuredImage: "/images/blog/biotech-lead-generation.jpg",
+  },
+  {
+    id: "2027-03-biotech-seo-content-marketing",
+    slug: "biotech-seo-content-marketing",
+    title: "Biotech SEO and Content Marketing: How to Get Found by Scientists",
+    excerpt: "Scientists search for methods, protocols, and comparisons, not marketing terms. This guide covers biotech SEO and content marketing built around how technical buyers look for answers.",
+    content: `**Key takeaways**
+
+- Scientists search for problems and methods. Build content around applications, protocols, and comparisons.
+- In a 2026 survey, 71% of life sciences marketers used their website as a channel, yet only 10% rated SEO and content as a top-return channel. That gap is mostly a measurement problem.
+- Google says its AI features need no special optimization. Clear, indexed, well-sourced pages come first.
+
+Biotech SEO works when your pages answer the technical questions a scientist types into a search bar or an AI assistant. The content has to be accurate enough for an expert and clear enough to be quoted.
+
+## Why this channel is underrated
+
+The State of Life Sciences Marketing Report 2026, summarized in [Life Science Leader](https://www.lifescienceleader.com/doc/visibility-without-discoverability-a-life-sciences-marketing-challenge-0001), surveyed 52 professionals in 23 countries. Websites were the most used channel at 71%. SEO and content marketing ranked last for perceived return at 10%. The sample is small, so treat it as a signal.
+
+One reading is that content does not work in life sciences. A more likely one is that content is rarely connected to revenue. A scientist reads an application note in March, meets your rep at a conference in June, and requests a quote in September. Without tracking, the conference gets the credit.
+
+## How scientists search
+
+Technical buyers do not search the way consumers do.
+
+- **By problem.** "Low yield in plasmid prep" or "reduce background in western blot."
+- **By method.** A technique name plus "protocol," "optimization," or "troubleshooting."
+- **By comparison.** One approach versus another, or one product class versus another.
+- **By specification.** Sensitivity, throughput, sample type, compatibility.
+
+They also ask AI tools. Pew Research Center found that when Google showed an AI summary, users clicked a regular result on 8% of visits, against 15% without one. Question-style searches were the most likely to trigger a summary. Technical questions are exactly that kind of search.
+
+## Six content types that earn technical traffic
+
+1. **Application notes.** One application, real data, clear methods. The most useful asset you can publish.
+2. **Protocols and troubleshooting guides.** Step-by-step pages that solve a specific bench problem.
+3. **Method comparison pages.** Honest pros and cons of approaches, including where yours is not the best fit.
+4. **Glossary and explainer pages.** Short, accurate definitions of terms in your field.
+5. **Selection guides.** How to choose a product type for a sample, scale, or workflow.
+6. **Published work.** A maintained list of papers and posters that used your product, with links.
+
+## On-page basics for technical content
+
+- **Answer first.** Put the direct answer in the first two sentences under each heading.
+- **Use the terms scientists use.** Include the full name and the common abbreviation.
+- **Show the data.** Describe figures in text. Key results should not live only inside an image or a PDF.
+- **Name the author and reviewer.** List a qualified person and the date reviewed.
+- **Cite sources.** Link to the primary literature.
+- **Keep PDFs as a download, not the page.** Publish the content as a web page and offer the PDF as an extra.
+
+## What Google says about AI results
+
+Google's [AI features documentation](https://developers.google.com/search/docs/appearance/ai-features), last updated Dec 10, 2025, states: "There are no additional requirements to appear in AI Overviews or AI Mode, nor other special optimizations necessary." A page must be indexed and eligible to show with a snippet. Its listed best practices include keeping important content in text form.
+
+That guidance covers Google only. Be careful with anyone who promises a formula for other AI tools.
+
+## Claims and compliance
+
+Content is promotion when it promotes. Build review into the workflow.
+
+- For investigational drugs, [21 CFR 312.7(a)](https://www.law.cornell.edu/cfr/text/21/312.7) bars representing in a promotional context that the drug is safe or effective for the use under investigation.
+- Products labeled for research use only are covered by FDA guidance on how they are distributed and described.
+- Have regulatory or legal sign off on any page that makes a performance or clinical claim.
+
+This article is not legal or regulatory advice.
+
+## How to measure it
+
+- **Search Console.** Impressions and clicks by page and query.
+- **Assisted opportunities.** In your CRM, record which content a contact viewed before an opportunity opened.
+- **Lead source question.** Ask "How did you first hear about us?" on forms, with a search option and an AI assistant option.
+- **Citation checks.** Each month, ask the main AI tools ten questions your buyers ask. Record when your company is named.
+
+Report opportunities and revenue influenced by content. Traffic alone will not win budget.
+
+## A 90-day starting plan
+
+- **Days 1 to 30.** Check indexing in Search Console. List the 20 questions your application scientists answer most. Pick the ten with the clearest search demand.
+- **Days 31 to 60.** Publish five pages. Convert your three best PDFs into web pages.
+- **Days 61 to 90.** Publish five more. Add internal links between related pages. Set up content tracking in the CRM.
+
+Want help planning the first ten pages? [Book a call](https://truaxmarketing.com/meet).
+
+## Mistakes to avoid
+
+- Writing for investors when the page should serve users
+- Publishing news posts and calling it content marketing
+- Hiding every asset behind a form
+- Letting marketing write technical claims with no scientist in the review
+
+## Frequently asked questions
+
+**How long does biotech SEO take?**
+No public study sets a reliable timeline. Expect months, since results depend on indexing, authority, and how competitive each topic is.
+
+**Should technical content be gated?**
+Gate sparingly. Open pages get found and cited. Gate deep assets such as full validation reports, where the reader gets clear value for their details.
+
+**Can AI write our technical content?**
+It can draft and summarize. A qualified scientist must check every claim, figure, and citation before publishing.
+
+## Related reading
+
+- [Life Sciences Marketing in 2027](https://truaxmarketing.com/insights/life-sciences-marketing-strategy)
+- [CRM for Life Sciences](https://truaxmarketing.com/insights/crm-for-life-sciences)
+- [SEO for Insurance Agents in 2026](https://truaxmarketing.com/insights/seo-for-insurance-agents)
+- [SEO services from Truax Marketing](https://truaxmarketing.com/services/search-engine-optimization)
+
+## Next step
+
+Want to know which technical questions your site should answer first? [Book a call](https://truaxmarketing.com/meet). We will review your indexing, your content, and how it connects to pipeline.
+
+## Sources
+
+- [Visibility Without Discoverability: A Life Sciences Marketing Challenge](https://www.lifescienceleader.com/doc/visibility-without-discoverability-a-life-sciences-marketing-challenge-0001), Life Science Leader, Jan 9, 2026
+- [Google users are less likely to click on links when an AI summary appears in the results](https://www.pewresearch.org/short-reads/2025/07/22/google-users-are-less-likely-to-click-on-links-when-an-ai-summary-appears-in-the-results/), Pew Research Center, July 22, 2025
+- [AI features and your website](https://developers.google.com/search/docs/appearance/ai-features), Google Search Central, updated Dec 10, 2025
+- [21 CFR 312.7, Promotion of investigational drugs](https://www.law.cornell.edu/cfr/text/21/312.7), Cornell Legal Information Institute`,
+    publishedAt: "Mar 8, 2027",
+    author: "Aaron Truax",
+    category: "Digital Marketing",
+    tags: ["biotech SEO", "life science SEO", "biotech content marketing", "AI search"],
+    featuredImage: "/images/blog/biotech-seo-content-marketing.jpg",
+  },
+  {
+    id: "2027-02-insurance-agency-website-design",
+    slug: "insurance-agency-website-design",
+    title: "Insurance Agency Website Design: 10 Things the Best Sites Get Right",
+    excerpt: "The best insurance agency websites do ten things well, and most are about clarity and follow-up, not visuals. Use this list to audit your own site.",
+    content: `**Key takeaways**
+
+- A good agency website makes it obvious who you serve, what you write, and how to get a quote.
+- Design matters less than what happens after the form. Every request should reach a producer within minutes.
+- Score your site against the ten points below. Fix the lowest three first.
+
+Good insurance agency website design is measured by quote requests, not by how the site looks. The best sites are clear, fast, specific to an audience, and connected to a follow-up process.
+
+Here are ten things they get right.
+
+## 1. They say who they serve in the first screen
+
+A visitor should know within seconds what you write and for whom. "Commercial insurance for contractors and manufacturers in the Midwest" beats "Protecting what matters most."
+
+## 2. They have one page per line of coverage
+
+General liability, commercial property, cyber, workers' compensation, commercial auto. Each page explains who needs it, what it covers, and what affects the price. One "Services" page with a paragraph per line does not rank or convert.
+
+## 3. They have one page per industry
+
+Buyers think in terms of their business. A page for restaurants should talk about liquor liability and food spoilage. A page for contractors should talk about certificates and subcontractors.
+
+## 4. They show real people
+
+A Big "I" consumer survey cited by IA Magazine found that 87% of consumers value human agents. Put your producers on the site with names, photos, licenses, and direct contact details. Stock photos work against you.
+
+## 5. They make the next step obvious
+
+One primary action per page: request a quote, book a call, or call now. Put it at the top, in the middle, and at the end. Keep the form short. Name, business, phone, email, and line of interest are enough to start.
+
+## 6. They respond fast
+
+A form is only as good as the response. A Harvard Business Review audit of 2,241 US companies found that firms responding within an hour were about seven times more likely to qualify a lead than those responding later. The form should create a CRM record, alert a producer, and send a confirmation that says when to expect a call.
+
+## 7. They load quickly on a phone
+
+Google publishes thresholds for a good page experience: main content loads within 2.5 seconds, the page responds to input within 200 milliseconds, and layout shift stays at 0.1 or less, measured at the 75th percentile of visits. Test your key pages on a phone on cellular data.
+
+## 8. They show proof
+
+Reviews, carrier logos you are appointed with, association memberships, years in business, and short client stories. Place proof next to the quote button, not on a separate page nobody visits.
+
+## 9. They answer real questions
+
+Collect the questions your team hears weekly and answer each one on the site. Have a licensed person review coverage statements and add the review date. These pages bring search traffic and give AI tools something accurate to cite.
+
+## 10. They track where leads come from
+
+Analytics and Search Console are set up. Forms record the source. The agency can say how many quote requests each page and channel produced last month.
+
+## A quick scoring method
+
+Give your site one point for each item it does well.
+
+- **8 to 10:** Strong. Put effort into traffic and content.
+- **5 to 7:** Workable. Fix the gaps before spending on ads.
+- **0 to 4:** The site is costing you leads. Start with items 1, 5, and 6.
+
+## Build, buy, or template
+
+Three routes, each with a trade-off.
+
+- **Insurance website templates.** Fast and low cost. Content is often shared across many agencies, which makes it hard to rank or differ from competitors.
+- **AI website builders.** Fast and flexible. You supply the positioning, the content, and the integrations.
+- **Custom build.** Higher cost. Worth it when the site must connect to a CRM and produce commercial lines leads.
+
+Whichever route you take, confirm you own the domain, the content, and the ability to export the site.
+
+## What to put on the home page
+
+In order, from top to bottom:
+
+1. Who you serve and what you write, in one sentence
+2. A quote button and a phone number
+3. Three to six industries or lines, each linking to its page
+4. Proof: reviews, carriers, memberships
+5. Your team
+6. Answers to two or three common questions
+7. A final quote button
+
+## Accessibility and compliance basics
+
+- Use readable text sizes and strong color difference between text and background
+- Add text descriptions to images
+- Make forms usable with a keyboard
+- Include license information and required disclosures for your state
+- Post a privacy policy that matches how you collect and use data
+
+Requirements vary by state. Check with your compliance contact. This article is not legal advice.
+
+Want your site scored against these ten points? [Book a call](https://truaxmarketing.com/meet).
+
+## Frequently asked questions
+
+**How much does an insurance agency website cost?**
+It varies widely by route and scope. Ask any vendor to split the price into strategy, build, content, and integration so you can compare quotes.
+
+**Should an agency website offer online quoting?**
+If you can deliver a real quote online for a line, yes. For commercial lines, a short request form with a fast call back usually serves the buyer better.
+
+**How often should an agency update its website?**
+Review core pages twice a year and add new question pages monthly. Update immediately when carriers, lines, or staff change.
+
+## Related reading
+
+- [AI Website Builder vs. Agency](https://truaxmarketing.com/insights/ai-website-builder-vs-agency)
+- [Speed to Lead for Insurance Agencies](https://truaxmarketing.com/insights/speed-to-lead-insurance-agencies)
+- [SEO for Insurance Agents in 2026](https://truaxmarketing.com/insights/seo-for-insurance-agents)
+- [Web design and development from Truax Marketing](https://truaxmarketing.com/services/web-design-development)
+
+## Next step
+
+Want a site that produces quote requests? [Book a call](https://truaxmarketing.com/meet). We will score your current site, show you the gaps, and map what to fix first.
+
+## Sources
+
+- [Evolving Channel: Key Findings From the 2026 Agency Universe Study](https://www.iamagazine.com/2026/10/01/evolving-channel-key-findings-from-the-2026-agency-universe-study/), IA Magazine, Oct 1, 2026
+- [The Short Life of Online Sales Leads](https://hbr.org/2011/03/the-short-life-of-online-sales-leads), Harvard Business Review, March 2011
+- [Page experience thresholds](https://web.dev/articles/vitals), web.dev (Google), updated Oct 31, 2024`,
+    publishedAt: "Feb 22, 2027",
+    author: "Aaron Truax",
+    category: "Digital Strategy",
+    tags: ["insurance agency website design", "insurance agency website", "web design", "lead generation website"],
+    featuredImage: "/images/blog/insurance-agency-website-design.jpg",
+  },
+  {
+    id: "2027-02-crm-for-life-sciences",
+    slug: "crm-for-life-sciences",
+    title: "CRM for Life Sciences: How to Choose and Set Up One for a Long Sales Cycle",
+    excerpt: "A CRM for life sciences has to handle long cycles, several decision makers, and leads from events and distributors. Here is how to choose one and set it up.",
+    content: `**Key takeaways**
+
+- A life sciences CRM must model organizations, labs or sites, and several contacts per opportunity.
+- In a 2026 survey, direct sales and events were the channels life sciences marketers rated highest for return. Both depend on a CRM that captures and routes leads.
+- Choose on fit and adoption. Then set up in this order: data model, pipeline, lead capture, automation, reports.
+
+The right CRM for a life sciences company is the one that matches a long, multi-person sale and that your commercial team uses every day. This guide covers what to look for and how to set it up.
+
+## Why life sciences is different
+
+- **Accounts have layers.** A university or company contains departments, labs, and core facilities. Each can buy on its own.
+- **Several roles decide.** Bench scientists, a principal investigator or director, procurement, and sometimes quality or regulatory.
+- **Cycles are long.** Evaluation, pilot, and budget approval stretch across quarters.
+- **Leads arrive in batches.** Conferences, webinars, and distributors produce bursts of contacts.
+- **Claims are controlled.** Sales and marketing messages often need review.
+
+## What the survey data says
+
+The State of Life Sciences Marketing Report 2026, summarized in [Life Science Leader](https://www.lifescienceleader.com/doc/visibility-without-discoverability-a-life-sciences-marketing-challenge-0001), surveyed 52 professionals across 23 countries. It is a small sample, so read it as a signal.
+
+- Channels in use: websites (71%), LinkedIn (60%), events (54%), direct sales (46%), email (46%)
+- Highest perceived return: direct sales (35%) and B2B events (33%)
+- Top growth obstacles: R&D delays (58%) and limited budgets (52%)
+
+With budgets tight, a CRM earns its cost by making sure no event lead or inquiry is dropped.
+
+## Three types of CRM
+
+- **Life sciences specific CRMs.** Built for the industry, often for pharma field teams. Strong on compliance features. Check fit if you sell tools, reagents, or services.
+- **General CRMs, such as HubSpot or Salesforce.** Flexible, with strong marketing and automation. They need setup to model labs, sites, and long cycles.
+- **Spreadsheets and email.** Common in early teams. Works until two people need the same information.
+
+This guide does not rank products. Fit depends on what you sell and how.
+
+## Eight criteria for choosing
+
+1. **Data model.** Can it link several contacts and a parent organization to one opportunity?
+2. **Pipeline flexibility.** Can stages include evaluation, pilot, and procurement?
+3. **Lead capture.** Can it take web forms, event scans, webinar lists, and distributor leads into one place with a source?
+4. **Marketing in the same system.** Can you email by application area and see what a contact read?
+5. **Integrations.** Does it connect to your quoting, ERP, or e-commerce system?
+6. **Permissions and audit trail.** Can you control who sees and edits records?
+7. **Privacy.** Can it record consent and honor deletion requests for contacts in regions with privacy laws?
+8. **Total cost.** Licenses, setup, integration, training, and the time your team spends.
+
+## How to set it up
+
+### Step 1: Define the data model
+
+Use companies for organizations, with a parent and child structure for departments or sites. Add properties for segment (academic, biopharma, contract research, diagnostics), application area, and region. Use dropdowns so reports work.
+
+### Step 2: Build the pipeline
+
+A workable set of stages for a tools or services company:
+
+1. Inquiry
+2. Technical qualification
+3. Evaluation or demo
+4. Proposal or quote
+5. Procurement
+6. Closed won
+7. Closed lost, with a required reason
+
+### Step 3: Connect lead capture
+
+Route every source into the CRM with a source value. Load event leads the same day. Agree with distributors on how leads are shared and who follows up.
+
+### Step 4: Automate the handoffs
+
+- Assign new inquiries by segment or territory
+- Send technical questions to an application scientist
+- Alert the owner when an opportunity has no activity for 21 days
+- Start a nurture sequence for contacts who are not ready
+
+### Step 5: Build four reports
+
+- Opportunities created by source
+- Pipeline by stage and segment
+- Average days in each stage
+- Win rate by segment
+
+## Where HubSpot fits
+
+We build on HubSpot, so here is a plain view. It fits life sciences companies that sell tools, reagents, software, or services and want marketing and sales in one system. It needs deliberate setup for account hierarchies and long cycles. For regulated field promotion in pharma, a purpose-built system may fit better.
+
+Want help choosing or setting up? [Book a call](https://truaxmarketing.com/meet).
+
+## Compliance notes
+
+Keep promotional templates under review. For investigational drugs, [21 CFR 312.7(a)](https://www.law.cornell.edu/cfr/text/21/312.7) bars promotional claims of safety or effectiveness for the use under investigation. Store approved language in the CRM so the team uses it. This article is not legal or regulatory advice.
+
+## Mistakes to avoid
+
+- Importing years of old contacts without cleaning them
+- Tracking contacts but not the opportunity they belong to
+- Leaving event leads in a spreadsheet
+- Building 12 pipeline stages nobody can tell apart
+- Launching with no owner for the system
+
+## Frequently asked questions
+
+**What is the best CRM for a biotech startup?**
+The one a small team will keep current. Start with a general CRM set up around your pipeline, and revisit when the team or the regulatory needs grow.
+
+**Do we need a CRM before we have a product on the market?**
+Often yes. Business development, partnering, and investor conversations benefit from one record of who said what.
+
+**How long does setup take?**
+A focused setup fits in about 30 days when the data model and stages are agreed first. Integrations add time.
+
+## Related reading
+
+- [Life Sciences Marketing in 2027](https://truaxmarketing.com/insights/life-sciences-marketing-strategy)
+- [HubSpot Implementation for Insurance Agencies](https://truaxmarketing.com/insights/hubspot-implementation-insurance-agencies)
+- [Fractional CMO Cost in 2026](https://truaxmarketing.com/insights/fractional-cmo-cost)
+- [Digital strategy services from Truax Marketing](https://truaxmarketing.com/services/digital-strategy)
+
+## Next step
+
+Choosing a CRM or rebuilding one that fell out of use? [Book a call](https://truaxmarketing.com/meet). We will map your sales process and data and tell you what fits.
+
+## Sources
+
+- [Visibility Without Discoverability: A Life Sciences Marketing Challenge](https://www.lifescienceleader.com/doc/visibility-without-discoverability-a-life-sciences-marketing-challenge-0001), Life Science Leader, Jan 9, 2026
+- [21 CFR 312.7, Promotion of investigational drugs](https://www.law.cornell.edu/cfr/text/21/312.7), Cornell Legal Information Institute`,
+    publishedAt: "Feb 8, 2027",
+    author: "Aaron Truax",
+    category: "Digital Strategy",
+    tags: ["CRM for life sciences", "life science CRM", "HubSpot", "biotech sales pipeline"],
+    featuredImage: "/images/blog/crm-for-life-sciences.jpg",
+  },
+  {
+    id: "2027-01-email-marketing-for-insurance-agents",
+    slug: "email-marketing-for-insurance-agents",
+    title: "Email Marketing for Insurance Agents: 6 Campaigns and the Rules to Follow",
+    excerpt: "Email is the lowest-cost way for an agency to retain clients and cross-sell. Here are six campaigns to build, how to measure them, and the rules that apply.",
+    content: `**Key takeaways**
+
+- Build six campaigns in this order: welcome, renewal, cross-sell, quote follow-up, review request, and a monthly risk note.
+- The CAN-SPAM Act applies to business email too. The FTC says penalties can reach $53,088 per email.
+- Measure replies, booked calls, and policies written. Open rates alone tell you little.
+
+Email marketing for insurance agents works best when it is tied to moments in the client relationship: a new policy, a renewal, a gap in coverage. Six campaigns cover most of the value.
+
+Agencies are investing more in marketing. The [2026 Agency Universe Study](https://www.independentagent.com/news/big-i-and-future-one-release-2026-agency-universe-study/) found average marketing budgets rose from $14,300 in 2024 to $20,600 in 2026. Email takes little of that budget and reaches the people most likely to buy again: your current clients.
+
+## The six campaigns
+
+### 1. Welcome series
+
+Three emails over the first two weeks of a new client relationship.
+
+- Day 1: who to contact for service and claims, with direct lines
+- Day 4: how to request a certificate or make a change
+- Day 12: an invitation to a coverage review
+
+Measure: clients who book a review.
+
+### 2. Renewal series
+
+Start 90 days before expiration.
+
+- Day 90: a short update request. New locations, vehicles, staff, or revenue changes?
+- Day 60: what you are doing to prepare, and when to expect options
+- Day 30: a reminder to schedule the renewal conversation
+
+Measure: retention rate and renewals completed before expiration.
+
+### 3. Cross-sell by gap
+
+Find clients with one line and a common missing one, such as commercial property with no cyber. Send two emails explaining the risk in plain terms, with one example claim scenario. Have a licensed person review the content.
+
+Measure: quotes requested from the segment.
+
+### 4. Quote follow-up
+
+A quote with no follow-up is easy to lose. Trigger three emails when a quote goes out: a recap on day one, a check-in on day three, and a final note on day seven. Pair them with a phone task.
+
+Measure: quotes with completed follow-up and close rate.
+
+### 5. Review and referral request
+
+Send after a positive moment: a claim handled well, a renewal that improved coverage, or a compliment to your team. Ask for a review first. Ask for an introduction second.
+
+Measure: reviews received and referrals per month.
+
+### 6. Monthly risk note
+
+One short email a month on one risk your clients face, written for one industry at a time. A contractor does not need the restaurant version. Keep it under 200 words with one link.
+
+Measure: replies and clicks to the linked page.
+
+## The rules to follow
+
+The CAN-SPAM Act sets requirements for commercial email in the United States. The FTC's [compliance guide](https://www.ftc.gov/business-guidance/resources/can-spam-act-compliance-guide-business) states that the law "makes no exception for business-to-business email." Its main requirements:
+
+1. Do not use false or misleading header information
+2. Do not use deceptive subject lines
+3. Identify the message as an ad
+4. Tell recipients where you are located
+5. Tell recipients how to opt out
+6. Honor opt-out requests within 10 business days
+7. Monitor what others do on your behalf
+
+The guide says each email in violation is subject to penalties of up to $53,088.
+
+Other rules can apply. State insurance regulations govern advertising content, and other countries have their own email laws. Check with your compliance contact before you launch. This article is not legal advice.
+
+## Set up before you send
+
+- **Clean your list.** Remove bounced addresses and people who opted out.
+- **Segment.** At minimum: clients versus prospects, personal versus commercial, and industry for commercial.
+- **Authenticate your domain.** Ask your email provider or IT contact to set up SPF, DKIM, and DMARC so mail reaches inboxes.
+- **Connect to your CRM.** Renewal dates and policy types should drive the campaigns automatically.
+- **Write like a person.** Send from a named producer or account manager, with a real reply address.
+
+## What to write
+
+Short, specific, and useful beats polished.
+
+- One topic per email
+- A subject line that says what is inside
+- Three to five short paragraphs
+- One clear next step
+- A real signature with a direct phone number
+
+## Where AI helps
+
+AI can draft a first version from the client's industry and policy details, suggest subject lines, and summarize replies. Keep a licensed person reviewing anything that describes coverage. The [Big "I" Agents Council for Technology report](https://www.independentagent.com/news/two-thirds-of-independent-agents-plan-to-increase-ai-use-this-year/) found that 55% of agencies have no written AI use policy. Write one before AI touches client messages.
+
+## How to measure
+
+Track four numbers each month:
+
+- Replies
+- Calls or reviews booked from email
+- Quotes requested
+- Policies written that had an email touch
+
+Open rates are less reliable than they used to be because some mail apps load messages automatically. Use them for trends, not decisions.
+
+Want help building these six campaigns? [Book a call](https://truaxmarketing.com/meet).
+
+## Mistakes to avoid
+
+- One newsletter for every client regardless of line or industry
+- Sending from a no-reply address
+- Buying a list and emailing it cold with no opt-out
+- Starting renewal outreach two weeks before expiration
+- Automating messages and never reading the replies
+
+## Frequently asked questions
+
+**How often should an insurance agency email clients?**
+Once a month for general contact is a reasonable start, plus the triggered campaigns above. Watch opt-outs. A rising rate means you are sending too much or the content is not useful.
+
+**Can I email prospects who have not asked to hear from me?**
+In the United States, CAN-SPAM allows commercial email if you follow its requirements, including a working opt-out. Other countries and some state rules are stricter. Check before you send.
+
+**What is the best email platform for insurance agents?**
+One that connects to your CRM or agency management system so renewal dates and policy types can trigger emails.
+
+## Related reading
+
+- [Best CRM for Insurance Agents](https://truaxmarketing.com/insights/best-crm-for-insurance-agents)
+- [Insurance Marketing Ideas for 2027](https://truaxmarketing.com/insights/insurance-marketing-ideas)
+- [HubSpot Implementation for Insurance Agencies](https://truaxmarketing.com/insights/hubspot-implementation-insurance-agencies)
+- [Demand generation services from Truax Marketing](https://truaxmarketing.com/services/demand-generation)
+
+## Next step
+
+Want these campaigns running from your CRM? [Book a call](https://truaxmarketing.com/meet). We will map your client moments and build the sequences around them.
+
+## Sources
+
+- [CAN-SPAM Act: A Compliance Guide for Business](https://www.ftc.gov/business-guidance/resources/can-spam-act-compliance-guide-business), Federal Trade Commission, August 2023 (edited January 2024)
+- [Big "I" and Future One Release 2026 Agency Universe Study](https://www.independentagent.com/news/big-i-and-future-one-release-2026-agency-universe-study/), Sept 23, 2026
+- [Two-Thirds of Independent Agents Plan to Increase AI Use This Year](https://www.independentagent.com/news/two-thirds-of-independent-agents-plan-to-increase-ai-use-this-year/), Big "I" Agents Council for Technology, Feb 19, 2026`,
+    publishedAt: "Jan 25, 2027",
+    author: "Aaron Truax",
+    category: "Demand Generation",
+    tags: ["email marketing for insurance agents", "insurance agency marketing", "client retention", "CAN-SPAM"],
+    featuredImage: "/images/blog/email-marketing-for-insurance-agents.jpg",
+  },
+  {
+    id: "2027-01-life-sciences-marketing-strategy",
+    slug: "life-sciences-marketing-strategy",
+    title: "Life Sciences Marketing in 2027: A Strategy That Ties to Pipeline",
+    excerpt: "Life sciences marketing has to reach technical buyers through a long, regulated sale. This strategy covers segments, proof, channels, and the system that connects them to revenue.",
+    content: `**Key takeaways**
+
+- In a 2026 survey, life sciences marketers named R&D delays (58%) and limited budgets (52%) as their top obstacles to growth.
+- The channels they rated highest for return were direct sales and events. Marketing earns its budget by making those channels work harder.
+- Build the strategy in five parts: segment, proof, channels, system, and measurement.
+
+A life sciences marketing strategy works when it is built for technical buyers, long sales cycles, and regulated claims, and when every activity can be traced to an opportunity.
+
+## Where the industry stands
+
+The State of Life Sciences Marketing Report 2026, summarized in [Life Science Leader](https://www.lifescienceleader.com/doc/visibility-without-discoverability-a-life-sciences-marketing-challenge-0001), surveyed 52 professionals in biotech, medtech, pharma, and research institutions across 23 countries. The sample is small, so treat the figures as a signal.
+
+**How they define growth**
+
+- Revenue expansion: 63%
+- Access to new markets: 48%
+- More leads: 31%
+
+**What holds growth back**
+
+- R&D delays: 58%
+- Limited budgets: 52%
+- Strong competition: 40%
+- Lack of talent: 31%
+- Regulatory complexity: 31%
+
+**Channels in use**
+
+- Websites: 71%
+- LinkedIn: 60%
+- Events and trade shows: 54%
+- Direct sales: 46%
+- Email: 46%
+
+Direct sales (35%) and B2B events (33%) were rated highest for return. SEO and content marketing were rated lowest at 10%.
+
+Read those together. Budgets are tight, the channels trusted most are the expensive ones, and digital work is not getting credit. That points to a measurement gap more than a channel problem.
+
+## Part 1: Choose your segment
+
+"Life sciences" covers several different buyers. Pick the one you are selling to this year.
+
+- **Research tools and reagents.** Buyers are bench scientists and lab managers. They want data and protocols.
+- **Instruments and software.** Buyers include directors and procurement. They want proof of throughput, support, and total cost.
+- **Services such as contract research and manufacturing.** Buyers are program leads and outsourcing managers. They want capacity, quality systems, and track record.
+- **Diagnostics.** Buyers include lab directors and clinicians. Regulatory status shapes every message.
+- **Therapeutics.** Before approval, the audiences are investors, partners, investigators, and talent. Promotion of the product itself is restricted.
+
+Write one sentence: who buys, what problem they have, and why you are the better choice. If the team cannot agree on it, stop and resolve that first.
+
+## Part 2: Build proof
+
+Technical buyers discount claims and trust evidence.
+
+- Data: application notes, validation results, performance comparisons
+- Publications and posters that used your product or service
+- Named customers or case summaries, with permission
+- Certifications and quality systems
+- The scientists on your team, with their backgrounds
+
+Rank your proof from strongest to weakest. Lead with the strongest in every channel.
+
+## Part 3: Pick channels by buying stage
+
+- **Problem aware.** Technical content, search, and conference talks.
+- **Comparing options.** Comparison pages, webinars, demos, and samples.
+- **Ready to buy.** Direct sales, quotes, and references.
+- **Existing customers.** Email, training, and new application content.
+
+Choose one or two channels per stage. A small team running four channels well will beat one running ten poorly.
+
+## Part 4: Connect the system
+
+This is where most strategies fail. The pieces exist and nothing links them.
+
+- One CRM holds every contact, organization, and opportunity
+- Every lead carries a source: event, webinar, search, referral, distributor
+- Event leads are loaded the same day
+- New inquiries are assigned within the hour
+- Technical questions route to an application scientist
+- Contacts not ready to buy enter a nurture sequence
+
+Speed matters here as it does everywhere. A Harvard Business Review audit of 2,241 US companies found firms that responded within an hour were about seven times more likely to qualify a lead than those that responded later.
+
+## Part 5: Measure what the board cares about
+
+Report four numbers each month:
+
+- Opportunities created, by source
+- Pipeline value, by segment
+- Win rate
+- Average days from inquiry to close
+
+Add a simple question to every form: "How did you first hear about us?" The answers will credit channels that tracking misses.
+
+## Keep claims compliant
+
+Marketing in this field is regulated, and the rules depend on the product.
+
+- For investigational drugs, [21 CFR 312.7(a)](https://www.law.cornell.edu/cfr/text/21/312.7) states that a sponsor "shall not represent in a promotional context that an investigational new drug is safe or effective for the purposes for which it is under investigation."
+- Products labeled for research use only are addressed in FDA guidance issued in November 2013.
+- Build a review step with regulatory or legal for any promotional claim.
+
+This article is not legal or regulatory advice.
+
+## A first 90 days
+
+- **Days 1 to 30.** Agree on the segment and the one-sentence position. Audit your proof. Fix lead tracking in the CRM.
+- **Days 31 to 60.** Publish five technical pages. Build the follow-up process for your next event.
+- **Days 61 to 90.** Run one webinar or outreach campaign to target accounts. Report the four numbers.
+
+Want help building this for your company? [Book a call](https://truaxmarketing.com/meet).
+
+## Frequently asked questions
+
+**How is life sciences marketing different from other B2B marketing?**
+The buyers are technical experts, several people share each decision, the sales cycle is long, and promotional claims are regulated.
+
+**How much should a life sciences company spend on marketing?**
+There is no single right figure. Start from your revenue goal, your average deal size, and your win rate. Work back to the number of opportunities you need and what you can pay to create one.
+
+**When should a biotech startup hire a marketing leader?**
+When commercial activity starts and nobody owns the plan. A fractional leader can fit before a full-time hire makes sense.
+
+## Related reading
+
+- [Fractional CMO Cost in 2026](https://truaxmarketing.com/insights/fractional-cmo-cost)
+- [Speed to Lead for Insurance Agencies](https://truaxmarketing.com/insights/speed-to-lead-insurance-agencies)
+- [Fractional CMO services from Truax Marketing](https://truaxmarketing.com/services/fractional-cmo)
+- [Digital strategy services from Truax Marketing](https://truaxmarketing.com/services/digital-strategy)
+
+## Next step
+
+Want a marketing strategy your commercial team will use? [Book a call](https://truaxmarketing.com/meet). We will review your segment, proof, channels, and CRM, and show you where to start.
+
+## Sources
+
+- [Visibility Without Discoverability: A Life Sciences Marketing Challenge](https://www.lifescienceleader.com/doc/visibility-without-discoverability-a-life-sciences-marketing-challenge-0001), Life Science Leader, Jan 9, 2026
+- [The Short Life of Online Sales Leads](https://hbr.org/2011/03/the-short-life-of-online-sales-leads), Harvard Business Review, March 2011
+- [21 CFR 312.7, Promotion of investigational drugs](https://www.law.cornell.edu/cfr/text/21/312.7), Cornell Legal Information Institute
+- [Distribution of In Vitro Diagnostic Products Labeled for Research Use Only or Investigational Use Only](https://www.fda.gov/regulatory-information/search-fda-guidance-documents/distribution-in-vitro-diagnostic-products-labeled-research-use-only-or-investigational-use-only), FDA guidance, November 2013`,
+    publishedAt: "Jan 11, 2027",
+    author: "Aaron Truax",
+    category: "Digital Strategy",
+    tags: ["life sciences marketing", "biotech marketing", "life science marketing strategy", "B2B marketing"],
+    featuredImage: "/images/blog/life-sciences-marketing-strategy.jpg",
+  },
   {
     id: "2026-12-insurance-marketing-ideas",
     slug: "insurance-marketing-ideas",
