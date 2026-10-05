@@ -3,6 +3,11 @@ import { notFound } from "next/navigation";
 import { getBlogPostBySlug, getAllBlogPosts } from "@/lib/blog-data";
 import BlogPostContent from "./blog-post-content";
 
+// Re-check hourly so a scheduled post goes live on its publish date,
+// and allow slugs that were not built at deploy time.
+export const revalidate = 3600;
+export const dynamicParams = true;
+
 interface Props {
   params: Promise<{ slug: string }>;
 }
