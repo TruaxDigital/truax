@@ -1,5 +1,8 @@
 import { Metadata } from "next";
 
+// Re-render hourly so scheduled posts appear on their publish date
+export const revalidate = 3600;
+
 export const metadata: Metadata = {
   title: "Marketing Services",
   description: "Explore our full suite of digital marketing services including SEO, web development, AI agents, fractional CMO, demand generation, and managed hosting.",

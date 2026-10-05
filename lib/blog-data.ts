@@ -1,4 +1,5 @@
 import { newBlogPosts } from "./blog-data-new";
+import { scheduledBlogPosts } from "./blog-data-scheduled";
 
 export interface BlogPost {
   id: string;
@@ -13,7 +14,10 @@ export interface BlogPost {
   featuredImage: string;
 }
 
-export const blogPosts: BlogPost[] = [
+// Every post, including ones scheduled for a future date. Do not export this.
+// Read posts through the helper functions below so scheduled posts stay hidden.
+const allPostsIncludingScheduled: BlogPost[] = [
+  ...scheduledBlogPosts,
   ...newBlogPosts,
   {
     id: "1",
@@ -6506,30 +6510,57 @@ If you are ready to simplify site management and keep your WordPress running smo
   },
 ];
 
+// --- Scheduling -------------------------------------------------------------
+// A post goes live at 13:00 UTC (9:00 AM Eastern in summer, 8:00 AM in winter)
+// on its publishedAt date. Until then it is hidden from the listing, the
+// sitemap, related posts, and its own URL. Pages revalidate hourly, so a post
+// appears within about an hour of its publish time with no deploy needed.
+// To schedule a post, add it to lib/blog-data-new.ts with a future publishedAt.
+export function getPublishTime(post: BlogPost): number {
+  const withTime = Date.parse(`${post.publishedAt} 13:00:00 UTC`);
+  if (!isNaN(withTime)) return withTime;
+  const plain = new Date(post.publishedAt).getTime();
+  return isNaN(plain) ? 0 : plain;
+}
+
+function currentTime(): number {
+  // BLOG_NOW lets you preview a future date locally, e.g. BLOG_NOW=2026-12-31
+  const override = process.env.BLOG_NOW ? Date.parse(process.env.BLOG_NOW) : NaN;
+  return isNaN(override) ? Date.now() : override;
+}
+
+export function isPublished(post: BlogPost): boolean {
+  return getPublishTime(post) <= currentTime();
+}
+
+function livePosts(): BlogPost[] {
+  return allPostsIncludingScheduled.filter(isPublished);
+}
+
 export function getAllBlogPosts(): BlogPost[] {
-  return blogPosts;
+  return livePosts();
 }
 
 export function getPostBySlug(slug: string): BlogPost | undefined {
-  return blogPosts.find(post => post.slug === slug);
+  return livePosts().find(post => post.slug === slug);
 }
 
 // Alias for backwards compatibility
 export const getBlogPostBySlug = getPostBySlug;
 
 export function getPostsByCategory(category: string): BlogPost[] {
-  return blogPosts.filter(post => post.category === category);
+  return livePosts().filter(post => post.category === category);
 }
 
 export function getPostsByTag(tag: string): BlogPost[] {
-  return blogPosts.filter(post => post.tags.includes(tag));
+  return livePosts().filter(post => post.tags.includes(tag));
 }
 
 export function getRelatedPosts(currentSlug: string, limit = 3): BlogPost[] {
   const currentPost = getPostBySlug(currentSlug);
-  if (!currentPost) return blogPosts.slice(0, limit);
+  if (!currentPost) return livePosts().slice(0, limit);
   
-  return blogPosts
+  return livePosts()
     .filter(post => post.slug !== currentSlug)
     .filter(post => 
       post.category === currentPost.category || 
@@ -6539,12 +6570,12 @@ export function getRelatedPosts(currentSlug: string, limit = 3): BlogPost[] {
 }
 
 export function getAllCategories(): string[] {
-  return [...new Set(blogPosts.map(post => post.category))];
+  return [...new Set(livePosts().map(post => post.category))];
 }
 
 export function getPostsByKeywords(keywords: string[], limit: number = 3): BlogPost[] {
   const lowerKeywords = keywords.map(k => k.toLowerCase());
-  return blogPosts
+  return livePosts()
     .filter(post => {
       const titleLower = post.title.toLowerCase();
       const excerptLower = post.excerpt.toLowerCase();
@@ -6561,5 +6592,5 @@ export function getPostsByKeywords(keywords: string[], limit: number = 3): BlogP
 }
 
 export function getAllTags(): string[] {
-  return [...new Set(blogPosts.flatMap(post => post.tags))];
+  return [...new Set(livePosts().flatMap(post => post.tags))];
 }

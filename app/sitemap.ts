@@ -1,5 +1,8 @@
 import { MetadataRoute } from 'next'
-import { blogPosts } from '@/lib/blog-data'
+import { getAllBlogPosts } from '@/lib/blog-data'
+
+// Rebuild hourly so scheduled posts enter the sitemap on their publish date
+export const revalidate = 3600
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://truaxmarketing.com'
@@ -26,7 +29,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   ]
 
   // Blog posts, dated by their real publish date
-  const blogPages = blogPosts.map((post) => {
+  const blogPages = getAllBlogPosts().map((post) => {
     const published = new Date(post.publishedAt)
     return {
       url: `${baseUrl}/insights/${post.slug}`,

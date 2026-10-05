@@ -1,6 +1,6 @@
 import type { BlogPost } from "./blog-data";
 
-// Posts added October 2026. Listed newest first. Spread into blogPosts in lib/blog-data.ts.
+// Posts added October 2026. Listed newest first. Loaded by lib/blog-data.ts.
 export const newBlogPosts: BlogPost[] = [
   {
     id: "2026-10-ai-for-insurance-agents",
