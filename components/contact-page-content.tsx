@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { track } from "@vercel/analytics";
 import { Mail, MapPin, Calendar, Send, ArrowRight, CheckCircle, AlertCircle, Loader2, ChevronDown } from "lucide-react";
@@ -53,6 +53,12 @@ export function ContactPageContent() {
   });
   const [status, setStatus] = useState<FormStatus>("idle");
   const [errorMessage, setErrorMessage] = useState("");
+  // Spam protection: hidden honeypot value and the time the form was ready.
+  const [honeypot, setHoneypot] = useState("");
+  const startedAt = useRef(0);
+  useEffect(() => {
+    startedAt.current = Date.now();
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -63,7 +69,7 @@ export function ContactPageContent() {
       const response = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...formState, source: "contact-page" }),
+        body: JSON.stringify({ ...formState, source: "contact-page", website: honeypot, startedAt: startedAt.current }),
       });
 
       const data = await response.json();
@@ -75,6 +81,7 @@ export function ContactPageContent() {
       setStatus("success");
       track("Form Submit", { form: "contact", location: "contact-page", service: formState.service || "unspecified" });
       setFormState({ name: "", email: "", company: "", service: "", message: "" });
+      startedAt.current = Date.now();
     } catch (error) {
       setStatus("error");
       setErrorMessage(error instanceof Error ? error.message : "Failed to send message");
@@ -154,6 +161,19 @@ export function ContactPageContent() {
             >
               <h2 className="text-2xl font-semibold mb-8">Send us a message</h2>
               <form onSubmit={handleSubmit} className="space-y-6">
+              {/* Honeypot: hidden from people and screen readers. Bots fill it. */}
+              <div aria-hidden="true" style={{ position: "absolute", left: "-10000px", top: "auto", width: 1, height: 1, overflow: "hidden" }}>
+                <label htmlFor="website-hp-contact-page">Website</label>
+                <input
+                  id="website-hp-contact-page"
+                  type="text"
+                  name="website"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  value={honeypot}
+                  onChange={(e) => setHoneypot(e.target.value)}
+                />
+              </div>
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>
                     <label className="block text-sm font-medium mb-2 text-gray-300">Name</label>

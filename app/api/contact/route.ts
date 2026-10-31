@@ -1,6 +1,8 @@
 import { Resend } from "resend";
 import { NextResponse } from "next/server";
+import { checkBotId } from "botid/server";
 import { insertLead, updateLeadEmailStatus } from "@/lib/db";
+import { screenSubmission } from "@/lib/spam";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -198,6 +200,20 @@ function buildConfirmationEmail(input: { name: string; service?: string }) {
 
 export async function POST(request: Request) {
   try {
+    // 0. Vercel BotID: blocks scripted and headless-browser traffic that never
+    // loaded the page. Protected path is registered in instrumentation-client.ts.
+    // Fails open: if BotID itself errors, the other spam layers still run and a
+    // real lead is never lost because of a verification outage.
+    try {
+      const verification = await checkBotId();
+      if (verification.isBot) {
+        console.warn("Contact form: blocked by BotID");
+        return NextResponse.json({ error: "Access denied" }, { status: 403 });
+      }
+    } catch (botIdError) {
+      console.error("Contact form: BotID check failed, continuing", botIdError);
+    }
+
     const body = await request.json();
     const { name, email, company, service, message, source } = body;
 
@@ -216,6 +232,33 @@ export async function POST(request: Request) {
         { error: "Invalid email address" },
         { status: 400 }
       );
+    }
+
+    // Spam screening (honeypot, fill timing, content patterns). Bots get a normal
+    // success response so they have nothing to learn from, but no email goes to
+    // Truax and no confirmation goes to the submitted address.
+    const verdict = screenSubmission(body);
+    if (verdict.spam) {
+      console.warn(`Contact form: dropped as spam (${verdict.reason})`, { email });
+      // Content-based flags can, rarely, catch a real person. Keep those rows in
+      // the database (marked spam) so they can be reviewed in /admin/leads.
+      const reviewable = ["gmail-dot-pattern", "link-in-name", "too-many-links", "stale-timestamp"];
+      if (reviewable.includes(verdict.reason)) {
+        try {
+          await insertLead({
+            name,
+            email,
+            company,
+            service,
+            message,
+            source,
+            emailStatus: `spam:${verdict.reason}`,
+          });
+        } catch (dbError) {
+          console.error("Contact form: failed to save spam row", dbError);
+        }
+      }
+      return NextResponse.json({ message: "Email sent successfully" }, { status: 200 });
     }
 
     // 1. Save the lead to the database FIRST. This is the durable record of truth,
